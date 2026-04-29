@@ -1,0 +1,36 @@
+.hero {
+  min-height: 30vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 56px;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-accent-brown);
+}
+
+.inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.sub {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 520px;
+}

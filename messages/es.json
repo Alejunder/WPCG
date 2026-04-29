@@ -1,0 +1,135 @@
+{
+  "Navbar": {
+    "home": "Inicio",
+    "projects": "Proyectos",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "team": "Equipo",
+    "contact": "Contacto",
+    "cta": "Hablemos"
+  },
+  "HomePage": {
+    "heroViewProjects": "Ver proyectos",
+    "heroContact": "Contacto",
+    "heroPrev": "Imagen anterior",
+    "heroNext": "Imagen siguiente",
+    "aboutLabel": "Sobre nosotros",
+    "aboutHeading": "Arquitectura que <em>piensa</em> y espacios que <em>funcionan</em>",
+    "aboutCta": "Con\u00f3cenos",
+    "servicesHeading": "Nuestras Soluciones",
+    "servicesExplore": "Explorar",
+    "projectsHeading": "Proyectos Destacados",
+    "projectsEyebrow": "Obra Seleccionada",
+    "projectsViewAll": "Ver todos los proyectos",
+    "projectsViewProject": "Ver proyecto",
+    "clientsHeading": "Nuestros Clientes",
+    "ctaHeadline": "\u00bfTe gusta lo que ves?",
+    "ctaSub": "Construyamos algo extraordinario juntos.",
+    "ctaButton": "Cont\u00e1ctanos"
+  },
+  "ProjectCard": {
+    "viewProject": "Ver proyecto {title}",
+    "categories": {
+      "office": "Oficinas",
+      "residential": "Residencial",
+      "retail": "Comercial"
+    }
+  },
+  "ProjectsPage": {
+    "title": "Nuestros Proyectos",
+    "breadcrumbHome": "Inicio",
+    "breadcrumbProjects": "Proyectos"
+  },
+  "LoadMoreButton": {
+    "label": "Cargar más",
+    "loading": "Cargando…"
+  },
+  "RelatedProjects": {
+    "heading": "También te puede interesar"
+  },
+  "CtaBanner": {
+    "headline": "¿Te gusta lo que ves?",
+    "sub": "Construyamos algo extraordinario juntos.",
+    "button": "Contáctanos"
+  },
+  "ServicesPage": {
+    "title": "Lo Que Hacemos",
+    "breadcrumbHome": "Inicio",
+    "breadcrumbServices": "Servicios",
+    "sectionHeading": "Nuestros Servicios",
+    "processHeading": "Nuestro Proceso",
+    "ctaHeadline": "\u00bfListo para empezar tu proyecto?",
+    "ctaSub": "Dise\u00f1emos algo extraordinario juntos.",
+    "ctaButton": "Cont\u00e1ctanos",
+    "learnMore": "M\u00e1s informaci\u00f3n"
+  },
+  "AboutPage": {
+    "breadcrumbHome": "Inicio",
+    "breadcrumbAbout": "Nosotros",
+    "valuesHeading": "Nuestros Valores",
+    "ctaHeadline": "\u00bfListo para transformar tu espacio?",
+    "ctaSub": "Dise\u00f1emos algo extraordinario juntos.",
+    "ctaButton": "Cont\u00e1ctanos"
+  },
+  "TeamPage": {
+    "breadcrumbHome": "Inicio",
+    "breadcrumbTeam": "Equipo",
+    "sectionHeading": "El equipo",
+    "linkedinLabel": "Ver perfil de LinkedIn de",
+    "ctaHeadline": "\u00bfQuieres trabajar con nosotros?",
+    "ctaSub": "Siempre estamos buscando personas con talento.",
+    "ctaButton": "Cont\u00e1ctanos"
+  },
+  "ServiceDetailPage": {
+    "breadcrumbHome": "Inicio",
+    "breadcrumbServices": "Servicios",
+    "highlightsHeading": "Qu\u00e9 Incluye",
+    "metaDescriptionFallback": "Descubra nuestro servicio profesional.",
+    "ctaHeadline": "\u00bfInteresado en este servicio?",
+    "ctaSub": "Hablemos sobre c\u00f3mo podemos ayudar a tu proyecto.",
+    "ctaButton": "Cont\u00e1ctanos"
+  },
+  "ContactPage": {
+    "breadcrumbHome": "Inicio",
+    "breadcrumbContact": "Contacto",
+    "heroHeading": "Hablemos",
+    "heroSub": "Cu\u00e9ntanos tu proyecto y te responderemos en menos de 24 horas."
+  },
+  "ContactForm": {
+    "formAriaLabel": "Formulario de contacto",
+    "labelName": "Nombre completo",
+    "placeholderName": "Ana Garc\u00eda",
+    "labelEmail": "Correo electr\u00f3nico",
+    "placeholderEmail": "ana@empresa.com",
+    "labelPhone": "Tel\u00e9fono",
+    "placeholderPhone": "+34 600 000 000",
+    "labelCompany": "Empresa",
+    "placeholderCompany": "Acme Corp",
+    "labelProjectType": "Tipo de proyecto",
+    "optionOffice": "Oficina",
+    "optionResidential": "Residencial",
+    "optionRetail": "Comercial",
+    "optionOther": "Otro",
+    "labelMessage": "Mensaje",
+    "placeholderMessage": "Cu\u00e9ntanos tu proyecto, plazos y cualquier requisito espec\u00edfico\u2026",
+    "privacyPrefix": "He le\u00eddo y acepto la",
+    "privacyLink": "Pol\u00edtica de Privacidad",
+    "submit": "Cu\u00e9ntanos tu proyecto",
+    "submitting": "Enviando\u2026",
+    "successHeadline": "Gracias. Nos pondremos en contacto pronto.",
+    "successSub": "Nuestro equipo responder\u00e1 en menos de 24 horas.",
+    "errorGeneric": "Algo ha salido mal. Vuelve a intentarlo o env\u00edanos un correo directamente.",
+    "errorRateLimit": "Demasiadas solicitudes. Espera un momento antes de intentarlo de nuevo."
+  },
+  "ContactInfo": {
+    "ariaLabel": "Informaci\u00f3n de contacto",
+    "labelAddress": "Direcci\u00f3n",
+    "labelEmail": "Correo",
+    "labelPhone": "Tel\u00e9fono",
+    "labelHours": "Horario"  },
+  "ErrorPage": {
+    "heading": "Algo ha salido mal",
+    "body": "Ha ocurrido un error inesperado. Puedes intentarlo de nuevo o volver a la página de inicio.",
+    "retry": "Intentar de nuevo",
+    "home": "Ir al inicio"  }
+}

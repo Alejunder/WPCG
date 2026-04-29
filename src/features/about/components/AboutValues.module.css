@@ -1,0 +1,106 @@
+.section {
+  padding: var(--space-xl) var(--gutter, 1.5rem);
+  background-color: var(--color-navbar);
+}
+
+.inner {
+  max-width: var(--max-width, 80rem);
+  margin-inline: auto;
+}
+
+.sectionHeading {
+  font-family: var(--font-primary);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------------ */
+/* List                                                                 */
+/* ------------------------------------------------------------------ */
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid rgba(195, 164, 102, 0.18);
+}
+
+.item:last-child {
+  border-bottom: 1px solid rgba(195, 164, 102, 0.18);
+}
+
+/* ------------------------------------------------------------------ */
+/* Number accent                                                        */
+/* ------------------------------------------------------------------ */
+
+.number {
+  font-family: var(--font-primary);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--color-accent-gold);
+  opacity: 0.22;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 3.5rem;
+  user-select: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Body                                                                 */
+/* ------------------------------------------------------------------ */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: 0.25rem;
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.description {
+  font-family: var(--font-primary);
+  font-size: clamp(0.9rem, 1.3vw, 1rem);
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1.75;
+  max-width: 56ch;
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive                                                           */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 640px) {
+  .section {
+    padding: var(--space-lg) var(--gutter, 1.5rem);
+  }
+
+  .number {
+    font-size: 2.25rem;
+    min-width: 2.75rem;
+  }
+
+  .item {
+    gap: 1.25rem;
+    padding: 1.75rem 0;
+  }
+}

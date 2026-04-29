@@ -1,0 +1,255 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 620px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+/* Carousel image layer — full cover, managed by AnimatePresence */
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Fallback when heroImages is empty */
+.imageFallback {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-bg);
+  z-index: 0;
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* Layered overlay for legibility */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(29, 26, 21, 0.94) 0%,
+      rgba(29, 26, 21, 0.5) 35%,
+      rgba(29, 26, 21, 0.15) 65%,
+      rgba(29, 26, 21, 0.3) 100%
+    );
+  z-index: 1;
+}
+
+/* CTA container — bottom centre, above overlay */
+.exitWrapper {
+  width: 100%;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  padding-bottom: 7.5rem;
+}
+
+.ctaGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Primary CTA — solid gold */
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 1rem 2.5rem;
+  background-color: var(--color-accent-gold);
+  color: var(--color-bg);
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.ctaPrimary:hover {
+  background-color: #d4b87a;
+  transform: translateY(-2px);
+}
+
+.ctaPrimary:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Secondary CTA — ghost */
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 1rem 2.5rem;
+  border: 1px solid rgba(195, 164, 102, 0.5);
+  background-color: transparent;
+  color: rgba(195, 164, 102, 0.85);
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.ctaSecondary:hover {
+  border-color: var(--color-accent-gold);
+  color: var(--color-bg);
+  background-color: var(--color-accent-gold);
+  transform: translateY(-2px);
+}
+
+.ctaSecondary:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 3px;
+}
+
+/* ── Carousel navigation ─────────────────────────────────────────────────── */
+
+.carouselBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid rgba(195, 164, 102, 0.3);
+  color: rgba(195, 164, 102, 0.65);
+  font-size: 1.125rem;
+  cursor: pointer;
+  padding: 0;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.carouselBtn:hover {
+  border-color: var(--color-accent-gold);
+  color: var(--color-bg);
+  background-color: var(--color-accent-gold);
+}
+
+.carouselBtn:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 3px;
+}
+
+.carouselBtnPrev {
+  left: var(--gutter);
+}
+
+.carouselBtnNext {
+  right: var(--gutter);
+}
+
+/* Dots — thin horizontal bars (architectural style) */
+.dots {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  display: block;
+  width: 1.75rem;
+  height: 2px;
+  background-color: rgba(195, 164, 102, 0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.25s ease, width 0.25s ease;
+}
+
+.dot:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 4px;
+}
+
+.dotActive {
+  background-color: var(--color-accent-gold);
+  width: 3rem;
+}
+
+/* Scroll indicator — right edge */
+.scrollHint {
+  position: absolute;
+  bottom: 2.5rem;
+  right: var(--gutter);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.scrollLabel {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.5625rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(195, 164, 102, 0.55);
+  writing-mode: vertical-rl;
+}
+
+.scrollLine {
+  display: block;
+  width: 1px;
+  height: 3.5rem;
+  background: linear-gradient(to bottom, var(--color-accent-gold), transparent);
+  animation: scrollPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.25; transform: scaleY(0.7); transform-origin: top; }
+  50%       { opacity: 0.9;  transform: scaleY(1);   transform-origin: top; }
+}
+
+@media (max-width: 767px) {
+  .carouselBtn {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .ctaGroup {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .scrollHint {
+    display: none;
+  }
+}
+
+

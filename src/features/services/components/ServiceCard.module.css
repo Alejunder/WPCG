@@ -1,0 +1,133 @@
+.cardWrapper {
+  display: block;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-navbar);
+  overflow: hidden;
+  text-decoration: none;
+  height: 100%;
+  transition:
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.4s;
+  border: 1px solid transparent;
+}
+
+.card:hover,
+.card:focus-visible {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(195, 164, 102, 0.07);
+  border-color: rgba(195, 164, 102, 0.2);
+  outline: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Image / accent block                                                  */
+/* ------------------------------------------------------------------ */
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover .image,
+.card:focus-visible .image {
+  transform: scale(1.05);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(29, 26, 21, 0.6) 100%
+  );
+}
+
+.accentOverlay {
+  position: absolute;
+  bottom: 0.875rem;
+  left: 1rem;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--color-accent-gold);
+  opacity: 0.85;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* No-image fallback */
+.accentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  background-color: var(--color-accent-brown);
+}
+
+.accent {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 3rem;
+  color: var(--color-accent-gold);
+  opacity: 0.6;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+/* ------------------------------------------------------------------ */
+/* Body                                                                  */
+/* ------------------------------------------------------------------ */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.25;
+  color: #fff;
+}
+
+.description {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--color-text);
+  flex: 1;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  transition: letter-spacing 0.3s;
+}
+
+.card:hover .cta,
+.card:focus-visible .cta {
+  letter-spacing: 0.1em;
+}

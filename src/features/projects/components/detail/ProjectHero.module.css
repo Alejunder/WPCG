@@ -1,0 +1,49 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 480px;
+  overflow: hidden;
+}
+
+/* Parallax container — extends above/below to allow travel */
+.imageWrapper {
+  position: absolute;
+  inset: -15% 0;
+  will-change: transform;
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* Radial vignette — adds 3D depth, darkens edges */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(29, 26, 21, 0.55) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Bottom gradient — bleeds into page background */
+.bottomFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Content slot for any overlaid text (currently empty but structured) */
+.contentSlot {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  padding: 3rem var(--gutter);
+}

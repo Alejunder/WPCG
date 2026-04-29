@@ -1,0 +1,137 @@
+{
+  "Navbar": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "services": "Services",
+    "team": "Team",
+    "contact": "Contact",
+    "cta": "Let's Talk"
+  },
+  "HomePage": {
+    "heroViewProjects": "See our projects",
+    "heroContact": "Contact us",
+    "heroPrev": "Previous image",
+    "heroNext": "Next image",
+    "aboutLabel": "About",
+    "aboutHeading": "Architecture that <em>thinks</em> and spaces that <em>work</em>",
+    "aboutCta": "Learn more about us",
+    "servicesHeading": "Our Solutions",
+    "servicesExplore": "Explore",
+    "projectsHeading": "Featured Projects",
+    "projectsEyebrow": "Selected Work",
+    "projectsViewAll": "View all projects",
+    "projectsViewProject": "View project",
+    "clientsHeading": "Our Clients",
+    "ctaHeadline": "Like what you see?",
+    "ctaSub": "Let\u2019s build something remarkable together.",
+    "ctaButton": "Get in touch"
+  },
+  "ProjectCard": {
+    "viewProject": "View project {title}",
+    "categories": {
+      "office": "Offices",
+      "residential": "Residential",
+      "retail": "Retail"
+    }
+  },
+  "ProjectsPage": {
+    "title": "Our Projects",
+    "breadcrumbHome": "Home",
+    "breadcrumbProjects": "Projects"
+  },
+  "LoadMoreButton": {
+    "label": "Load more",
+    "loading": "Loading…"
+  },
+  "RelatedProjects": {
+    "heading": "You might also like"
+  },
+  "CtaBanner": {
+    "headline": "Like what you see?",
+    "sub": "Let\u2019s build something remarkable together.",
+    "button": "Get in touch"
+  },
+  "ServicesPage": {
+    "title": "What We Do",
+    "breadcrumbHome": "Home",
+    "breadcrumbServices": "Services",
+    "sectionHeading": "Our Services",
+    "processHeading": "Our Process",
+    "ctaHeadline": "Ready to start your project?",
+    "ctaSub": "Let\u2019s design something extraordinary together.",
+    "ctaButton": "Get in touch",
+    "learnMore": "Learn more"
+  },
+  "ServiceDetailPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbServices": "Services",
+    "highlightsHeading": "What\u2019s Included",
+    "metaDescriptionFallback": "Discover our professional service.",
+    "ctaHeadline": "Interested in this service?",
+    "ctaSub": "Let\u2019s discuss how we can help your project.",
+    "ctaButton": "Contact us"
+  },
+  "AboutPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbAbout": "About",
+    "valuesHeading": "Our Values",
+    "ctaHeadline": "Ready to transform your workspace?",
+    "ctaSub": "Let\u2019s design something extraordinary together.",
+    "ctaButton": "Get in touch"
+  },
+  "TeamPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbTeam": "Team",
+    "sectionHeading": "Meet the Team",
+    "linkedinLabel": "View LinkedIn profile of",
+    "ctaHeadline": "Want to work with us?",
+    "ctaSub": "We are always looking for talented people.",
+    "ctaButton": "Get in touch"
+  },
+  "ContactPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbContact": "Contact",
+    "heroHeading": "Get in touch",
+    "heroSub": "Tell us about your project and we\u2019ll get back to you within 24 hours."
+  },
+  "ContactForm": {
+    "formAriaLabel": "Contact form",
+    "labelName": "Full Name",
+    "placeholderName": "Jane Smith",
+    "labelEmail": "Email",
+    "placeholderEmail": "jane@company.com",
+    "labelPhone": "Phone",
+    "placeholderPhone": "+34 600 000 000",
+    "labelCompany": "Company",
+    "placeholderCompany": "Acme Corp",
+    "labelProjectType": "Project Type",
+    "optionOffice": "Office",
+    "optionResidential": "Residential",
+    "optionRetail": "Retail",
+    "optionOther": "Other",
+    "labelMessage": "Message",
+    "placeholderMessage": "Tell us about your project, timeline, and any specific requirements\u2026",
+    "privacyPrefix": "I have read and accept the",
+    "privacyLink": "Privacy Policy",
+    "submit": "Start your project",
+    "submitting": "Sending\u2026",
+    "successHeadline": "Thank you. We\u2019ll be in touch shortly.",
+    "successSub": "Our team will respond within 24 hours.",
+    "errorGeneric": "Something went wrong. Please try again or email us directly.",
+    "errorRateLimit": "Too many requests. Please wait before trying again."
+  },
+  "ContactInfo": {
+    "ariaLabel": "Contact information",
+    "labelAddress": "Address",
+    "labelEmail": "Email",
+    "labelPhone": "Phone",
+    "labelHours": "Working Hours"
+  },
+  "ErrorPage": {
+    "heading": "Something went wrong",
+    "body": "An unexpected error occurred. You can try again or return to the home page.",
+    "retry": "Try again",
+    "home": "Go home"
+  }
+}

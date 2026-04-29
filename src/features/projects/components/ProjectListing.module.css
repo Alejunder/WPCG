@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Grid — visible on tablet and desktop, hidden on mobile              */
+/* ------------------------------------------------------------------ */
+
+.gridWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 639px) {
+  .gridWrapper {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Carousel — visible only on mobile                                   */
+/* ------------------------------------------------------------------ */
+
+.carouselWrapper {
+  display: none;
+  padding-inline: var(--gutter);
+  padding-block: 2rem;
+}
+
+@media (max-width: 639px) {
+  .carouselWrapper {
+    display: block;
+  }
+}

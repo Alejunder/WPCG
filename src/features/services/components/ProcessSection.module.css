@@ -1,0 +1,121 @@
+.section {
+  background-color: var(--color-navbar);
+  padding-block: 5rem;
+}
+
+.inner {
+  max-width: var(--max-width, 80rem);
+  margin-inline: auto;
+  padding-inline: var(--gutter, 1.5rem);
+}
+
+.heading {
+  margin: 0 0 3rem;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------------ */
+/* Steps list                                                           */
+/* ------------------------------------------------------------------ */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding-block: 2rem;
+  border-top: 1px solid rgba(195, 164, 102, 0.15);
+  position: relative;
+}
+
+.step:last-child {
+  border-bottom: 1px solid rgba(195, 164, 102, 0.15);
+}
+
+/* Vertical connector line between steps */
+.step::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2.25rem;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(195, 164, 102, 0.3) 0%,
+    rgba(195, 164, 102, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.stepNumber {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 1;
+  color: var(--color-accent-gold);
+  opacity: 0.7;
+  letter-spacing: -0.03em;
+  padding-top: 0.125rem;
+}
+
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stepTitle {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.stepDescription {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-text);
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive                                                           */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 639px) {
+  .section {
+    padding-block: 3rem;
+  }
+
+  .step {
+    grid-template-columns: 3.5rem 1fr;
+    gap: 1rem;
+    padding-block: 1.5rem;
+  }
+
+  .step::after {
+    left: 1.625rem;
+  }
+
+  .stepNumber {
+    font-size: 1.375rem;
+  }
+}

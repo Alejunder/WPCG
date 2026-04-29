@@ -1,0 +1,156 @@
+.hero {
+  position: relative;
+  height: 40vh;
+  min-height: 220px;
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero image (optional)                                                */
+/* ------------------------------------------------------------------ */
+
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(29, 26, 21, 0.55) 0%,
+    rgba(29, 26, 21, 0.75) 100%
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Noise / grain texture overlay                                        */
+/* ------------------------------------------------------------------ */
+
+.noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ------------------------------------------------------------------ */
+/* Layout                                                               */
+/* ------------------------------------------------------------------ */
+
+.inner {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 var(--gutter, 1.5rem);
+  max-width: var(--max-width, 80rem);
+  width: 100%;
+  margin-inline: auto;
+  padding-bottom: 2.5rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Breadcrumb                                                           */
+/* ------------------------------------------------------------------ */
+
+.breadcrumb {
+  order: -1;
+}
+
+.breadcrumbList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.breadcrumbLink {
+  font-family: var(--font-primary);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.breadcrumbLink:hover,
+.breadcrumbLink:focus-visible {
+  color: var(--color-accent-gold);
+}
+
+.breadcrumbSep {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  user-select: none;
+}
+
+.breadcrumbCurrent {
+  font-family: var(--font-primary);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+/* ------------------------------------------------------------------ */
+/* Typography                                                           */
+/* ------------------------------------------------------------------ */
+
+.title {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.1;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.intro {
+  margin: 0;
+  max-width: 42rem;
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive                                                           */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 639px) {
+  .hero {
+    height: 45vh;
+    min-height: 200px;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+}

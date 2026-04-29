@@ -1,0 +1,210 @@
+.section {
+  background-color: var(--color-bg);
+  padding-block: 10rem;
+  position: relative;
+}
+
+/* Top separator matching services section */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(195, 164, 102, 0.2) 30%, rgba(195, 164, 102, 0.2) 70%, transparent);
+}
+
+.inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* Section header */
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.eyebrow {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.headerRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: #fff;
+  margin: 0;
+}
+
+.viewAll {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.viewAll:hover {
+  opacity: 1;
+}
+
+.viewAll:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 3px;
+}
+
+/* ── Hero block — first featured project ─────────────────────────────────── */
+
+.featuredHero {
+  position: relative;
+  display: block;
+  height: 75vh;
+  min-height: 460px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.featuredHeroImage {
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.featuredHero:hover .featuredHeroImage {
+  transform: scale(1.04);
+}
+
+/* Bottom gradient overlay — deeper than before */
+.featuredHeroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(29, 26, 21, 0.92) 0%,
+    rgba(29, 26, 21, 0.45) 40%,
+    rgba(29, 26, 21, 0.1) 70%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+/* Thin gold top border revealed on hover */
+.featuredHero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--color-accent-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 3;
+}
+
+.featuredHero:hover::after {
+  transform: scaleX(1);
+}
+
+/* Content anchored to bottom-left */
+.featuredHeroContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: 2.75rem var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.featuredHeroCategory {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.featuredHeroTitle {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(1.875rem, 3.5vw, 3.25rem);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  color: #fff;
+  margin: 0;
+  max-width: 20ch;
+}
+
+.featuredHeroCta {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  color: rgba(195, 164, 102, 0.7);
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  transition: color 0.25s ease, letter-spacing 0.25s ease;
+}
+
+.featuredHero:hover .featuredHeroCta {
+  color: var(--color-accent-gold);
+  letter-spacing: 0.16em;
+}
+
+/* ── Small grid for remaining projects ───────────────────────────────────── */
+
+.smallGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+}
+
+@media (max-width: 639px) {
+  .section {
+    padding-block: 6rem;
+  }
+
+  .inner {
+    gap: 2.5rem;
+  }
+
+  .featuredHero {
+    height: 62vw;
+    min-height: 280px;
+  }
+
+  .smallGrid {
+    grid-template-columns: 1fr;
+  }
+}
+

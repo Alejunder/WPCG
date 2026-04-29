@@ -1,0 +1,47 @@
+.grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  /*
+    auto-fit collapses empty tracks; minmax(260px, 1fr) ensures cards never
+    shrink below 260px. Works for 1, 2, 3, 4… N members without any
+    layout-specific overrides.
+  */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Breakpoint overrides                                                 */
+/* ------------------------------------------------------------------ */
+
+/* Mobile — single column, centered */
+@media (max-width: 639px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin-inline: auto;
+  }
+}
+
+/* Tablet — 2 columns */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop — 3 columns (auto-fit naturally produces 3–4 at wide widths) */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Wide desktop — 4 columns for very large teams */
+@media (min-width: 1400px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

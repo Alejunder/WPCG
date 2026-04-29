@@ -1,0 +1,96 @@
+/* Framer Motion wrapper handles scale on hover */
+.cardWrapper {
+  display: block;
+}
+
+.card {
+  display: block;
+  background-color: var(--color-bg);
+  overflow: hidden;
+  text-decoration: none;
+  transition: box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover,
+.card:focus-visible {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(195, 164, 102, 0.08);
+}
+
+/* ------------------------------------------------------------------ */
+/* Image                                                                */
+/* ------------------------------------------------------------------ */
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover .image,
+.card:focus-visible .image {
+  transform: scale(1.06);
+}
+
+/* ------------------------------------------------------------------ */
+/* Hover overlay — slides up from bottom                               */
+/* ------------------------------------------------------------------ */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(29, 26, 21, 0.95) 0%, rgba(29, 26, 21, 0.2) 60%, transparent 100%);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.card:hover .overlay,
+.card:focus-visible .overlay {
+  transform: translateY(0);
+}
+
+.overlayTitle {
+  margin: 0 0 0.3rem;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.3;
+  color: #fff;
+}
+
+.overlayCategory {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.overlayArrow {
+  margin-top: 0.625rem;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--color-accent-gold);
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .overlayArrow,
+.card:focus-visible .overlayArrow {
+  transform: translateX(6px);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 2px;
+}

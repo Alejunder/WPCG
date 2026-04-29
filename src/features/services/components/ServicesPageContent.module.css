@@ -1,0 +1,30 @@
+.gridSection {
+  background-color: var(--color-bg);
+  padding-block: 1rem;
+}
+
+.inner {
+  max-width: var(--max-width, 80rem);
+  margin-inline: auto;
+  padding-inline: var(--gutter, 1.5rem);
+}
+
+.sectionHeading {
+  margin: 0;
+  padding-top: 3rem;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 639px) {
+  .gridSection {
+    padding-block: 0.5rem;
+  }
+
+  .sectionHeading {
+    padding-top: 2rem;
+  }
+}

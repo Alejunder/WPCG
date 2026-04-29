@@ -1,0 +1,244 @@
+/* ============================================================
+   FullscreenMenu — immersive navigation overlay
+   ============================================================ */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  /* No background — curtain panels provide the fill */
+  overflow: hidden;
+}
+
+/* ── Curtain panels ───────────────────────────────────────────── */
+
+.panelLeft,
+.panelRight {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: var(--color-bg);
+  z-index: 1;
+  will-change: transform;
+}
+
+.panelLeft  { left:  0; }
+.panelRight { right: 0; }
+
+/* ── Menu content (sits above panels) ────────────────────────── */
+
+.menuContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Top bar (mirrors navbar height) ──────────────────────────── */
+
+.header {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--gutter);
+  max-width: var(--max-width);
+  margin-inline: auto;
+  width: 100%;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(195, 164, 102, 0.1);
+}
+
+.logoImage {
+  display: block;
+  height: 38px;
+  width: auto;
+  filter: brightness(1.6) contrast(0.9);
+}
+
+/* X button — two absolutely-centered crossing bars */
+.closeBtn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--color-accent-green);
+  outline-offset: 3px;
+}
+
+.closeBar {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background-color: var(--color-text);
+  transition: background-color 0.2s ease;
+}
+
+.closeBar:first-child {
+  transform: rotate(45deg);
+}
+
+.closeBar:last-child {
+  transform: rotate(-45deg);
+}
+
+.closeBtn:hover .closeBar {
+  background-color: var(--color-accent-gold);
+}
+
+/* ── Navigation ───────────────────────────────────────────────── */
+
+.nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-inline: var(--gutter);
+  max-width: var(--max-width);
+  margin-inline: auto;
+  width: 100%;
+  /* Safety: prevent links from overflowing on small screens */
+  overflow-y: auto;
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  counter-reset: nav-counter;
+}
+
+.navItem {
+  counter-increment: nav-counter;
+  border-bottom: 1px solid rgba(195, 164, 102, 0.08);
+}
+
+.navItem:first-child {
+  border-top: 1px solid rgba(195, 164, 102, 0.08);
+}
+
+.navLink {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding-block: 1.1rem;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  transition: color 0.3s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Counter number rendered as pseudo-element */
+  position: relative;
+}
+
+.navLink::before {
+  content: "0" counter(nav-counter);
+  font-family: var(--font-primary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-accent-gold);
+  opacity: 0.4;
+  min-width: 2.25rem;
+  transition: opacity 0.3s ease;
+}
+
+.navLink:hover {
+  color: #fff;
+  transform: translateX(10px);
+}
+
+.navLink:hover::before {
+  opacity: 0.9;
+}
+
+.navLink:focus-visible {
+  outline: 2px solid var(--color-accent-green);
+  outline-offset: 2px;
+  border-radius: 0;
+}
+
+.navLinkActive {
+  color: var(--color-accent-green);
+}
+
+.navLinkActive::before {
+  opacity: 1;
+  color: var(--color-accent-green);
+}
+
+/* Link text — large editorial typography */
+.navLink span,
+.navLink {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+/* ── Footer: locale switch ────────────────────────────────────── */
+
+.footer {
+  padding: 1.75rem var(--gutter);
+  border-top: 1px solid rgba(195, 164, 102, 0.08);
+  max-width: var(--max-width);
+  margin-inline: auto;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.localeSwitch {
+  font-family: var(--font-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.localeSwitch:hover {
+  color: var(--color-accent-gold);
+}
+
+.localeSwitch:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 3px;
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+
+@media (max-width: 639px) {
+  .navLink,
+  .navLink span {
+    font-size: clamp(1.5rem, 9vw, 2.25rem);
+  }
+
+  .navLink {
+    padding-block: 0.9rem;
+  }
+
+  .navLink::before {
+    display: none;
+  }
+}

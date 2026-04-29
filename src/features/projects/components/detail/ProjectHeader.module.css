@@ -1,0 +1,82 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 3rem 0;
+}
+
+/* Category tag row */
+.categoryWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.categoryLine {
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background-color: var(--color-accent-gold);
+  flex-shrink: 0;
+}
+
+.category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-accent-gold);
+}
+
+/* Title clip-mask — skewY reveal needs overflow hidden */
+.titleWrapper {
+  overflow: hidden;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  margin: 0;
+  transform-origin: left center;
+}
+
+/* Gold accent bar — scaleX animated from left */
+.accentBar {
+  height: 1px;
+  width: 4rem;
+  background: linear-gradient(to right, var(--color-accent-gold), transparent);
+  transform-origin: left center;
+}
+
+/* Meta list */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  margin: 0.25rem 0 0;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metaLabel {
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-text-muted);
+}
+
+.metaValue {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  margin: 0;
+}

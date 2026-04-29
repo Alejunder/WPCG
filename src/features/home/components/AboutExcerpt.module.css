@@ -1,0 +1,132 @@
+.section {
+  background-color: var(--color-bg);
+  padding-block: 10rem;
+  overflow: hidden;
+}
+
+.inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  position: relative;
+  padding-left: calc(var(--gutter) + 2.5rem);
+}
+
+/* Left column — vertical rule, pinned to the content left edge */
+.decorCol {
+  position: absolute;
+  left: var(--gutter);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(195, 164, 102, 0.12);
+}
+
+.decorNumber {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(6rem, 12vw, 10rem);
+  line-height: 0.9;
+  color: var(--color-accent-gold);
+  opacity: 0.08;
+  user-select: none;
+  letter-spacing: -0.04em;
+}
+
+/* Right column — editorial text */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.label {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.eyebrow {
+  display: none; /* Number moved to decorCol */
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(1.875rem, 3vw, 2.625rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0;
+}
+
+.heading em {
+  font-style: normal;
+  color: var(--color-accent-gold);
+}
+
+.body {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  color: rgba(186, 189, 190, 0.8);
+  margin: 0;
+  padding-left: 1.5rem;
+  border-left: 2px solid rgba(195, 164, 102, 0.25);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  text-decoration: none;
+  align-self: flex-start;
+  transition: gap 0.2s ease;
+}
+
+.cta:hover {
+  gap: 1rem;
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 3px;
+}
+
+.ctaArrow {
+  transition: transform 0.2s ease;
+}
+
+.cta:hover .ctaArrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1023px) {
+  /* Layout is single-column at all sizes; line stays pinned */
+}
+
+
+@media (max-width: 639px) {
+  .section {
+    padding-block: 6rem;
+  }
+
+  .textCol {
+    padding-left: 1.25rem;
+  }
+
+  .body {
+    padding-left: 1rem;
+  }
+}
+

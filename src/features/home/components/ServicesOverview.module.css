@@ -1,0 +1,185 @@
+.section {
+  background-color: var(--color-bg);
+  padding-block: 10rem;
+  position: relative;
+}
+
+/* Subtle top separator */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(195, 164, 102, 0.2) 30%, rgba(195, 164, 102, 0.2) 70%, transparent);
+}
+
+.inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.eyebrow {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0;
+  max-width: 22ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
+  border-top: 1px solid rgba(195, 164, 102, 0.1);
+  border-left: 1px solid rgba(195, 164, 102, 0.1);
+}
+
+/* FadeIn wrapper must fill the grid cell so cards can stretch to equal height */
+.grid > * {
+  display: flex;
+}
+
+.card {
+  padding: 2.75rem 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  height: 100%;
+  border-right: 1px solid rgba(195, 164, 102, 0.1);
+  border-bottom: 1px solid rgba(195, 164, 102, 0.1);
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background-color: var(--color-accent-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  background-color: rgba(195, 164, 102, 0.04);
+}
+
+.card:hover::after {
+  transform: scaleX(1);
+}
+
+.cardNumber {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.625rem;
+  letter-spacing: 0.25em;
+  color: var(--color-accent-gold);
+  opacity: 0.5;
+}
+
+.cardTitle {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.cardDesc {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: rgba(186, 189, 190, 0.75);
+  margin: 0;
+  flex: 1;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+  text-decoration: none;
+  margin-top: auto;
+  transition: gap 0.2s ease;
+  opacity: 0.7;
+}
+
+.cardLink:hover {
+  gap: 0.875rem;
+  opacity: 1;
+}
+
+.cardLink:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 3px;
+}
+
+.cardArrow {
+  transition: transform 0.2s ease;
+}
+
+.cardLink:hover .cardArrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .section {
+    padding-block: 6rem;
+  }
+
+  .inner {
+    gap: 3rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 2rem 1.25rem;
+  }
+}
+

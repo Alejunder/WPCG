@@ -1,0 +1,44 @@
+.section {
+  background-color: var(--color-bg);
+  padding: 5rem 0;
+}
+
+.inner {
+  max-width: var(--max-width, 80rem);
+  margin-inline: auto;
+  padding-inline: var(--gutter, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+/* Gold underline accent */
+.heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 3rem;
+  height: 2px;
+  background-color: var(--color-accent-gold);
+}
+
+@media (max-width: 639px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .inner {
+    gap: 2rem;
+  }
+}

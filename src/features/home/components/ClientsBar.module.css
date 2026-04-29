@@ -1,0 +1,113 @@
+.section {
+  background-color: var(--color-bg);
+  padding-block: 8rem 9rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(195, 164, 102, 0.2) 30%, rgba(195, 164, 102, 0.2) 70%, transparent);
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  margin-bottom: 4rem;
+}
+
+.eyebrow {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent-gold);
+}
+
+/* Thin gold dash separator */
+.eyebrowRow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(195, 164, 102, 0.2), transparent);
+}
+
+.label {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.6);
+}
+
+/* Overflow mask with edge fade — logos fade out left, fade in right */
+.mask {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 18%,
+    black 82%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 18%,
+    black 82%,
+    transparent 100%
+  );
+}
+
+/* Scrolling track — centred when not animating */
+.track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  width: max-content;
+  padding-block: 0.75rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .track {
+    animation: marquee 40s linear infinite;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-25%); }
+  }
+}
+
+/* Individual logo */
+.logoWrapper {
+  position: relative;
+  width: 220px;
+  height: 88px;
+  flex-shrink: 0;
+}
+
+.logo {
+  object-fit: contain;
+  filter: grayscale(1) brightness(0.7);
+  transition: filter 0.35s ease, opacity 0.35s ease;
+  opacity: 0.65;
+}
+
+.logoWrapper:hover .logo {
+  filter: grayscale(0) brightness(1);
+  opacity: 1;
+}
+
