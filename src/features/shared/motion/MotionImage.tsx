@@ -16,6 +16,13 @@ interface MotionImageProps extends NextImageProps {
   hoverZoom?: boolean
   /** Class applied to the outer motion wrapper div. */
   wrapperClassName?: string
+  /**
+   * When true, render at the final visible state with no mount animation.
+   * Use this when the image participates in a View Transition morph so the
+   * VT snapshot is taken at full opacity instead of opacity:0.
+   * @default false
+   */
+  skipAnimation?: boolean
 }
 
 /**
@@ -41,16 +48,18 @@ export default function MotionImage({
   hoverZoom = false,
   wrapperClassName,
   style,
+  skipAnimation = false,
   ...imageProps
 }: MotionImageProps) {
   const shouldReduce = useReducedMotion()
+  const noAnimation = skipAnimation || shouldReduce
 
   return (
     <motion.div
       className={wrapperClassName}
       style={{ position: 'relative', overflow: 'hidden', ...style }}
-      initial={shouldReduce ? false : { opacity: 0, scale: 0.98 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={noAnimation ? false : { opacity: 0, scale: 0.98 }}
+      whileInView={noAnimation ? undefined : { opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{
         duration: shouldReduce ? 0 : 0.9,

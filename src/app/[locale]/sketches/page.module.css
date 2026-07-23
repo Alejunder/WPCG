@@ -1,0 +1,129 @@
+.page {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+/* ── Hero ──────────────────────────────────────────────── */
+
+.hero {
+  padding-top: calc(var(--section-spacing) + 4rem); /* clear fixed navbar */
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-primary);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-md);
+  max-width: 20ch;
+}
+
+.divider {
+  margin-bottom: var(--space-md);
+}
+
+.intro {
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  max-width: 109ch;
+  margin: 0;
+}
+
+/* ── Moodboard section ─────────────────────────────────── */
+
+/*
+ * Dark wooden table surface:
+ * 1. Two warm radial gradients simulate a desk lamp casting amber pools of
+ *    light — incandescent studio lighting feel. Opacity is low so the dark
+ *    WPCG palette is preserved.
+ * 2. sketches-background.svg is the main texture layer — a dark wood-grain
+ *    illustration that fills the section.
+ * 3. ::before overlays SVG fractal-noise grain at near-zero opacity for an
+ *    additional fine film texture on top.
+ */
+.boardSection {
+  position: relative;
+  background:
+    radial-gradient(ellipse 65% 45% at 28% 18%, rgba(175, 138, 55, 0.052) 0%, transparent 62%),
+    radial-gradient(ellipse 42% 32% at 74% 74%, rgba(175, 138, 55, 0.028) 0%, transparent 56%),
+    url('/images/sketches-background.webp') center / cover no-repeat,
+    var(--color-bg);
+  /* Fade the entire section in (background texture included) so the wood
+     surface appears gradually instead of cutting in hard during the page
+     transition. The delay lets the page wipe finish first. */
+  animation: boardFadeIn 0.75s ease 0.15s both;
+}
+
+@keyframes boardFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.boardSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.038;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/*
+ * Vignette layer — simulates a desk lamp casting a circle of light at the
+ * centre of the table. Edges darken naturally, giving the surface depth and
+ * making the paper sheets read as floating above a lit table rather than
+ * sitting flat on a dark background.
+ */
+.boardSection::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.52) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure the grid renders above both texture pseudo-elements */
+.boardSection > * {
+  position: relative;
+  z-index: 2;
+}
+
+/*
+ * Separator drawn between the hero and the wood board section.
+ * AnimatedDivider animates scaleX 0→1 from the left as it enters the viewport —
+ * the line 'draws itself' as the user scrolls, matching the hero divider.
+ * Warm amber tint echoes the desk-lamp gradients in the board background.
+ */
+.boardDivider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(175, 138, 55, 0.25) 15%,
+    rgba(175, 138, 55, 0.4) 50%,
+    rgba(175, 138, 55, 0.25) 85%,
+    transparent 100%
+  );
+  margin: 0;
+}

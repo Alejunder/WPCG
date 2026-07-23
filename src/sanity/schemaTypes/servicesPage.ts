@@ -22,20 +22,10 @@ export const servicesPageType = defineType({
     }),
 
     defineField({
-      name: 'title',
-      title: 'Page Title',
-      type: 'object',
-      fields: [
-        defineField({ name: 'en', title: 'English', type: 'string', validation: (r) => r.required() }),
-        defineField({ name: 'es', title: 'Spanish', type: 'string', validation: (r) => r.required() }),
-      ],
-    }),
-
-    defineField({
       name: 'intro',
       title: 'Intro Text',
       type: 'object',
-      description: 'Short intro paragraph shown below the hero title.',
+      description: 'Short intro paragraph shown in the hero.',
       fields: [
         defineField({ name: 'en', title: 'English', type: 'text', rows: 3 }),
         defineField({ name: 'es', title: 'Spanish', type: 'text', rows: 3 }),

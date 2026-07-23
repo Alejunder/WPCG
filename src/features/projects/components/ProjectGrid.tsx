@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import { ARCH_EASE } from '@/features/shared/motion/motion.config'
-import { useExitAnimation } from '@/features/shared/motion/useExitAnimation'
 import type { ProjectCard as ProjectCardData } from '@/features/projects/types'
 import type { Locale } from '@/types/locale'
 import ProjectCard from './ProjectCard'
@@ -15,7 +14,6 @@ interface Props {
 
 export default function ProjectGrid({ projects, locale }: Props) {
   const shouldReduce = useReducedMotion()
-  const exitControls = useExitAnimation('scale')
 
   if (projects.length === 0) {
     return (
@@ -30,7 +28,7 @@ export default function ProjectGrid({ projects, locale }: Props) {
     visible: {
       transition: shouldReduce
         ? {}
-        : { staggerChildren: 0.12, delayChildren: 0.1 },
+        : { staggerChildren: 0.12, delayChildren: 0.4 },
     },
   }
 
@@ -44,7 +42,6 @@ export default function ProjectGrid({ projects, locale }: Props) {
   }
 
   return (
-    <motion.div animate={exitControls}>
     <motion.ul
       className={styles.grid}
       aria-label="Projects list"
@@ -63,6 +60,5 @@ export default function ProjectGrid({ projects, locale }: Props) {
         </motion.li>
       ))}
     </motion.ul>
-    </motion.div>
   )
 }

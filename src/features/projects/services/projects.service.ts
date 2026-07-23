@@ -1,12 +1,15 @@
 import { z } from 'zod'
 import { ProjectCardSchema } from '../schemas/project-card.schema'
 import { ProjectSchema } from '../schemas/project.schema'
+import { ProjectsPageSchema } from '../schemas/projects-page.schema'
 import type { Project, ProjectCard } from '../types'
+import type { ProjectsPage } from '../schemas/projects-page.schema'
 import {
   getAllProjectsQuery,
   getProjectBySlugQuery,
   getFeaturedProjectsQuery,
   getAllProjectSlugsQuery,
+  getProjectsPageQuery,
 } from './projects.queries'
 import { createServiceHelpers } from '@/lib/sanity/service-helpers'
 
@@ -56,4 +59,10 @@ export async function getAllProjectSlugs(): Promise<string[]> {
   const raw = await fetchFromSanity<SlugResult[]>('getAllProjectSlugs', getAllProjectSlugsQuery)
   const validated = validate(SlugResultSchema, raw, 'getAllProjectSlugs')
   return validated.map((item) => item.slug.current)
+}
+
+export async function getProjectsPage(locale: string): Promise<ProjectsPage | null> {
+  const raw = await fetchFromSanity<unknown>('getProjectsPage', getProjectsPageQuery, { locale })
+  if (raw == null) return null
+  return validate(ProjectsPageSchema, raw, 'getProjectsPage')
 }

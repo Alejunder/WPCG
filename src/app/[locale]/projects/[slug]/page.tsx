@@ -9,14 +9,13 @@ import ProjectDescription from '@/features/projects/components/detail/ProjectDes
 import ProjectGallery from '@/features/projects/components/detail/ProjectGallery'
 import ProjectFacts from '@/features/projects/components/detail/ProjectFacts'
 import RelatedProjects from '@/features/projects/components/detail/RelatedProjects'
+import { ServiceHoverProvider } from '@/features/projects/components/detail/ServiceHoverContext'
 import CtaBanner from '@/features/shared/components/CtaBanner'
 import ProjectBreadcrumb from '@/features/projects/components/detail/ProjectBreadcrumb'
 import styles from './page.module.css'
 
 export const revalidate = 3600
 export const dynamicParams = true
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://wpcg.com'
 
 export async function generateStaticParams() {
   const slugs = await getAllProjectSlugs()
@@ -36,12 +35,6 @@ export async function generateMetadata({
 
   if (!project) return {}
 
-  const routes: Record<'en' | 'es', string> = {
-    en: `/en/projects/${slug}`,
-    es: `/es/proyectos/${slug}`,
-  }
-
-  const canonical = `${BASE_URL}${routes[locale]}`
   const title = project.title
   const description = `${title} — WPCG`
 
@@ -49,17 +42,18 @@ export async function generateMetadata({
     title,
     description,
     alternates: {
-      canonical,
+      canonical: `/${locale}/projects/${slug}`,
       languages: {
-        en: `${BASE_URL}${routes.en}`,
-        es: `${BASE_URL}${routes.es}`,
+        en: `/en/projects/${slug}`,
+        es: `/es/projects/${slug}`,
+        'x-default': `/en/projects/${slug}`,
       },
     },
     openGraph: {
       title,
       description,
-      url: canonical,
       siteName: 'WPCG',
+      locale: locale === 'en' ? 'en_US' : 'es_ES',
       images: [
         {
           url: project.heroImage.url,
@@ -68,9 +62,23 @@ export async function generateMetadata({
           alt: project.heroImage.alt ?? title,
         },
       ],
-      type: 'article',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [project.heroImage.url],
     },
   }
+}
+
+// Category → CSS token map for injecting --category-color at the layout level
+// so the factsCol border inherits the same colour as the interior elements.
+const CATEGORY_COLOR: Record<string, string> = {
+  office: 'var(--color-category-office)',
+  residential: 'var(--color-category-residential)',
+  retail: 'var(--color-category-retail)',
 }
 
 // TODO: Move CTA content to CMS (Sanity) and fetch via service layer
@@ -120,6 +128,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       {/* Full-bleed hero — no max-width constraint */}
       <ProjectHero
         heroImage={{ url: project.heroImage.url, alt: project.heroImage.alt ?? project.title }}
+        slug={slug}
       />
 
       {/* Breadcrumb below hero */}
@@ -133,9 +142,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       </div>
 
       {/* Constrained content */}
+      <ServiceHoverProvider>
       <div className={styles.content}>
         <ProjectHeader
           title={project.title}
+          slug={slug}
           category={project.category}
           year={project.year}
           location={project.location}
@@ -149,22 +160,28 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               <ProjectDescription blocks={project.description ?? []} />
             </FadeIn>
           </div>
-          <aside className={styles.factsCol}>
+          <aside
+            className={styles.factsCol}
+            style={{ '--category-color': CATEGORY_COLOR[project.category] ?? 'var(--color-secondary)' } as React.CSSProperties}
+          >
             <ProjectFacts
               surfaceArea={project.surfaceArea}
               duration={project.duration}
               services={project.servicesInvolved ?? []}
               locale={locale}
+              category={project.category}
+              ecoFriendly={project.ecoFriendly}
             />
           </aside>
         </div>
 
         {/* Full-width gallery */}
-        <ProjectGallery images={gallery} />
+        <ProjectGallery images={gallery} category={project.category} />
 
         {/* Related projects */}
         <RelatedProjects projects={project.relatedProjects ?? []} locale={locale} />
       </div>
+      </ServiceHoverProvider>
 
       {/* Full-bleed CTA banner */}
       <CtaBanner

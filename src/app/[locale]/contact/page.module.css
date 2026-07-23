@@ -7,9 +7,9 @@
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 64px;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 64px 24px 96px;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: 64px var(--padding-x) 96px;
 }
 
 @media (max-width: 1024px) {

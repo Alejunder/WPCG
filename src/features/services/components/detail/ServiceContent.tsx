@@ -1,4 +1,5 @@
 import { PortableText, type PortableTextComponents } from '@portabletext/react'
+import FadeIn from '@/features/shared/motion/FadeIn'
 import type { ServicePortableTextBlock } from '@/features/services/types'
 import styles from './ServiceContent.module.css'
 
@@ -31,8 +32,10 @@ export default function ServiceContent({ blocks }: ServiceContentProps) {
   if (!blocks || blocks.length === 0) return null
 
   return (
-    <section className={styles.content} aria-label="Service description">
-      <PortableText value={blocks} components={components} />
-    </section>
+    <FadeIn delay={0.4} yOffset={16}>
+      <section className={styles.content} aria-label="Service description">
+        <PortableText value={blocks} components={components} />
+      </section>
+    </FadeIn>
   )
 }

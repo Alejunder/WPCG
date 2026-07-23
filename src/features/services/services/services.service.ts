@@ -63,7 +63,7 @@ export async function getFeaturedServices(locale: Locale): Promise<ServiceCard[]
 
 /**
  * Fetches a single `service` document by slug.
- * Returns the full service shape (name, longDescription, highlights, image, icon, …).
+ * Returns the full service shape (name, longDescription, highlights, heroImage, icon, …).
  *
  * Throws `ServiceError` with code `'NOT_FOUND'` when the slug doesn't match any document.
  * Throws `ServiceError` on fetch failure or validation error.

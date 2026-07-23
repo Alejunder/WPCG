@@ -1,19 +1,21 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
-import type { Locale } from '@/config/i18n'
+import { hasLocale } from 'next-intl'
+import { locales, type Locale } from '@/config/i18n'
 import { getHomePage } from '@/features/home/services/home.service'
 import { getFeaturedServices } from '@/features/services/services/services.service'
+import { getHomepageSketches } from '@/features/sketches/services/sketches.service'
 import HeroSection from '@/features/home/components/HeroSection'
 import AboutExcerpt from '@/features/home/components/AboutExcerpt'
 import ServicesOverview from '@/features/home/components/ServicesOverview'
 import FeaturedProjectsGrid from '@/features/home/components/FeaturedProjectsGrid'
+import HomepageSketchesSection from '@/features/home/components/HomepageSketchesSection'
+import ClientsSatisfaction from '@/features/home/components/ClientsSatisfaction'
 import ClientsBar from '@/features/home/components/ClientsBar'
 import CtaBanner from '@/features/shared/components/CtaBanner'
 
 export const revalidate = 3600
-
-const LOCALES = ['en', 'es'] as const
 
 interface Props {
   params: Promise<{ locale: string }>
@@ -42,13 +44,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     alternates: {
       canonical: `/${typedLocale}`,
-      languages: { en: '/en', es: '/es' },
+      languages: { en: '/en', es: '/es', 'x-default': '/en' },
     },
     openGraph: {
       title,
       description,
       locale: typedLocale === 'en' ? 'en_US' : 'es_ES',
       type: 'website',
+      images: [{ url: '/og-default.jpg', width: 1200, height: 630, alt: 'WPCG — Architecture & Interior Design, Madrid' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [{ url: '/og-default.jpg', width: 1200, height: 630, alt: 'WPCG — Architecture & Interior Design, Madrid' }],
     },
   }
 }
@@ -60,14 +69,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function HomePage({ params }: Props) {
   const { locale } = await params
 
-  if (!LOCALES.includes(locale as (typeof LOCALES)[number])) {
+  if (!hasLocale(locales, locale)) {
     notFound()
   }
 
-  const typedLocale = locale as Locale
-  const [home, services, t] = await Promise.all([
+  const typedLocale: Locale = locale
+  const [home, services, sketches, t] = await Promise.all([
     getHomePage(typedLocale),
     getFeaturedServices(typedLocale),
+    getHomepageSketches(typedLocale),
     getTranslations({ locale: typedLocale, namespace: 'HomePage' }),
   ])
 
@@ -78,6 +88,7 @@ export default async function HomePage({ params }: Props) {
       <HeroSection
         heroImages={home.heroImages}
         locale={typedLocale}
+        heroServiceLinks={home.heroServiceLinks}
       />
 
       {home.aboutExcerpt && (
@@ -96,7 +107,11 @@ export default async function HomePage({ params }: Props) {
         locale={typedLocale}
       />
 
+      <HomepageSketchesSection sketches={sketches} locale={typedLocale} />
+
       <ClientsBar clients={home.clients ?? []} />
+
+      <ClientsSatisfaction data={home.clientSatisfaction} />
 
       <CtaBanner
         headline={t('ctaHeadline')}

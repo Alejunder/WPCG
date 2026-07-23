@@ -1,0 +1,55 @@
+/* ============================================================
+   SketchGallery — scattered paper layout on the studio table
+   ============================================================ */
+
+/*
+ * Layout strategy:
+ * - Flexbox with `flex-wrap` fills each row greedily — no empty spots
+ *   can form regardless of how featured / non-featured items are mixed.
+ *   (CSS Grid with `span 2` always risks an orphan gap; flexbox doesn't.)
+ * - Non-featured items: `flex: 1 1 240px` — at least 240 px, grows to fill.
+ * - Featured items: `flex: 2 1 500px` — larger basis + double grow weight,
+ *   so they naturally occupy roughly twice the horizontal space.
+ * - Per-card `translateY` offsets from Framer Motion break the baseline,
+ *   giving the scatter composition — see SketchGallery.tsx (V_OFFSETS).
+ * - `align-items: flex-start` lets cards keep their own height so vertically
+ *   offset cards produce a genuinely irregular silhouette.
+ * - `.item:has(:hover)` hoists z-index so the hovered card layers over
+ *   neighbours without needing JavaScript.
+ */
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.5rem var(--space-lg);
+  align-items: flex-start;
+  padding: 2rem var(--space-md) 5rem;
+}
+
+.item {
+  flex: 1 1 240px;
+  max-width: 380px;
+  min-width: 0; /* prevent flex children from overflowing */
+  position: relative;
+  z-index: 1;
+}
+
+/* Elevate hovered / focused cards so they overlay their neighbours */
+.item:has(:hover),
+.item:has(:focus-visible) {
+  z-index: 10;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .grid {
+    gap: var(--space-lg);
+    padding: 0.75rem 0.75rem 3rem;
+  }
+
+  /* Full-width on mobile — one card per row */
+  .item {
+    flex-basis: 100%;
+  }
+}

@@ -10,7 +10,14 @@
 .breadcrumbBar {
   padding-inline: var(--gutter);
   padding-block: 1rem;
-  border-bottom: 1px solid var(--color-accent-brown);
+  /* border-bottom removed — replaced by AnimatedDivider for scroll-draw effect */
+}
+
+/* Scroll-draw divider below breadcrumb bar */
+.breadcrumbDivider {
+  height: 1px;
+  background-color: var(--color-secondary);
+  transform-origin: left;
 }
 
 /* ------------------------------------------------------------------ */
@@ -32,7 +39,7 @@
 .bodyZone {
   display: grid;
   grid-template-columns: 1fr 280px;
-  gap: 3rem 4rem;
+  gap: 3rem var(--space-xl);
   padding-block: 2.5rem;
   align-items: start;
 }
@@ -44,9 +51,10 @@
 .factsCol {
   position: sticky;
   top: 5rem; /* clear the sticky filter bar on the listing page / any potential nav */
-  padding: 1.5rem;
-  background-color: var(--color-navbar);
-  border-left: 2px solid var(--color-accent-brown);
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border-left: 2px solid var(--category-color, var(--color-secondary));
+  transition: border-color 0.4s ease;
 }
 
 /* ------------------------------------------------------------------ */
@@ -62,8 +70,8 @@
   .factsCol {
     position: static;
     border-left: none;
-    border-top: 1px solid var(--color-accent-brown);
-    padding: 1.5rem 0;
+    border-top: 1px solid var(--category-color, var(--color-secondary));
+    padding: var(--space-md) 0;
     background-color: transparent;
   }
 }
@@ -75,6 +83,6 @@
 
   .bodyZone {
     padding-block: 1.5rem;
-    gap: 1.5rem;
+    gap: var(--space-md);
   }
 }

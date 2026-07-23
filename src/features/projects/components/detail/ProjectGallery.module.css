@@ -1,7 +1,17 @@
 .gallery {
   width: 100%;
-  border-top: 1px solid var(--color-accent-brown);
+  /* border-top removed — replaced by AnimatedDivider for scroll-draw effect */
   padding-block: 3rem 2rem;
+  position: relative;
+}
+
+/* Scroll-draw top separator — colour driven by --category-color set on parent */
+.topDivider {
+  height: 1px;
+  background-color: var(--category-color, var(--color-secondary));
+  transform-origin: left;
+  margin-bottom: 3rem;
+  transition: background-color 0.4s ease;
 }
 
 .heading {
@@ -10,13 +20,13 @@
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--color-text-muted);
-  margin: 0 0 1.5rem;
+  margin: 0 0 var(--space-md);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  gap: var(--space-xs);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -52,7 +62,7 @@
 }
 
 .thumb:focus-visible {
-  outline: 2px solid var(--color-accent-gold);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
@@ -71,8 +81,8 @@
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(195, 164, 102, 0.18) 0%,
-    rgba(29, 26, 21, 0.1) 100%
+    color-mix(in srgb, var(--color-primary) 18%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg) 10%, transparent) 100%
   );
   display: flex;
   align-items: center;
@@ -90,7 +100,7 @@
 /* Expand icon */
 .thumbIcon {
   font-size: 2rem;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   line-height: 1;
   transform: scale(0.7);
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);

@@ -1,7 +1,9 @@
 import { getTranslations } from 'next-intl/server'
-import TransitionLink from '@/features/shared/motion/TransitionLink'
+import Link from 'next/link'
 import FadeIn from '@/features/shared/motion/FadeIn'
+import AnimatedDivider from '@/features/shared/motion/AnimatedDivider'
 import type { Locale } from '@/config/i18n'
+import SectionWrapper from '@/features/shared/components/SectionWrapper'
 import styles from './AboutExcerpt.module.css'
 
 interface AboutExcerptProps {
@@ -13,29 +15,30 @@ export default async function AboutExcerpt({ text, locale }: AboutExcerptProps) 
   const t = await getTranslations('HomePage')
 
   return (
-    <section className={styles.section} aria-label="About excerpt">
+    <SectionWrapper className={styles.section} aria-label="About excerpt">
+      <AnimatedDivider className={styles.topDivider} />
       <FadeIn enableExit>
         <div className={styles.inner}>
-          <div className={styles.decorCol} aria-hidden="true" />
-
+          <AnimatedDivider orientation="vertical" className={styles.decorCol} delay={0.3} />
           <div className={styles.textCol}>
-            <span className={styles.label}>{t('aboutLabel')}</span>
-
+            <div className={styles.sectionHeader}>
+              <h1 className={styles.eyebrow} aria-hidden="true">01</h1>
+              <span className={styles.label}>{t('aboutLabel')}</span>
+            </div>
             <h2 className={styles.heading}>
               {t.rich('aboutHeading', {
                 em: (chunks) => <em>{chunks}</em>,
               })}
             </h2>
-
             <p className={styles.body}>{text}</p>
 
-            <TransitionLink href={`/${locale}/about`} className={styles.cta}>
+            <Link href={`/${locale}/about`} className={styles.cta} transitionTypes={['nav-forward']}>
               {t('aboutCta')}
               <span className={styles.ctaArrow} aria-hidden="true">→</span>
-            </TransitionLink>
+            </Link>
           </div>
         </div>
       </FadeIn>
-    </section>
+    </SectionWrapper>
   )
 }

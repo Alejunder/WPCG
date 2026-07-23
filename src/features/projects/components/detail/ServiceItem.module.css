@@ -1,0 +1,44 @@
+.item {
+  position: relative;
+  list-style: none;
+  display: inline-flex;
+  flex-direction: column;
+  cursor: default;
+  /* Extra bottom padding gives space for the underline and avoids tooltip clipping */
+  padding-bottom: 3px;
+}
+
+.text {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* 1px architectural underline — drawn left-to-right via scaleX in JS */
+.underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-primary);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* Floating label — positioned just below the item */
+.tooltip {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+}

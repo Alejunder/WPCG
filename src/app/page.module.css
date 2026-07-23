@@ -1,3 +1,4 @@
+/* opsx-allow design-system: dead/unused Next.js starter stylesheet — not imported by any route (src/app/page.tsx is a bare redirect). */
 .page {
   --background: #fafafa;
   --foreground: #fff;

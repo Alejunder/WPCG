@@ -21,7 +21,7 @@
 .vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(29, 26, 21, 0.55) 100%);
+  background: radial-gradient(ellipse at center, transparent 40%, color-mix(in srgb, var(--color-bg) 55%, transparent) 100%);
   pointer-events: none;
   z-index: 1;
 }

@@ -1,13 +1,22 @@
 .section {
   background-color: var(--color-bg);
-  padding-block: 10rem;
   overflow: hidden;
+  position: relative;
+}
+
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: 1px;
+  background: linear-gradient(to right, transparent, color-mix(in srgb, var(--color-primary) 20%, transparent) 30%, color-mix(in srgb, var(--color-primary) 20%, transparent) 70%, transparent);
 }
 
 .inner {
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: var(--padding-x);
   position: relative;
   padding-left: calc(var(--gutter) + 2.5rem);
 }
@@ -19,7 +28,7 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: rgba(195, 164, 102, 0.12);
+  background-color: color-mix(in srgb, var(--color-primary) 12%, transparent);
 }
 
 .decorNumber {
@@ -27,7 +36,7 @@
   font-weight: 700;
   font-size: clamp(6rem, 12vw, 10rem);
   line-height: 0.9;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   opacity: 0.08;
   user-select: none;
   letter-spacing: -0.04em;
@@ -46,11 +55,16 @@
   font-size: 0.625rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
 }
 
 .eyebrow {
-  display: none; /* Number moved to decorCol */
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-primary);
 }
 
 .heading {
@@ -59,13 +73,13 @@
   font-size: clamp(1.875rem, 3vw, 2.625rem);
   line-height: 1.12;
   letter-spacing: -0.01em;
-  color: #fff;
+  color: var(--color-white);
   margin: 0;
 }
 
 .heading em {
   font-style: normal;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
 }
 
 .body {
@@ -73,10 +87,10 @@
   font-weight: 300;
   font-size: 1.0625rem;
   line-height: 1.85;
-  color: rgba(186, 189, 190, 0.8);
+  color: color-mix(in srgb, var(--color-text-secondary) 80%, transparent);
   margin: 0;
   padding-left: 1.5rem;
-  border-left: 2px solid rgba(195, 164, 102, 0.25);
+  border-left: 2px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
 }
 
 .cta {
@@ -88,18 +102,18 @@
   font-size: 0.8125rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   text-decoration: none;
   align-self: flex-start;
   transition: gap 0.2s ease;
 }
 
 .cta:hover {
-  gap: 1rem;
+  gap: var(--space-sm);
 }
 
 .cta:focus-visible {
-  outline: 2px solid var(--color-accent-gold);
+  outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }
 

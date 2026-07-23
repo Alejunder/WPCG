@@ -1,5 +1,7 @@
 import type { Locale } from '@/config/i18n'
 import type { ServicesPageData, ServiceCard } from '@/features/services/types'
+import SectionWrapper from '@/features/shared/components/SectionWrapper'
+import LayoutContainer from '@/features/shared/components/LayoutContainer'
 import ServicesGrid from './ServicesGrid'
 import ProcessSection from './ProcessSection'
 import styles from './ServicesPageContent.module.css'
@@ -37,7 +39,7 @@ export default function ServicesPageContent({
         slug: svc.slug,
         shortDescription: svc.shortDescription,
         icon: svc.icon,
-        image: svc.image,
+        heroImage: svc.heroImage,
       }))
     : fallbackServices
 
@@ -46,14 +48,14 @@ export default function ServicesPageContent({
   return (
     <>
       {/* Services grid section */}
-      <section className={styles.gridSection} aria-labelledby="services-grid-heading">
-        <div className={styles.inner}>
-          <h2 id="services-grid-heading" className={styles.sectionHeading}>
+      <SectionWrapper className={styles.gridSection} spacing="none" aria-labelledby="services-grid-heading">
+        <LayoutContainer className={styles.inner}>
+          <h1 id="services-grid-heading" className={styles.sectionHeading}>
             {SECTION_HEADING[locale]}
-          </h2>
+          </h1>
           <ServicesGrid services={services} locale={locale} />
-        </div>
-      </section>
+        </LayoutContainer>
+      </SectionWrapper>
 
       {/* Process steps section (only rendered when steps exist) */}
       {processSteps.length > 0 && (

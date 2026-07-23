@@ -7,10 +7,19 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--color-accent-gold);
-  margin: 0 0 1.5rem;
-  border-bottom: 1px solid var(--color-accent-brown);
-  padding-bottom: 0.75rem;
+  color: var(--category-color, var(--color-primary));
+  margin: 0 0 0.75rem;
+  transition: color 0.4s ease;
+  /* border-bottom removed — replaced by AnimatedDivider for scroll-draw effect */
+}
+
+/* Scroll-draw divider below the heading — colour driven by --category-color */
+.headingDivider {
+  height: 1px;
+  background-color: var(--category-color, var(--color-secondary));
+  transform-origin: left;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.4s ease;
 }
 
 .list {
@@ -25,11 +34,37 @@
   grid-template-columns: max-content 1fr;
   gap: 0.75rem 2rem;
   padding: 0.875rem 0;
-  border-bottom: 1px solid rgba(76, 62, 36, 0.5);
+  position: relative;
+  min-width: 0;
 }
 
-.row:first-child {
-  border-top: 1px solid rgba(76, 62, 36, 0.5);
+/* When the value should sit below the label (e.g. services list) */
+.rowStacked {
+  grid-template-columns: 1fr;
+}
+
+/* Animated top separator — rendered only on the first row */
+.rowTopLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: color-mix(in srgb, var(--category-color, var(--color-secondary)) 30%, transparent);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* Animated bottom separator — rendered on every row */
+.rowBottomLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: color-mix(in srgb, var(--category-color, var(--color-secondary)) 30%, transparent);
+  transform-origin: left;
+  pointer-events: none;
 }
 
 .label {
@@ -47,9 +82,13 @@
 .value {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   font-family: var(--font-primary);
   margin: 0;
+  /* Prevent long strings from overflowing the 1fr column */
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .services {
@@ -58,5 +97,35 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  /* Increased gap so the tooltip (absolute, ~1rem tall) does not visually overlap the next item */
+  gap: 1.125rem;
+  overflow: visible;
+}
+
+/* ------------------------------------------------------------------ */
+/* Eco-friendly badge                                                   */
+/* ------------------------------------------------------------------ */
+
+.ecoBadgeWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--category-color, var(--color-secondary)) 20%, transparent);
+}
+
+.ecoBadge {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0 0 0 / 0.35));
+}
+
+.ecoBadge {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0 0 0 / 0.35));
 }

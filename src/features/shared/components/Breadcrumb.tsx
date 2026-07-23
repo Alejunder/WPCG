@@ -1,4 +1,5 @@
-import TransitionLink from '@/features/shared/motion/TransitionLink'
+import { type CSSProperties } from 'react'
+import Link from 'next/link'
 import styles from './Breadcrumb.module.css'
 
 export interface BreadcrumbItem {
@@ -24,7 +25,11 @@ interface BreadcrumbProps {
  */
 export default function Breadcrumb({ items, className }: BreadcrumbProps) {
   return (
-    <nav aria-label="Breadcrumb" className={`${styles.nav}${className ? ` ${className}` : ''}`}>
+    <nav
+      aria-label="Breadcrumb"
+      className={`${styles.nav}${className ? ` ${className}` : ''}`}
+      style={{ viewTransitionName: 'page-breadcrumb' } as CSSProperties}
+    >
       <ol className={styles.list}>
         {items.map((item, index) => {
           const isLast = index === items.length - 1
@@ -40,9 +45,9 @@ export default function Breadcrumb({ items, className }: BreadcrumbProps) {
                   {item.label}
                 </span>
               ) : (
-                <TransitionLink href={item.href} className={styles.link}>
+              <Link href={item.href} className={styles.link}>
                   {item.label}
-                </TransitionLink>
+              </Link>
               )}
             </li>
           )

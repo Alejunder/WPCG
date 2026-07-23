@@ -1,5 +1,6 @@
 import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import type { PortableTextBlock } from '@/features/projects/types'
+import SectionWrapper from '@/features/shared/components/SectionWrapper'
 import styles from './CultureBlock.module.css'
 
 interface CultureBlockProps {
@@ -28,10 +29,10 @@ export default function CultureBlock({ blocks }: CultureBlockProps) {
   if (!blocks || blocks.length === 0) return null
 
   return (
-    <section className={styles.section} aria-label="Our culture">
+    <SectionWrapper className={styles.section} spacing="sm" aria-label="Our culture">
       <div className={styles.inner}>
         <PortableText value={blocks} components={components} />
       </div>
-    </section>
+    </SectionWrapper>
   )
 }

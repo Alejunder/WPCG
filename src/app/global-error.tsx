@@ -1,5 +1,9 @@
 'use client'
 
+// opsx-allow design-system: root error boundary replaces the whole document and
+// must be fully self-contained — it cannot rely on CSS Modules/providers during a
+// root-level crash, so minimal inline styles are intentional.
+
 import { useEffect } from 'react'
 
 interface GlobalErrorProps {

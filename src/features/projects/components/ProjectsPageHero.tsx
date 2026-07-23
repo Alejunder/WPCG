@@ -1,21 +1,24 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
-import TransitionLink from '@/features/shared/motion/TransitionLink'
+import Link from 'next/link'
 import styles from './ProjectsPageHero.module.css'
 
 interface Props {
   locale: 'en' | 'es'
+  title?: string | null
+  subtitle?: string | null
 }
 
 const CONTENT: Record<'en' | 'es', { title: string; home: string; projects: string }> = {
-  en: { title: 'Our Projects', home: 'Home', projects: 'Projects' },
-  es: { title: 'Nuestros Proyectos', home: 'Inicio', projects: 'Proyectos' },
+  en: { title: 'Our Projects', home: 'Home', projects: 'Projects & construction works' },
+  es: { title: 'Nuestros Proyectos', home: 'Inicio', projects: 'Proyectos y obras' },
 }
 
-export default function ProjectsPageHero({ locale }: Props) {
+export default function ProjectsPageHero({ locale, title, subtitle }: Props) {
   const shouldReduce = useReducedMotion()
   const c = CONTENT[locale]
+  const resolvedTitle = title ?? c.title
 
   const containerVariants = {
     hidden: {},
@@ -40,9 +43,9 @@ export default function ProjectsPageHero({ locale }: Props) {
           <motion.nav variants={itemVariants} aria-label="Breadcrumb" className={styles.breadcrumb}>
             <ol className={styles.breadcrumbList}>
               <li>
-                <TransitionLink href={`/${locale}`} className={styles.breadcrumbLink}>
+                <Link href={`/${locale}`} className={styles.breadcrumbLink}>
                   {c.home}
-                </TransitionLink>
+                </Link>
               </li>
               <li aria-hidden="true" className={styles.breadcrumbSep}>›</li>
               <li aria-current="page" className={styles.breadcrumbCurrent}>
@@ -52,11 +55,24 @@ export default function ProjectsPageHero({ locale }: Props) {
           </motion.nav>
 
           <motion.h1 variants={itemVariants} className={styles.title}>
-            {c.title}
+            {resolvedTitle}
           </motion.h1>
+
+          {subtitle && (
+            <motion.p variants={itemVariants} className={styles.subtitle}>
+              {subtitle}
+            </motion.p>
+          )}
         </motion.div>
       </div>
-      <div className={styles.accentLine} aria-hidden="true" />
+      <motion.div
+        className={styles.accentLine}
+        aria-hidden="true"
+        initial={{ scaleX: shouldReduce ? 1 : 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+        style={{ transformOrigin: 'left' }}
+      />
     </section>
   )
 }

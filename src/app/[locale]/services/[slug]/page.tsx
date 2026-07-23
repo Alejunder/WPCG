@@ -11,8 +11,6 @@ import styles from './page.module.css'
 export const revalidate = 3600
 export const dynamicParams = true
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://wpcg.com'
-
 export async function generateStaticParams() {
   const slugs = await getAllServiceSlugs()
 
@@ -35,12 +33,8 @@ export async function generateMetadata({
     return {}
   }
 
-  const routes: Record<'en' | 'es', string> = {
-    en: `/en/services/${slug}`,
-    es: `/es/servicios/${slug}`,
-  }
+  if (!service) return {}
 
-  const canonical = `${BASE_URL}${routes[locale]}`
   const title = `${service.name} — WPCG`
   const description = service.shortDescription
 
@@ -48,28 +42,35 @@ export async function generateMetadata({
     title,
     description,
     alternates: {
-      canonical,
+      canonical: `/${locale}/services/${slug}`,
       languages: {
-        en: `${BASE_URL}${routes.en}`,
-        es: `${BASE_URL}${routes.es}`,
+        en: `/en/services/${slug}`,
+        es: `/es/services/${slug}`,
+        'x-default': `/en/services/${slug}`,
       },
     },
     openGraph: {
       title,
       description,
-      url: canonical,
       siteName: 'WPCG',
-      ...(service.image?.url && {
+      locale: locale === 'en' ? 'en_US' : 'es_ES',
+      type: 'website',
+      ...(service.heroImage?.url && {
         images: [
           {
-            url: service.image.url,
+            url: service.heroImage.url,
             width: 1200,
             height: 630,
-            alt: service.image.alt || service.name,
+            alt: service.heroImage.alt || service.name,
           },
         ],
       }),
-      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      ...(service.heroImage?.url && { images: [service.heroImage.url] }),
     },
   }
 }

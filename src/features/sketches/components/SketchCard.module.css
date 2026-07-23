@@ -1,0 +1,94 @@
+/* ============================================================
+   SketchCard — sheet of paper on a drawing table
+   ============================================================ */
+/* opsx-allow design-system: deliberate light "paper" sub-theme palette (warm off-white sheet) that intentionally does not use the dark global color tokens. */
+
+/*
+ * Reset <button> defaults, then apply the paper aesthetic.
+ *
+ * `filter: drop-shadow` is preferred over `box-shadow` because it is
+ * computed after CSS transforms — meaning a rotated card casts a shadow
+ * at the correct angle, as if the paper were physically tilted on the
+ * table surface.
+ */
+.card {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--color-white);
+  /* 8 px white border simulates the margin of a drawing-paper sheet */
+  border: 8px solid var(--color-white);
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  display: block;
+  width: 100%;
+
+  /* Shadow follows rotation — unlike box-shadow */
+  filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));
+  transition: filter 0.35s ease;
+  will-change: transform, filter;
+  user-select: none;
+
+  /* Position context so the parent can raise z-index on hover */
+  position: relative;
+}
+
+.card:hover,
+.card:focus-visible {
+  /* Deeper shadow — paper lifted off the table by the overhead lamp */
+  filter: drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.6));
+  /* Focus ring suppressed here; parent .item:has(:focus-visible) handles z-index */
+  outline: none;
+}
+
+.card:focus-visible {
+  /* Visible focus ring inside the white border for keyboard users */
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ---- Image container ---- */
+
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+  /* 3:4 portrait proportion — classic sketchbook page */
+  aspect-ratio: 3 / 4;
+  /* Warm off-white while image loads — like aged paper */
+  background-color: #f0ede8;
+}
+
+/* cover fills the portrait frame uniformly — all paper sheets same visual size */
+.image {
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card:hover .image {
+  transform: scale(1.03);
+}
+
+/* ---- Caption ---- */
+
+/* Pencil-note label: small, centred, muted — like a handwritten annotation */
+.caption {
+  margin: 0;
+  padding: 6px 4px 2px;
+  font-family: var(--font-primary);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.5;
+  /* Fixed height — cards without a title keep the same overall size as
+     cards with a title, so the carousel row never shifts. */
+  min-height: 2.4em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

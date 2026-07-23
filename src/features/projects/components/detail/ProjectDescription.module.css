@@ -2,10 +2,10 @@
   font-family: var(--font-primary);
   font-size: 1rem;
   line-height: 1.8;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--space-md);
   max-width: 68ch;
 }
 
@@ -17,7 +17,7 @@
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 700;
   line-height: 1.2;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   margin: 0;
   margin-top: 0.5rem;
 }
@@ -26,22 +26,22 @@
   font-size: 1.125rem;
   font-weight: 600;
   line-height: 1.3;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
 .blockquote {
   margin: 0;
-  padding: 1.25rem 1.25rem 1.25rem 1.5rem;
-  border-left: 2px solid var(--color-accent-gold);
-  background-color: rgba(195, 164, 102, 0.04);
+  padding: 1.25rem 1.25rem 1.25rem var(--space-md);
+  border-left: 2px solid var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 4%, transparent);
   font-style: italic;
   color: var(--color-text-muted);
 }
 
 .strong {
   font-weight: 700;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
 }
 
 .em {

@@ -1,6 +1,8 @@
+import { ViewTransition } from 'react'
 import type { Service } from '@/features/services/types'
 import type { BreadcrumbItem } from '@/features/shared/components/Breadcrumb'
 import Breadcrumb from '@/features/shared/components/Breadcrumb'
+import AnimatedDivider from '@/features/shared/motion/AnimatedDivider'
 import FadeIn from '@/features/shared/motion/FadeIn'
 import ServiceHero from './ServiceHero'
 import ServiceContent from './ServiceContent'
@@ -29,7 +31,8 @@ export default function ServiceDetailPage({
       {/* Hero — 55vh full-bleed with optional parallax image */}
       <ServiceHero
         name={service.name}
-        image={service.image ?? null}
+        slug={service.slug.current}
+        heroImage={service.heroImage ?? null}
         icon={service.icon ?? null}
       />
 
@@ -37,6 +40,8 @@ export default function ServiceDetailPage({
       <div className={styles.breadcrumbBar}>
         <Breadcrumb items={breadcrumb} />
       </div>
+      {/* Scroll-draw divider below breadcrumb */}
+      <AnimatedDivider className={styles.breadcrumbDivider} delay={0.2} />
 
       {/* Page header: service name + short description */}
       <FadeIn>
@@ -46,7 +51,9 @@ export default function ServiceDetailPage({
               {service.icon}
             </span>
           )}
+          <ViewTransition name={`service-title-${service.slug.current}`}>
           <h1 className={styles.name}>{service.name}</h1>
+          </ViewTransition>
           <p className={styles.shortDescription}>{service.shortDescription}</p>
         </header>
       </FadeIn>

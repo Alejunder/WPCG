@@ -1,0 +1,82 @@
+.section {
+  background-color: var(--color-bg);
+  position: relative;
+}
+
+/* Top separator — AnimatedDivider draws the line left-to-right on scroll */
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--color-primary) 20%, transparent) 30%,
+    color-mix(in srgb, var(--color-primary) 20%, transparent) 70%,
+    transparent
+  );
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* Section header */
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.eyebrow {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.headerRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.viewAll {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.viewAll:hover {
+  opacity: 1;
+}
+
+.viewAll:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}

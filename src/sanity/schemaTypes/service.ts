@@ -93,9 +93,11 @@ export const serviceType = defineType({
     }),
 
     defineField({
-      name: 'image',
-      title: 'Service Image',
+      name: 'heroImage',
+      title: 'Hero Image',
       type: 'image',
+      description:
+        'Used on service cards and the detail page hero. One image covers both — no separate hero upload needed.',
       options: { hotspot: true },
       fields: [
         defineField({
@@ -129,7 +131,7 @@ export const serviceType = defineType({
       titleEn: 'name.en',
       titleEs: 'name.es',
       icon: 'icon',
-      media: 'image',
+      media: 'heroImage',
     },
     prepare({ titleEn, titleEs, icon }) {
       return {

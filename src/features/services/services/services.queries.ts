@@ -7,15 +7,18 @@
 // coalesce() falls back to .en when the requested locale is missing.
 // ---------------------------------------------------------------------------
 
+// Single hero image projection — coalesce keeps legacy `image` documents working.
+const SERVICE_HERO_IMAGE_PROJECTION = /* groq */ `"heroImage": coalesce(heroImage, image) {
+  "url": asset->url,
+  alt
+}`
+
 const SERVICE_CARD_PROJECTION = /* groq */ `{
   "name": coalesce(name[$locale], name.en),
   slug { current },
   "shortDescription": coalesce(shortDescription[$locale], shortDescription.en),
   icon,
-  "image": image {
-    "url": asset->url,
-    alt
-  }
+  ${SERVICE_HERO_IMAGE_PROJECTION}
 }`
 
 const SERVICE_PROJECTION = /* groq */ `{
@@ -25,10 +28,7 @@ const SERVICE_PROJECTION = /* groq */ `{
   "longDescription": coalesce(longDescription[$locale], longDescription.en),
   "highlights": coalesce(highlights[$locale], highlights.en),
   icon,
-  "image": image {
-    "url": asset->url,
-    alt
-  },
+  ${SERVICE_HERO_IMAGE_PROJECTION},
   order,
   featured
 }`
@@ -39,7 +39,6 @@ export const getServicesPageQuery = /* groq */ `
       "url": asset->url,
       alt
     },
-    "title": coalesce(title[$locale], title.en),
     "intro": coalesce(intro[$locale], intro.en),
     "services": services[]-> | order(order asc) ${SERVICE_PROJECTION},
     "processSteps": processSteps[] {

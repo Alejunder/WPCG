@@ -21,4 +21,12 @@ export const ProjectCardSchema = z.object({
   slug: z.object({ current: z.string().min(1) }),
   category: ProjectCategorySchema,
   heroImage: ProjectImageSchema,
+  /**
+   * Included in the related-projects projection on the detail page so that
+   * RelatedProjects can dim cards that don't share the hovered service.
+   * Listing-page cards don't fetch this field (undefined → []).
+   * Sanity returns null when the field is unset on a document (null → []).
+   */
+  servicesInvolved: z.array(z.string()).nullable().optional().transform((v) => v ?? []),
+  ecoFriendly: z.boolean().nullable().default(false),
 })

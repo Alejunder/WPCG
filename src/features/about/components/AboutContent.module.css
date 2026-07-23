@@ -1,10 +1,10 @@
 .section {
-  padding: var(--space-xl) var(--gutter, 1.5rem);
+  padding: var(--space-xl) var(--gutter);
   background-color: var(--color-bg);
 }
 
 .inner {
-  max-width: var(--max-width, 80rem);
+  max-width: var(--max-width);
   margin-inline: auto;
 }
 
@@ -12,14 +12,14 @@
   max-width: 68ch;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--space-md);
 }
 
 .paragraph {
   font-family: var(--font-primary);
   font-size: clamp(0.95rem, 1.4vw, 1.05rem);
   font-weight: 400;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   line-height: 1.85;
 }
 
@@ -29,6 +29,6 @@
 
 @media (max-width: 640px) {
   .section {
-    padding: var(--space-lg) var(--gutter, 1.5rem);
+    padding: var(--space-lg) var(--gutter);
   }
 }

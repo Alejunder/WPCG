@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import TransitionLink from '@/features/shared/motion/TransitionLink'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import type { Locale } from '@/config/i18n'
 import logo from '@/assets/wpcg-removebg-preview.png'
@@ -22,11 +22,11 @@ interface NavItem {
 function buildLinks(locale: Locale): NavItem[] {
   return [
     { key: 'home',     href: `/${locale}`,          label: { en: 'Home',     es: 'Inicio' } },
-    { key: 'projects', href: `/${locale}/projects`,  label: { en: 'Projects', es: 'Proyectos' } },
+    { key: 'projects', href: `/${locale}/projects`,  label: { en: 'Projects & works', es: 'Proyectos y obras' } },
     { key: 'about',    href: `/${locale}/about`,     label: { en: 'About',    es: 'Nosotros' } },
     { key: 'services', href: `/${locale}/services`,  label: { en: 'Services', es: 'Servicios' } },
     { key: 'team',     href: `/${locale}/team`,      label: { en: 'Team',     es: 'Equipo' } },
-    { key: 'contact',  href: `/${locale}/contact`,   label: { en: 'Contact',  es: 'Contacto' } },
+    { key: 'sketches', href: `/${locale}/sketches`,  label: { en: 'Sketches', es: 'Bocetos' } },
   ]
 }
 
@@ -70,31 +70,33 @@ export default function Navbar({ locale }: NavbarProps) {
     <>
       <header
         className={`${styles.navbar} ${scrolled && !isOpen ? styles.navbarScrolled : ''}`}
+        style={{ viewTransitionName: 'site-header' }}
       >
         <div className={styles.inner}>
           {/* Logo */}
-          <TransitionLink href={`/${locale}`} className={styles.logo} aria-label="WPCG — Home">
+          <Link href={`/${locale}`} className={styles.logo} aria-label="WPCG — Home">
             <Image
               src={logo}
               alt=""
-              height={38}
+              style={{ height: '38px', width: 'auto' }}
               className={styles.logoImage}
               priority
             />
-          </TransitionLink>
+          </Link>
 
           {/* Desktop navigation — center */}
           <nav className={styles.desktopNav} aria-label="Primary navigation">
             <ul className={styles.navList} role="list">
               {links.map((link) => (
                 <li key={link.key}>
-                  <TransitionLink
+                  <Link
                     href={link.href}
                     className={`${styles.navLink} ${isActive(link.href) ? styles.navLinkActive : ''}`}
                     aria-current={isActive(link.href) ? 'page' : undefined}
+                    transitionTypes={['nav-forward']}
                   >
                     {link.label[locale]}
-                  </TransitionLink>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -102,30 +104,31 @@ export default function Navbar({ locale }: NavbarProps) {
 
           {/* Desktop right cluster: CTA + locale switcher */}
           <div className={styles.rightCluster}>
-            <TransitionLink
+            <Link
               href={`/${locale}/contact`}
               className={styles.ctaDesktop}
+              transitionTypes={['nav-forward']}
             >
               {locale === 'en' ? "Let's Talk" : 'Hablemos'}
-            </TransitionLink>
-            <TransitionLink
+            </Link>
+            <Link
               href={altLocaleHref}
               className={styles.localeSwitcherDesktop}
               aria-label={locale === 'en' ? 'Cambiar a español' : 'Switch to English'}
             >
               {locale === 'en' ? 'ES' : 'EN'}
-            </TransitionLink>
+            </Link>
           </div>
 
           {/* Mobile: locale switch + hamburger */}
           <div className={styles.right}>
-            <TransitionLink
+            <Link
               href={altLocaleHref}
               className={styles.localeSwitcher}
               aria-label={locale === 'en' ? 'Cambiar a español' : 'Switch to English'}
             >
               {locale === 'en' ? 'ES' : 'EN'}
-            </TransitionLink>
+            </Link>
 
             <button
               type="button"

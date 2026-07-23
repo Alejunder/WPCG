@@ -1,24 +1,19 @@
 .section {
   background-color: var(--color-bg);
-  padding-block: 10rem;
   position: relative;
 }
 
-/* Subtle top separator */
-.section::before {
-  content: '';
+/* Top separator — replaced static ::before with AnimatedDivider */
+.topDivider {
   position: absolute;
   top: 0;
   left: var(--gutter);
   right: var(--gutter);
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(195, 164, 102, 0.2) 30%, rgba(195, 164, 102, 0.2) 70%, transparent);
+  background: linear-gradient(to right, transparent, color-mix(in srgb, var(--color-primary) 20%, transparent) 30%, color-mix(in srgb, var(--color-primary) 20%, transparent) 70%, transparent);
 }
 
 .inner {
-  max-width: 1200px;
-  margin-inline: auto;
-  padding-inline: var(--gutter);
   display: flex;
   flex-direction: column;
   gap: 5rem;
@@ -36,7 +31,7 @@
   font-size: 0.625rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
 }
 
 .heading {
@@ -45,7 +40,7 @@
   font-size: clamp(1.875rem, 3.5vw, 2.75rem);
   line-height: 1.1;
   letter-spacing: -0.01em;
-  color: #fff;
+  color: var(--color-white);
   margin: 0;
   max-width: 22ch;
 }
@@ -54,8 +49,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: stretch;
-  border-top: 1px solid rgba(195, 164, 102, 0.1);
-  border-left: 1px solid rgba(195, 164, 102, 0.1);
+  border-left: 1px solid color-mix(in srgb, var(--color-primary) 10%, transparent);
 }
 
 /* FadeIn wrapper must fill the grid cell so cards can stretch to equal height */
@@ -64,14 +58,14 @@
 }
 
 .card {
-  padding: 2.75rem 2rem 2.5rem;
+  padding: 2.75rem 2rem var(--space-lg);
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   width: 100%;
   height: 100%;
-  border-right: 1px solid rgba(195, 164, 102, 0.1);
-  border-bottom: 1px solid rgba(195, 164, 102, 0.1);
+  border-right: 1px solid color-mix(in srgb, var(--color-primary) 10%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 10%, transparent);
   background-color: transparent;
   transition: background-color 0.3s ease;
   position: relative;
@@ -82,18 +76,29 @@
   position: absolute;
   inset: 0 0 auto 0;
   height: 2px;
-  background-color: var(--color-accent-gold);
+  background-color: var(--color-primary);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
+  z-index: 1;
 }
 
 .card:hover {
-  background-color: rgba(195, 164, 102, 0.04);
+  background-color: color-mix(in srgb, var(--color-primary) 4%, transparent);
 }
 
 .card:hover::after {
   transform: scaleX(1);
+}
+
+/* Scroll-draw top line — replaces the static border-top from .grid */
+.cardTopDivider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
 }
 
 .cardNumber {
@@ -101,7 +106,7 @@
   font-weight: 700;
   font-size: 0.625rem;
   letter-spacing: 0.25em;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   opacity: 0.5;
 }
 
@@ -110,7 +115,7 @@
   font-weight: 700;
   font-size: 1rem;
   letter-spacing: 0.08em;
-  color: #fff;
+  color: var(--color-white);
   margin: 0;
   text-transform: uppercase;
 }
@@ -120,7 +125,7 @@
   font-weight: 300;
   font-size: 0.9375rem;
   line-height: 1.8;
-  color: rgba(186, 189, 190, 0.75);
+  color: color-mix(in srgb, var(--color-text-secondary) 75%, transparent);
   margin: 0;
   flex: 1;
 }
@@ -128,13 +133,13 @@
 .cardLink {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   text-decoration: none;
   margin-top: auto;
   transition: gap 0.2s ease;
@@ -147,7 +152,7 @@
 }
 
 .cardLink:focus-visible {
-  outline: 2px solid var(--color-accent-gold);
+  outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }
 

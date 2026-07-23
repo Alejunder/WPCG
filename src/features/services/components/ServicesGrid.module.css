@@ -4,7 +4,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: var(--space-md);
   padding-block: 3rem;
 }
 
@@ -33,7 +33,7 @@
 @media (max-width: 639px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: var(--space-sm);
     padding-block: 2rem;
   }
 }

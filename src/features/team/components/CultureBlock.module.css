@@ -1,20 +1,18 @@
 .section {
   background-color: var(--color-bg);
-  padding: 5rem 0;
 }
 
 .inner {
-  max-width: var(--max-width, 80rem);
-  margin-inline: auto;
-  padding-inline: var(--gutter, 1.5rem);
   max-width: 52rem;
+  margin-inline: auto;
+  padding-inline: var(--padding-x);
 }
 
 .paragraph {
   font-family: var(--font-primary);
   font-size: clamp(0.95rem, 1.4vw, 1.1rem);
   font-weight: 300;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   line-height: 1.75;
   margin-block-end: 1.5rem;
 }
@@ -27,12 +25,12 @@
   font-family: var(--font-primary);
   font-size: clamp(1.25rem, 2vw, 1.75rem);
   font-weight: 700;
-  color: #fff;
+  color: var(--color-white);
   margin-block-end: 1rem;
 }
 
 .blockquote {
-  border-left: 2px solid var(--color-accent-gold);
+  border-left: 2px solid var(--color-primary);
   padding-left: 1.5rem;
   margin-inline: 0;
   margin-block: 2rem;
@@ -40,13 +38,13 @@
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   font-style: italic;
   font-weight: 300;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   line-height: 1.6;
 }
 
 .strong {
   font-weight: 700;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .em {
@@ -62,7 +60,7 @@
   font-family: var(--font-primary);
   font-size: clamp(0.95rem, 1.4vw, 1.1rem);
   font-weight: 300;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   line-height: 1.75;
   margin-block-end: 0.5rem;
 }

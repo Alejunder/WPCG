@@ -1,6 +1,8 @@
 import TeamGrid from './TeamGrid'
 import type { TeamMembers } from '@/features/team/types'
 import type { Locale } from '@/config/i18n'
+import SectionWrapper from '@/features/shared/components/SectionWrapper'
+import LayoutContainer from '@/features/shared/components/LayoutContainer'
 import styles from './TeamSection.module.css'
 
 interface TeamSectionProps {
@@ -11,13 +13,13 @@ interface TeamSectionProps {
 
 export default function TeamSection({ members, locale, heading }: TeamSectionProps) {
   return (
-    <section className={styles.section} aria-labelledby="team-heading">
-      <div className={styles.inner}>
+    <SectionWrapper className={styles.section} spacing="sm" aria-labelledby="team-heading">
+      <LayoutContainer className={styles.inner}>
         <h2 id="team-heading" className={styles.heading}>
           {heading}
         </h2>
         <TeamGrid members={members} locale={locale} />
-      </div>
-    </section>
+      </LayoutContainer>
+    </SectionWrapper>
   )
 }

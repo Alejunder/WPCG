@@ -1,0 +1,11 @@
+/* AcrylicSurface — frosted glass surface
+   Uses --color-surface-rgb so consumers can vary opacity without
+   redefining the base colour. backdrop-filter degrades gracefully
+   (transparent on unsupported browsers, still functional). */
+
+.acrylic {
+  background-color: rgba(var(--color-surface-rgb) / 0.72);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(255 255 255 / 0.06);
+}

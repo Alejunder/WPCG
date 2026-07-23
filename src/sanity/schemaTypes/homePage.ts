@@ -31,6 +31,35 @@ export const homePageType = defineType({
     }),
 
     // ----------------------------------------------------------------
+    // Hero — Service Links Row
+    // ----------------------------------------------------------------
+    defineField({
+      name: 'heroServiceLinks',
+      title: 'Hero — Service Links',
+      type: 'array',
+      description:
+        'Large links shown below the hero logo (e.g. Architecture | Interior Design | Construction). Each item links to a service page.',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'serviceLink',
+          fields: [
+            defineField({ name: 'en', title: 'Label (English)', type: 'string', validation: (r) => r.required() }),
+            defineField({ name: 'es', title: 'Label (Spanish)', type: 'string', validation: (r) => r.required() }),
+            defineField({
+              name: 'href',
+              title: 'URL path (without locale prefix)',
+              description: 'e.g. /services/architecture — the locale prefix is added automatically.',
+              type: 'string',
+              validation: (r) => r.required(),
+            }),
+          ],
+          preview: { select: { title: 'en', subtitle: 'href' } },
+        }),
+      ],
+    }),
+
+    // ----------------------------------------------------------------
     // About Excerpt
     // ----------------------------------------------------------------
     defineField({
@@ -78,6 +107,66 @@ export const homePageType = defineType({
               title: 'Client name (alt text)',
               type: 'string',
               validation: (r) => r.required(),
+            }),
+          ],
+        }),
+      ],
+    }),
+
+    // ----------------------------------------------------------------
+    // Client Satisfaction Stats
+    // ----------------------------------------------------------------
+    defineField({
+      name: 'clientSatisfaction',
+      title: 'Client Satisfaction — Stats Block',
+      type: 'object',
+      description: 'Statistics block displayed above the client logos carousel.',
+      fields: [
+        defineField({
+          name: 'heading',
+          title: 'Heading',
+          type: 'object',
+          fields: [
+            defineField({ name: 'en', title: 'English', type: 'string', validation: (r) => r.required() }),
+            defineField({ name: 'es', title: 'Spanish', type: 'string', validation: (r) => r.required() }),
+          ],
+        }),
+        defineField({
+          name: 'tagline',
+          title: 'Tagline',
+          description: 'Short supporting line shown below the stats (e.g. "Over 6 years exceeding expectations").',
+          type: 'object',
+          fields: [
+            defineField({ name: 'en', title: 'English', type: 'string' }),
+            defineField({ name: 'es', title: 'Spanish', type: 'string' }),
+          ],
+        }),
+        defineField({
+          name: 'stats',
+          title: 'Statistics',
+          type: 'array',
+          of: [
+            defineArrayMember({
+              type: 'object',
+              name: 'stat',
+              fields: [
+                defineField({
+                  name: 'value',
+                  title: 'Value (e.g. 91%)',
+                  type: 'string',
+                  validation: (r) => r.required(),
+                }),
+                defineField({
+                  name: 'label',
+                  title: 'Label',
+                  type: 'object',
+                  fields: [
+                    defineField({ name: 'en', title: 'English', type: 'text', rows: 2, validation: (r) => r.required() }),
+                    defineField({ name: 'es', title: 'Spanish', type: 'text', rows: 2, validation: (r) => r.required() }),
+                  ],
+                }),
+              ],
+              preview: { select: { title: 'value', subtitle: 'label.en' } },
             }),
           ],
         }),

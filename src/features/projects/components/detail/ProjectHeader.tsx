@@ -1,12 +1,13 @@
 'use client'
 
+import { ViewTransition } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { useExitAnimation } from '@/features/shared/motion/useExitAnimation'
 import type { ProjectCategory } from '../../types'
 import styles from './ProjectHeader.module.css'
 
 interface ProjectHeaderProps {
   title: string
+  slug: string
   category: ProjectCategory
   year?: number | null
   location?: string | null
@@ -23,17 +24,30 @@ const CATEGORY_LABELS: Record<'en' | 'es', Record<ProjectCategory, string>> = {
   es: { office: 'Oficinas', residential: 'Residencial', retail: 'Comercial' },
 }
 
+// Maps each category to its global design-token so the detail page inherits
+// the same colour identity as the filter bar and card chips.
+const CATEGORY_COLOR: Record<ProjectCategory, string> = {
+  office: 'var(--color-category-office)',
+  residential: 'var(--color-category-residential)',
+  retail: 'var(--color-category-retail)',
+}
+
 const ARCH_EASE = [0.22, 1, 0.36, 1] as const
 
-export default function ProjectHeader({ title, category, year, location, locale }: ProjectHeaderProps) {
+export default function ProjectHeader({ title, slug, category, year, location, locale }: ProjectHeaderProps) {
   const t = LABELS[locale]
   const categoryLabel = CATEGORY_LABELS[locale][category]
+  const categoryColor = CATEGORY_COLOR[category]
   const shouldReduce = useReducedMotion()
-  const exitControls = useExitAnimation('down')
 
   const containerVariants = {
     hidden: {},
     visible: { transition: { staggerChildren: shouldReduce ? 0 : 0.08 } },
+  }
+
+  const categoryLineVariant = {
+    hidden: { scaleX: shouldReduce ? 1 : 0 },
+    visible: { scaleX: 1, transition: { duration: 0.5, delay: 0.1, ease: ARCH_EASE } },
   }
 
   const categoryVariant = {
@@ -42,7 +56,13 @@ export default function ProjectHeader({ title, category, year, location, locale 
   }
 
   const titleVariant = {
-    hidden: { opacity: 0, skewY: shouldReduce ? 0 : 1.5, y: shouldReduce ? 0 : 20 },
+    // opacity: 1 in hidden — the h1 must be visible in the VT "after" snapshot.
+    // The ViewTransition wrapper applies view-transition-name to this element
+    // during React's commit-phase startViewTransition call. If the h1 is at
+    // opacity: 0, the browser captures a transparent snapshot and the morph
+    // is invisible. The skewY + y transforms provide the entrance animation
+    // without hiding the element.
+    hidden: { opacity: 1, skewY: shouldReduce ? 0 : 1.5, y: shouldReduce ? 0 : 20 },
     visible: {
       opacity: 1,
       skewY: 0,
@@ -62,25 +82,46 @@ export default function ProjectHeader({ title, category, year, location, locale 
   }
 
   return (
-    <motion.div animate={exitControls}>
     <motion.section
       className={styles.header}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
+      style={{ '--category-color': categoryColor } as React.CSSProperties}
     >
       {/* Category tag with horizontal dash */}
       <motion.div variants={categoryVariant} className={styles.categoryWrapper}>
-        <span className={styles.categoryLine} aria-hidden="true" />
+        {/* Scroll-draw dash — scaleX via parent stagger variant propagation */}
+        <motion.span
+          className={styles.categoryLine}
+          aria-hidden="true"
+          variants={categoryLineVariant}
+          style={{ transformOrigin: 'left' }}
+        />
         <span className={styles.category}>{categoryLabel}</span>
       </motion.div>
 
       {/* Title with clip-mask skew reveal */}
       <div className={styles.titleWrapper}>
+        {/*
+         * <ViewTransition> pairs this <h1> with the overlay title <p> in the
+         * ProjectCard (which carries a matching static viewTransitionName style)
+         * so React can morph between them when navigating card → detail.
+         *
+         * The h1 must be at opacity: 1 during the VT snapshot (see titleVariant)
+         * so the "after" state is fully visible. Any opacity:0 initial state here
+         * would make the VT snapshot transparent and the morph invisible.
+         *
+         * ⚠️  Do NOT reuse this name on any other element in this page tree.
+         * Duplicate view-transition-name values within the same document are
+         * invalid and will silently break the morph.
+         */}
+        <ViewTransition name={`project-title-${slug}`}>
         <motion.h1 variants={titleVariant} className={styles.title}>
           {title}
         </motion.h1>
+        </ViewTransition>
       </div>
 
       {/* Gold accent bar — animates scaleX from left */}
@@ -100,7 +141,6 @@ export default function ProjectHeader({ title, category, year, location, locale 
         </div>
       </motion.dl>
     </motion.section>
-    </motion.div>
   )
 }
 

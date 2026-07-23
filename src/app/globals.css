@@ -3,14 +3,45 @@
    ============================================================ */
 
 :root {
-  /* Colour palette */
+  /* Background & Surface */
   --color-bg: #1d1a15;
-  --color-navbar: #23221f;
-  --color-accent-gold: #c3a466;
-  --color-accent-brown: #4c3e24;
-  --color-accent-green: #94c11f;
-  --color-text: #babdbe;
-  --color-text-muted: #94a3b8;
+  --color-surface: #23221f;
+  --color-surface-soft: #2a2926;
+  /* Space-separated RGB channels for use with rgba() in backdrop-filter surfaces */
+  --color-surface-rgb: 18 15 12;
+
+  /* Borders */
+  --color-border: #3a3834;
+  --color-divider: #2f2d2a;
+
+  /* Text */
+  --color-text-primary: #e5e5e5;
+  --color-text-secondary: #babdbe;
+  --color-text-muted: #8a8d8f;
+
+  /* Primary — interaction: buttons, links, focus rings */
+  --color-primary: #B4B346;
+  --color-primary-hover: #5E7107;
+  --color-primary-dark: #3f5a3c;
+
+  /* Secondary — architectural brown */
+  --color-secondary: #4c3e24;
+
+  /* Logo accent — use sparingly */
+  --color-accent-logo: #94c11f;
+
+  /* Utility */
+  --color-white: #ffffff;
+  --color-coral: #e35336;
+  --color-cobalt: #305cde;
+  --color-error: #ef4444;
+  --color-error-light: #fca5a5;
+
+  /* Project category filter colours */
+  --color-category-all: var(--color-accent-logo);
+  --color-category-office: var(--color-white);
+  --color-category-residential: var(--color-coral);
+  --color-category-retail: var(--color-cobalt);
 
   /* Typography */
   --font-primary: 'Montserrat', 'Arial', sans-serif;
@@ -23,11 +54,36 @@
   --space-xl: 4rem;
 
   /* Layout */
-  --max-width: 1280px;
+  --max-width: 1200px;
   --gutter: 1.5rem;
 
-  /* Utility colours */
-  --color-white: #ffffff;
+  /* Section spacing */
+  --section-spacing: 10rem;
+  --section-spacing-sm: 5rem;
+
+  /* Horizontal padding aliases */
+  --padding-x: var(--gutter);
+  --padding-x-lg: var(--gutter);
+
+  /* Elevation — card hover lift */
+  --shadow-card-hover:
+    0 2px 4px rgba(0 0 0 / 0.3),
+    0 8px 24px rgba(0 0 0 / 0.45),
+    0 16px 48px rgba(0 0 0 / 0.25);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --section-spacing: 8rem;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --section-spacing: 6rem;
+    --section-spacing-sm: 4rem;
+    --padding-x: 1rem;
+  }
 }
 
 /* ============================================================
@@ -38,8 +94,8 @@
   display: inline-flex;
   align-items: center;
   padding: 0.9375rem 2.5rem;
-  background-color: var(--color-accent-gold);
-  color: var(--color-bg);
+  background-color: var(--color-primary);
+  color: var(--color-white);
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: 0.9375rem;
@@ -57,7 +113,7 @@
 }
 
 .btn-primary:focus-visible {
-  outline: 2px solid var(--color-accent-green);
+  outline: 2px solid var(--color-accent-logo);
   outline-offset: 3px;
 }
 
@@ -66,36 +122,36 @@
   align-items: center;
   padding: 0.875rem 2rem;
   background-color: transparent;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   font-family: var(--font-primary);
   font-weight: 500;
   font-size: 0.875rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  border: 1px solid var(--color-accent-gold);
+  border: 1px solid var(--color-primary);
   cursor: pointer;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-accent-gold);
-  color: var(--color-bg);
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
 .btn-secondary:focus-visible {
-  outline: 2px solid var(--color-accent-green);
+  outline: 2px solid var(--color-accent-logo);
   outline-offset: 3px;
 }
 
 /* ============================================================
    Focus styles — global visible indicator
-   Brand green is the universal focus ring: consistent, accessible,
-   and aligned with the WPCG logo identity (#94C11F on dark bg ≈ 8.5:1).
+   Logo green (#94C11F) is the universal focus ring: consistent,
+   accessible, and aligned with the WPCG logo identity (≈ 8.5:1 on dark bg).
    ============================================================ */
 
 :focus-visible {
-  outline: 2px solid var(--color-accent-green);
+  outline: 2px solid var(--color-accent-logo);
   outline-offset: 3px;
 }
 
@@ -113,6 +169,7 @@
 
 html {
   height: 100%;
+  position: relative;
 }
 
 html,
@@ -126,7 +183,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--color-bg);
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   font-family: var(--font-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -141,4 +198,107 @@ img,
 video {
   display: block;
   max-width: 100%;
+}
+
+/* ============================================================
+   View Transitions — crossfade, morph, directional slide
+   ============================================================ */
+
+/* Enable VT for all same-document navigations (back/forward, etc.). */
+@view-transition { navigation: auto; }
+
+/* Keyframes */
+@keyframes fade-out { to { opacity: 0; } }
+@keyframes fade-in  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slide-out-left { to   { translate: var(--offset, -60px) 0; } }
+@keyframes slide-in-right { from { translate: var(--offset,  60px) 0; } to { translate: 0 0; } }
+
+/* Acrylic blur — frosted-glass dematerialise / materialise.
+   blur() simulates the content passing through a translucent pane;
+   the higher the blur value at the midpoint, the more "glass" it reads.
+   Used for navbar (in-place, no translate) and breadcrumb (with rise). */
+@keyframes acrylic-out {
+  from { opacity: 1; filter: blur(0px);  }
+  to   { opacity: 0; filter: blur(10px); }
+}
+@keyframes acrylic-in {
+  from { opacity: 0; filter: blur(10px); }
+  to   { opacity: 1; filter: blur(0px);  }
+}
+/* Breadcrumb variant — adds a subtle upward settle */
+@keyframes acrylic-rise {
+  from { opacity: 0; filter: blur(8px); translate: 0 6px; }
+  to   { opacity: 1; filter: blur(0px); translate: 0 0;   }
+}
+@keyframes acrylic-sink {
+  from { opacity: 1; filter: blur(0px); translate: 0 0;   }
+  to   { opacity: 0; filter: blur(8px); translate: 0 6px; }
+}
+
+/* 1. Root crossfade — default for all navigations */
+::view-transition-old(root) { animation: fade-out 0.25s ease both; }
+::view-transition-new(root) { animation: fade-in 0.35s 0.1s ease both; }
+
+/* 2. Image morph — slug-suffixed names (e.g. project-hero-my-slug) can't be
+   targeted by prefix in CSS, so apply object-fit + timing via wildcards and
+   override root/site-header individually. */
+::view-transition-old(*),
+::view-transition-new(*) {
+  object-fit: cover;
+  overflow: hidden;
+}
+
+/* Root crossfade overrides the wildcard object-fit */
+::view-transition-old(root) { animation: fade-out 0.25s ease both; object-fit: unset; overflow: unset; }
+::view-transition-new(root) { animation: fade-in 0.35s 0.1s ease both; object-fit: unset; overflow: unset; }
+
+::view-transition-group(*) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Root and site-header re-scoped */
+::view-transition-group(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: ease;
+}
+
+/* 3. Directional slide — active when Link carries transitionTypes={['nav-forward']} */
+:root:active-view-transition-type(nav-forward)::view-transition-old(root) {
+  --offset: -60px;
+  animation:
+    150ms ease-in both fade-out,
+    400ms ease-in-out both slide-out-left;
+}
+:root:active-view-transition-type(nav-forward)::view-transition-new(root) {
+  --offset: 60px;
+  animation:
+    210ms ease-out 150ms both fade-in,
+    400ms ease-in-out both slide-in-right;
+}
+
+/* 4. Anchor the navbar — acrylic dematerialise/materialise.
+   Group stays fixed (no position morph); old content blurs out through
+   the "glass", new content sharpens in — active-link change feels premium. */
+::view-transition-group(site-header) { animation: none; z-index: 100; }
+::view-transition-old(site-header)   { animation: acrylic-out 0.3s  cubic-bezier(0.4, 0, 1, 1)    both; }
+::view-transition-new(site-header)   { animation: acrylic-in  0.4s  cubic-bezier(0, 0, 0.2, 1) 0.06s both; }
+
+/* 5. Breadcrumb bar — acrylic rise.
+   Settles in from below with a blur-clear effect; mirrors the sink on exit.
+   Group stays anchored (same position on every detail page). */
+::view-transition-group(page-breadcrumb) { animation: none; }
+::view-transition-old(page-breadcrumb),
+::view-transition-new(page-breadcrumb) { object-fit: unset; overflow: unset; }
+::view-transition-old(page-breadcrumb) { animation: acrylic-sink 0.28s cubic-bezier(0.4, 0, 1, 1)    both; }
+::view-transition-new(page-breadcrumb) { animation: acrylic-rise 0.5s  cubic-bezier(0, 0, 0.2, 1) 0.1s  both; }
+
+/* 6. Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
 }

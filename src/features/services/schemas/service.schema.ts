@@ -28,7 +28,7 @@ export const ServiceSchema = z.object({
   longDescription: z.array(PortableTextBlockSchema).nullable().default([]),
   highlights: z.array(z.string()).nullable().default([]),
   icon: z.string().nullable().optional(),
-  image: ServiceImageSchema.nullable().optional(),
+  heroImage: ServiceImageSchema.nullable().optional(),
   order: z.number().nullable().optional(),
   featured: z.boolean().nullable().default(false),
 })
@@ -38,7 +38,7 @@ export const ServiceCardSchema = z.object({
   slug: z.object({ current: z.string().min(1) }),
   shortDescription: z.string().min(1),
   icon: z.string().nullable().optional(),
-  image: ServiceImageSchema.nullable().optional(),
+  heroImage: ServiceImageSchema.nullable().optional(),
 })
 
 // ---------------------------------------------------------------------------
@@ -57,7 +57,6 @@ export const ProcessStepSchema = z.object({
 
 export const ServicesPageSchema = z.object({
   heroImage: ServiceImageSchema.nullable().optional(),
-  title: z.string().nullable().optional(),
   intro: z.string().nullable().optional(),
   services: z.array(ServiceSchema).nullable().default([]),
   processSteps: z.array(ProcessStepSchema).nullable().default([]),

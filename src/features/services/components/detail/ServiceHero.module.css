@@ -21,7 +21,7 @@
 .fallback {
   position: absolute;
   inset: 0;
-  background-color: var(--color-accent-brown);
+  background-color: var(--color-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +31,7 @@
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: clamp(6rem, 18vw, 14rem);
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   opacity: 0.25;
   letter-spacing: -0.06em;
   line-height: 1;
@@ -41,7 +41,7 @@
 .vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(29, 26, 21, 0.5) 100%);
+  background: radial-gradient(ellipse at center, transparent 40%, color-mix(in srgb, var(--color-bg) 50%, transparent) 100%);
   pointer-events: none;
   z-index: 1;
 }

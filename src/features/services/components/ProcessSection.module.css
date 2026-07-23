@@ -1,12 +1,8 @@
 .section {
-  background-color: var(--color-navbar);
-  padding-block: 5rem;
+  background-color: var(--color-surface);
 }
 
 .inner {
-  max-width: var(--max-width, 80rem);
-  margin-inline: auto;
-  padding-inline: var(--gutter, 1.5rem);
 }
 
 .heading {
@@ -14,7 +10,7 @@
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-  color: #fff;
+  color: var(--color-white);
   letter-spacing: -0.01em;
 }
 
@@ -34,15 +30,15 @@
 .step {
   display: grid;
   grid-template-columns: 5rem 1fr;
-  gap: 1.5rem;
+  gap: var(--space-md);
   align-items: flex-start;
   padding-block: 2rem;
-  border-top: 1px solid rgba(195, 164, 102, 0.15);
+  border-top: 1px solid color-mix(in srgb, var(--color-primary) 15%, transparent);
   position: relative;
 }
 
 .step:last-child {
-  border-bottom: 1px solid rgba(195, 164, 102, 0.15);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 15%, transparent);
 }
 
 /* Vertical connector line between steps */
@@ -55,8 +51,8 @@
   height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(195, 164, 102, 0.3) 0%,
-    rgba(195, 164, 102, 0) 100%
+    color-mix(in srgb, var(--color-primary) 30%, transparent) 0%,
+    color-mix(in srgb, var(--color-primary) 0%, transparent) 100%
   );
   pointer-events: none;
 }
@@ -66,7 +62,7 @@
   font-weight: 700;
   font-size: 1.875rem;
   line-height: 1;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   opacity: 0.7;
   letter-spacing: -0.03em;
   padding-top: 0.125rem;
@@ -75,7 +71,7 @@
 .stepContent {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-xs);
 }
 
 .stepTitle {
@@ -84,7 +80,7 @@
   font-weight: 600;
   font-size: 1.125rem;
   line-height: 1.3;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .stepDescription {
@@ -93,7 +89,7 @@
   font-weight: 300;
   font-size: 0.9375rem;
   line-height: 1.65;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
 }
 
 /* ------------------------------------------------------------------ */
@@ -107,7 +103,7 @@
 
   .step {
     grid-template-columns: 3.5rem 1fr;
-    gap: 1rem;
+    gap: var(--space-sm);
     padding-block: 1.5rem;
   }
 

@@ -1,5 +1,8 @@
 'use client'
 
+// opsx-allow design-system: self-contained error-boundary fallback — minimal
+// inline styles are intentional so the fallback renders even if app styling fails.
+
 import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'

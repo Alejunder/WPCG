@@ -1,31 +1,48 @@
 import { z } from 'zod'
 
 // ---------------------------------------------------------------------------
-// Enums
-// ---------------------------------------------------------------------------
-
-export const ProjectTypeEnum = z.enum(['office', 'residential', 'retail', 'other'])
-
-// ---------------------------------------------------------------------------
-// Contact Form Schema (shared client + server)
+// Contact Form Schema (shared validation boundary)
+//
+// Validation messages are i18n *keys* (resolved by the client under the
+// `ContactForm` namespace), not literal copy — so field errors render in the
+// user's locale. All string fields have upper bounds to prevent oversized
+// payloads reaching the email layer.
 // ---------------------------------------------------------------------------
 
 export const ContactFormSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
-  email: z.string().email({ message: 'Please enter a valid email address.' }),
-  phone: z.string().optional(),
-  company: z.string().optional(),
-  projectType: ProjectTypeEnum,
-  message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
+  name: z
+    .string()
+    .trim()
+    .min(2, { message: 'errNameShort' })
+    .max(120, { message: 'errNameLong' }),
+  email: z
+    .string()
+    .trim()
+    .min(1, { message: 'errEmailRequired' })
+    .email({ message: 'errEmailInvalid' })
+    .max(200, { message: 'errEmailLong' }),
+  phone: z.string().trim().max(40, { message: 'errPhoneLong' }).optional(),
+  company: z.string().trim().max(120, { message: 'errCompanyLong' }).optional(),
+  subject: z
+    .string()
+    .trim()
+    .min(3, { message: 'errSubjectShort' })
+    .max(160, { message: 'errSubjectLong' }),
+  message: z
+    .string()
+    .trim()
+    .min(20, { message: 'errMessageShort' })
+    .max(5000, { message: 'errMessageLong' }),
   privacyAccepted: z.boolean().refine((val) => val === true, {
-    message: 'You must accept the Privacy Policy to continue.',
+    message: 'errPrivacy',
   }),
+  turnstileToken: z.string().min(1, { message: 'errTurnstileRequired' }),
 })
 
 export type ContactFormData = z.infer<typeof ContactFormSchema>
 
 // ---------------------------------------------------------------------------
-// Contact Info Schema (CMS data)
+// Contact Info Schema (CMS data — unchanged)
 // ---------------------------------------------------------------------------
 
 const SocialPlatformSchema = z.enum(['linkedin', 'instagram'])

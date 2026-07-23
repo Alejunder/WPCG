@@ -35,7 +35,7 @@ const META: Record<Locale, { title: string; description: string }> = {
 
 const routes: Record<Locale, string> = {
   en: '/en/contact',
-  es: '/es/contacto',
+  es: '/es/contact',
 }
 
 export async function generateMetadata({
@@ -54,6 +54,7 @@ export async function generateMetadata({
       languages: {
         en: routes.en,
         es: routes.es,
+        'x-default': routes.en,
       },
     },
     openGraph: {
@@ -61,6 +62,13 @@ export async function generateMetadata({
       description: meta.description,
       locale: locale === 'en' ? 'en_US' : 'es_ES',
       type: 'website',
+      images: [{ url: '/og-default.jpg', width: 1200, height: 630, alt: 'WPCG — Architecture & Interior Design, Madrid' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title,
+      description: meta.description,
+      images: [{ url: '/og-default.jpg', width: 1200, height: 630, alt: 'WPCG — Architecture & Interior Design, Madrid' }],
     },
   }
 }

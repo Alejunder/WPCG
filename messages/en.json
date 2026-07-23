@@ -1,7 +1,7 @@
 {
   "Navbar": {
     "home": "Home",
-    "projects": "Projects",
+    "projects": "Projects and works",
     "about": "About",
     "services": "Services",
     "team": "Team",
@@ -22,9 +22,11 @@
     "projectsEyebrow": "Selected Work",
     "projectsViewAll": "View all projects",
     "projectsViewProject": "View project",
+    "sketchesHeading": "Sketches",
+    "sketchesViewAll": "View all sketches",
     "clientsHeading": "Our Clients",
     "ctaHeadline": "Like what you see?",
-    "ctaSub": "Let\u2019s build something remarkable together.",
+    "ctaSub": "Let’s build something remarkable together.",
     "ctaButton": "Get in touch"
   },
   "ProjectCard": {
@@ -36,9 +38,9 @@
     }
   },
   "ProjectsPage": {
-    "title": "Our Projects",
+    "title": "Projects and construction works",
     "breadcrumbHome": "Home",
-    "breadcrumbProjects": "Projects"
+    "breadcrumbProjects": "Projects & construction works"
   },
   "LoadMoreButton": {
     "label": "Load more",
@@ -49,7 +51,7 @@
   },
   "CtaBanner": {
     "headline": "Like what you see?",
-    "sub": "Let\u2019s build something remarkable together.",
+    "sub": "Let’s build something remarkable together.",
     "button": "Get in touch"
   },
   "ServicesPage": {
@@ -59,17 +61,17 @@
     "sectionHeading": "Our Services",
     "processHeading": "Our Process",
     "ctaHeadline": "Ready to start your project?",
-    "ctaSub": "Let\u2019s design something extraordinary together.",
+    "ctaSub": "Let’s design something extraordinary together.",
     "ctaButton": "Get in touch",
     "learnMore": "Learn more"
   },
   "ServiceDetailPage": {
     "breadcrumbHome": "Home",
     "breadcrumbServices": "Services",
-    "highlightsHeading": "What\u2019s Included",
+    "highlightsHeading": "What’s Included",
     "metaDescriptionFallback": "Discover our professional service.",
     "ctaHeadline": "Interested in this service?",
-    "ctaSub": "Let\u2019s discuss how we can help your project.",
+    "ctaSub": "Let’s discuss how we can help your project.",
     "ctaButton": "Contact us"
   },
   "AboutPage": {
@@ -77,7 +79,7 @@
     "breadcrumbAbout": "About",
     "valuesHeading": "Our Values",
     "ctaHeadline": "Ready to transform your workspace?",
-    "ctaSub": "Let\u2019s design something extraordinary together.",
+    "ctaSub": "Let’s design something extraordinary together.",
     "ctaButton": "Get in touch"
   },
   "TeamPage": {
@@ -93,7 +95,7 @@
     "breadcrumbHome": "Home",
     "breadcrumbContact": "Contact",
     "heroHeading": "Get in touch",
-    "heroSub": "Tell us about your project and we\u2019ll get back to you within 24 hours."
+    "heroSub": "Tell us about your project and we’ll get back to you within 24 hours."
   },
   "ContactForm": {
     "formAriaLabel": "Contact form",
@@ -105,21 +107,33 @@
     "placeholderPhone": "+34 600 000 000",
     "labelCompany": "Company",
     "placeholderCompany": "Acme Corp",
-    "labelProjectType": "Project Type",
-    "optionOffice": "Office",
-    "optionResidential": "Residential",
-    "optionRetail": "Retail",
-    "optionOther": "Other",
     "labelMessage": "Message",
-    "placeholderMessage": "Tell us about your project, timeline, and any specific requirements\u2026",
+    "placeholderMessage": "Tell us about your project, timeline, and any specific requirements…",
     "privacyPrefix": "I have read and accept the",
     "privacyLink": "Privacy Policy",
     "submit": "Start your project",
-    "submitting": "Sending\u2026",
-    "successHeadline": "Thank you. We\u2019ll be in touch shortly.",
+    "submitting": "Sending…",
+    "successHeadline": "Thank you. We’ll be in touch shortly.",
     "successSub": "Our team will respond within 24 hours.",
-    "errorGeneric": "Something went wrong. Please try again or email us directly.",
-    "errorRateLimit": "Too many requests. Please wait before trying again."
+    "labelSubject": "Subject",
+    "placeholderSubject": "How can we help?",
+    "errValidation": "Please review the highlighted fields.",
+    "errRateLimit": "Too many requests. Please wait before trying again.",
+    "errTurnstile": "Anti-spam verification failed. Please try again.",
+    "errGeneric": "Something went wrong. Please try again or email us directly.",
+    "errNameShort": "Name must be at least 2 characters.",
+    "errNameLong": "Name is too long.",
+    "errEmailRequired": "Email is required.",
+    "errEmailInvalid": "Please enter a valid email address.",
+    "errEmailLong": "Email is too long.",
+    "errSubjectShort": "Subject must be at least 3 characters.",
+    "errSubjectLong": "Subject is too long.",
+    "errMessageShort": "Message must be at least 20 characters.",
+    "errMessageLong": "Message is too long.",
+    "errPhoneLong": "Phone number is too long.",
+    "errCompanyLong": "Company name is too long.",
+    "errPrivacy": "You must accept the Privacy Policy to continue.",
+    "errTurnstileRequired": "Please complete the anti-spam verification."
   },
   "ContactInfo": {
     "ariaLabel": "Contact information",
@@ -133,5 +147,28 @@
     "body": "An unexpected error occurred. You can try again or return to the home page.",
     "retry": "Try again",
     "home": "Go home"
+  },
+  "SketchesPage": {
+    "eyebrow": "Creative Process",
+    "heading": "Before the build, the drawing",
+    "intro": "Sketches are a fundamental part of our creative process, allowing us to provide an initial vision that closely represents the final outcome of the project. Through freehand drawing, we can interact with the client in a fast, direct, and dynamic way from the very early stages of the design process. These sketches help clients gradually visualize what the finished project will look like while actively participating in its development. In addition, during on-site meetings, changes and adjustments can be made instantly, without the need to return to the studio or wait for 3D images to be produced. Although today’s digital tools make it possible to generate 3D renderings quickly, freehand sketching remains the fastest, most flexible, and most effective way to communicate ideas, explore solutions, and make decisions efficiently.",
+    "viewProject": "View project"
+  },
+  "Footer": {
+    "copyright": "© Copyright Work Place Consulting Group",
+    "privacyPolicy": "Privacy Policy",
+    "qualityPolicy": "Quality Policy",
+    "navAriaLabel": "Legal",
+    "socialAriaLabel": "Social media",
+    "social": {
+      "linkedin": "LinkedIn — WPCG",
+      "instagram": "Instagram — WPCG",
+      "facebook": "Facebook — WPCG"
+    }
+  },
+  "LegalPage": {
+    "breadcrumbHome": "Home",
+    "privacyBreadcrumb": "Privacy Policy",
+    "qualityBreadcrumb": "Quality Policy"
   }
 }

@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import Image from 'next/image'
-import TransitionLink from '@/features/shared/motion/TransitionLink'
+import Link from 'next/link'
 import { ARCH_EASE } from '@/features/shared/motion/motion.config'
 import type { Locale } from '@/config/i18n'
 import type { ServiceCard } from '@/features/services/types'
@@ -20,7 +20,7 @@ const CTA_LABEL: Record<Locale, string> = {
 
 export default function ServiceCard({ service, locale }: ServiceCardProps) {
   const shouldReduce = useReducedMotion()
-  const { name, slug, shortDescription, icon, image } = service
+  const { name, slug, shortDescription, icon, heroImage } = service
 
   return (
     <motion.div
@@ -28,17 +28,20 @@ export default function ServiceCard({ service, locale }: ServiceCardProps) {
       whileHover={shouldReduce ? undefined : { y: -4 }}
       transition={{ duration: 0.45, ease: ARCH_EASE }}
     >
-      <TransitionLink
+      <Link
         href={`/${locale}/services/${slug.current}`}
         className={styles.card}
         aria-label={`${name} — ${CTA_LABEL[locale]}`}
       >
         {/* Image or accent icon */}
-        {image?.url ? (
-          <div className={styles.imageWrapper}>
+        {heroImage?.url ? (
+          <div
+            className={styles.imageWrapper}
+            style={{ viewTransitionName: `service-hero-${slug.current}` }}
+          >
             <Image
-              src={image.url}
-              alt={image.alt || name}
+              src={heroImage.url}
+              alt={heroImage.alt || name}
               fill
               sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
               className={styles.image}
@@ -50,6 +53,7 @@ export default function ServiceCard({ service, locale }: ServiceCardProps) {
               </span>
             )}
           </div>
+
         ) : (
           <div className={styles.accentWrapper} aria-hidden="true">
             <span className={styles.accent}>{icon ?? '—'}</span>
@@ -58,13 +62,16 @@ export default function ServiceCard({ service, locale }: ServiceCardProps) {
 
         {/* Text content */}
         <div className={styles.body}>
-          <h3 className={styles.name}>{name}</h3>
+          <h3
+            className={styles.name}
+            style={{ viewTransitionName: `service-title-${slug.current}` }}
+          >{name}</h3>
           <p className={styles.description}>{shortDescription}</p>
           <span className={styles.cta} aria-hidden="true">
             {CTA_LABEL[locale]} →
           </span>
         </div>
-      </TransitionLink>
+      </Link>
     </motion.div>
   )
 }

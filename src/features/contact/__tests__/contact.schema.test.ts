@@ -10,9 +10,10 @@ const valid = {
   email: 'jane@example.com',
   phone: '+34 600 000 000',
   company: 'Acme Corp',
-  projectType: 'office' as const,
-  message: 'Tell us about your project requirements in detail.',
+  subject: 'Office refurbishment',
+  message: 'Tell us about your project requirements in detail please.',
   privacyAccepted: true,
+  turnstileToken: 'tok_abc123',
 }
 
 // ---------------------------------------------------------------------------
@@ -29,17 +30,11 @@ describe('ContactFormSchema', () => {
     expect(ContactFormSchema.safeParse(minimal).success).toBe(true)
   })
 
-  it('accepts all projectType values', () => {
-    for (const projectType of ['office', 'residential', 'retail', 'other'] as const) {
-      expect(ContactFormSchema.safeParse({ ...valid, projectType }).success).toBe(true)
-    }
-  })
-
   it('rejects required fields when missing or too short', () => {
     expect(ContactFormSchema.safeParse({ ...valid, name: 'A' }).success).toBe(false)
     expect(ContactFormSchema.safeParse({ ...valid, name: undefined }).success).toBe(false)
     expect(ContactFormSchema.safeParse({ ...valid, email: undefined }).success).toBe(false)
-    expect(ContactFormSchema.safeParse({ ...valid, projectType: undefined }).success).toBe(false)
+    expect(ContactFormSchema.safeParse({ ...valid, subject: undefined }).success).toBe(false)
     expect(ContactFormSchema.safeParse({ ...valid, message: undefined }).success).toBe(false)
   })
 
@@ -48,20 +43,33 @@ describe('ContactFormSchema', () => {
     expect(ContactFormSchema.safeParse({ ...valid, email: 'missing@' }).success).toBe(false)
   })
 
-  it('rejects message shorter than 10 characters', () => {
+  it('rejects a subject shorter than 3 characters', () => {
+    expect(ContactFormSchema.safeParse({ ...valid, subject: 'Hi' }).success).toBe(false)
+  })
+
+  it('rejects a message shorter than 20 characters', () => {
     expect(ContactFormSchema.safeParse({ ...valid, message: 'Too short' }).success).toBe(false)
   })
 
-  it('rejects an unknown projectType value', () => {
-    expect(ContactFormSchema.safeParse({ ...valid, projectType: 'warehouse' }).success).toBe(false)
+  it('rejects a missing turnstile token', () => {
+    expect(ContactFormSchema.safeParse({ ...valid, turnstileToken: '' }).success).toBe(false)
+    const { turnstileToken, ...without } = valid
+    expect(ContactFormSchema.safeParse(without).success).toBe(false)
+  })
+
+  it('uses i18n message keys for validation errors', () => {
+    const result = ContactFormSchema.safeParse({ ...valid, message: 'short' })
+    expect(result.success).toBe(false)
+    if (!result.success) {
+      expect(result.error.flatten().fieldErrors.message).toContain('errMessageShort')
+    }
   })
 
   it('rejects privacyAccepted: false', () => {
     const result = ContactFormSchema.safeParse({ ...valid, privacyAccepted: false })
     expect(result.success).toBe(false)
     if (!result.success) {
-      const errors = result.error.flatten().fieldErrors
-      expect(errors.privacyAccepted).toBeDefined()
+      expect(result.error.flatten().fieldErrors.privacyAccepted).toBeDefined()
     }
   })
 
@@ -82,9 +90,7 @@ describe('ContactInfoSchema', () => {
       email: 'info@wpcg.es',
       phone: '+34 91 000 00 00',
       workingHours: 'Mon–Fri 09:00–18:00',
-      socialLinks: [
-        { platform: 'linkedin', url: 'https://linkedin.com/company/wpcg' },
-      ],
+      socialLinks: [{ platform: 'linkedin', url: 'https://linkedin.com/company/wpcg' }],
     })
     expect(result.success).toBe(true)
   })
@@ -97,19 +103,23 @@ describe('ContactInfoSchema', () => {
 
   it('accepts null values for optional fields', () => {
     expect(
-      ContactInfoSchema.safeParse({ address: null, email: null, phone: null, workingHours: null }).success,
+      ContactInfoSchema.safeParse({ address: null, email: null, phone: null, workingHours: null })
+        .success,
     ).toBe(true)
   })
 
   it('rejects a socialLink with an invalid URL', () => {
     expect(
-      ContactInfoSchema.safeParse({ socialLinks: [{ platform: 'linkedin', url: 'not-a-url' }] }).success,
+      ContactInfoSchema.safeParse({ socialLinks: [{ platform: 'linkedin', url: 'not-a-url' }] })
+        .success,
     ).toBe(false)
   })
 
   it('rejects a socialLink with an unknown platform', () => {
     expect(
-      ContactInfoSchema.safeParse({ socialLinks: [{ platform: 'twitter', url: 'https://twitter.com/wpcg' }] }).success,
+      ContactInfoSchema.safeParse({
+        socialLinks: [{ platform: 'twitter', url: 'https://twitter.com/wpcg' }],
+      }).success,
     ).toBe(false)
   })
 

@@ -7,7 +7,7 @@ import logo from '@/assets/wpcg-removebg-preview.png'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { Locale } from '@/config/i18n'
 import { ARCH_EASE } from '@/features/shared/motion/motion.config'
-import TransitionLink from '@/features/shared/motion/TransitionLink'
+import Link from 'next/link'
 import styles from './FullscreenMenu.module.css'
 
 interface FullscreenMenuProps {
@@ -30,7 +30,7 @@ function buildLinks(locale: Locale): NavLink[] {
     { key: 'about',    href: `/${locale}/about`,     label: { en: 'About',    es: 'Nosotros' } },
     { key: 'services', href: `/${locale}/services`,  label: { en: 'Services', es: 'Servicios' } },
     { key: 'team',     href: `/${locale}/team`,      label: { en: 'Team',     es: 'Equipo' } },
-    { key: 'contact',  href: `/${locale}/contact`,   label: { en: 'Contact',  es: 'Contacto' } },
+    { key: 'sketches', href: `/${locale}/sketches`,  label: { en: 'Sketches', es: 'Bocetos' } },
   ]
 }
 
@@ -171,7 +171,7 @@ export default function FullscreenMenu({ id, isOpen, onClose, locale }: Fullscre
               <Image
                 src={logo}
                 alt="WPCG — Arquitectura y Construcción"
-                height={38}
+                style={{ height: '38px', width: 'auto' }}
                 className={styles.logoImage}
               />
 
@@ -199,15 +199,16 @@ export default function FullscreenMenu({ id, isOpen, onClose, locale }: Fullscre
               >
                 {links.map((link) => (
                   <motion.li key={link.key} className={styles.navItem} variants={itemVariants}>
-                    <TransitionLink
+                    <Link
                       href={link.href}
                       className={`${styles.navLink} ${isActive(link.href) ? styles.navLinkActive : ''}`}
                       onClick={onClose}
                       tabIndex={isOpen ? 0 : -1}
                       aria-current={isActive(link.href) ? 'page' : undefined}
+                      transitionTypes={['nav-forward']}
                     >
                       {link.label[locale]}
-                    </TransitionLink>
+                    </Link>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -215,7 +216,7 @@ export default function FullscreenMenu({ id, isOpen, onClose, locale }: Fullscre
 
             {/* Footer: locale switch */}
             <div className={styles.footer}>
-              <TransitionLink
+              <Link
                 href={altLocaleHref}
                 className={styles.localeSwitch}
                 onClick={onClose}
@@ -223,7 +224,7 @@ export default function FullscreenMenu({ id, isOpen, onClose, locale }: Fullscre
                 aria-label={locale === 'en' ? 'Cambiar a español' : 'Switch to English'}
               >
                 {locale === 'en' ? 'ES — Español' : 'EN — English'}
-              </TransitionLink>
+              </Link>
             </div>
 
           </motion.div>

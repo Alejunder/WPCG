@@ -3,8 +3,9 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
-import { useExitAnimation } from '@/features/shared/motion/useExitAnimation'
+import AnimatedDivider from '@/features/shared/motion/AnimatedDivider'
 import ProjectLightbox from './ProjectLightbox'
+import type { ProjectCategory } from '../../types'
 import styles from './ProjectGallery.module.css'
 
 interface GalleryImage {
@@ -12,9 +13,16 @@ interface GalleryImage {
   alt: string
 }
 
+const CATEGORY_COLOR: Record<ProjectCategory, string> = {
+  office: 'var(--color-category-office)',
+  residential: 'var(--color-category-residential)',
+  retail: 'var(--color-category-retail)',
+}
+
 interface ProjectGalleryProps {
   images: GalleryImage[]
   locale?: 'en' | 'es'
+  category?: ProjectCategory
 }
 
 const HEADING: Record<'en' | 'es', string> = {
@@ -24,11 +32,10 @@ const HEADING: Record<'en' | 'es', string> = {
 
 const ARCH_EASE = [0.22, 1, 0.36, 1] as const
 
-export default function ProjectGallery({ images, locale = 'en' }: ProjectGalleryProps) {
+export default function ProjectGallery({ images, locale = 'en', category }: ProjectGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
   const shouldReduce = useReducedMotion()
-  const exitControls = useExitAnimation('scale')
 
   if (images.length === 0) return null
 
@@ -56,7 +63,7 @@ export default function ProjectGallery({ images, locale = 'en' }: ProjectGallery
     visible: {
       transition: {
         staggerChildren: shouldReduce ? 0 : 0.08,
-        delayChildren: 0.1,
+        delayChildren: 0.4,
       },
     },
   }
@@ -78,8 +85,12 @@ export default function ProjectGallery({ images, locale = 'en' }: ProjectGallery
   }
 
   return (
-    <motion.div animate={exitControls}>
-    <section className={styles.gallery}>
+    <section
+      className={styles.gallery}
+      style={category ? ({ '--category-color': CATEGORY_COLOR[category] } as React.CSSProperties) : undefined}
+    >
+      {/* Scroll-draw top separator — colour inherits --category-color from parent */}
+      <AnimatedDivider className={styles.topDivider} />
       <p className={styles.heading}>{HEADING[locale]}</p>
 
       <motion.ul
@@ -108,7 +119,8 @@ export default function ProjectGallery({ images, locale = 'en' }: ProjectGallery
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className={styles.image}
-                loading={index < 3 ? 'eager' : 'lazy'}
+                priority={index === 0}
+                loading={index === 0 ? 'eager' : 'lazy'}
               />
               {/* Hover reveal overlay */}
               <span className={styles.thumbOverlay} aria-hidden="true">
@@ -131,7 +143,6 @@ export default function ProjectGallery({ images, locale = 'en' }: ProjectGallery
         )}
       </AnimatePresence>
     </section>
-    </motion.div>
   )
 }
 

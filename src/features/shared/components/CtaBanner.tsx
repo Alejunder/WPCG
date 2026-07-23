@@ -1,6 +1,6 @@
 'use client'
 
-import TransitionLink from '@/features/shared/motion/TransitionLink'
+import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ARCH_EASE } from '@/features/shared/motion/motion.config'
 import styles from './CtaBanner.module.css'
@@ -52,10 +52,10 @@ export default function CtaBanner({ headline, sub, buttonLabel, href, variant = 
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5, delay: 0.25, ease: ARCH_EASE }}
           >
-            <TransitionLink href={href} className={styles.buttonCompact}>
+            <Link href={href} className={styles.buttonCompact} transitionTypes={['nav-forward']}>
               {buttonLabel}
               <span className={styles.buttonArrow} aria-hidden="true">→</span>
-            </TransitionLink>
+            </Link>
           </motion.div>
         </div>
       </motion.section>
@@ -86,9 +86,9 @@ export default function CtaBanner({ headline, sub, buttonLabel, href, variant = 
           {sub && <p className={styles.sub}>{sub}</p>}
         </div>
 
-        <TransitionLink href={href} className={styles.button}>
+        <Link href={href} className={styles.button} transitionTypes={['nav-forward']}>
           {buttonLabel}
-        </TransitionLink>
+        </Link>
       </motion.div>
 
       {/* Decorative shimmer line (bottom) */}

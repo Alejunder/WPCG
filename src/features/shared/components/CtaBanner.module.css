@@ -1,6 +1,6 @@
 .section {
   background-color: var(--color-bg);
-  background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-accent-gold) 5%, transparent) 0%, transparent 20%);
+  background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-primary) 5%, transparent) 0%, transparent 20%);
   padding-block: var(--space-xl);
   display: flex;
   flex-direction: column;
@@ -13,8 +13,8 @@
   background: linear-gradient(
     to right,
     transparent 0%,
-    var(--color-accent-gold) 30%,
-    var(--color-accent-gold) 70%,
+    var(--color-primary) 30%,
+    var(--color-primary) 70%,
     transparent 100%
   );
   transform-origin: left;
@@ -24,7 +24,7 @@
 .inner {
   max-width: var(--max-width);
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: var(--padding-x);
   padding-block: 8rem;
   display: flex;
   align-items: center;
@@ -54,16 +54,18 @@
   font-family: var(--font-primary);
   font-weight: 300;
   font-size: 1rem;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.6;
 }
 
 .button {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
-  padding: 0.9375rem 2.5rem;
-  background-color: var(--color-accent-gold);
+  padding: 0.9375rem var(--space-lg);
+  background-color: var(--color-primary);
   color: var(--color-bg);
   font-family: var(--font-primary);
   font-weight: 700;
@@ -108,8 +110,8 @@
 
 .sectionCompact {
   position: relative;
-  background-color: var(--color-navbar);
-  border-top: 1px solid var(--color-accent-gold);
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-primary);
   padding-block: var(--space-xl);
   overflow: hidden;
 }
@@ -122,7 +124,7 @@
   left: 10%;
   right: 10%;
   height: 1px;
-  background: var(--color-accent-gold);
+  background: var(--color-primary);
   filter: blur(12px);
   opacity: 0.5;
   pointer-events: none;
@@ -131,7 +133,7 @@
 .innerCompact {
   max-width: var(--max-width);
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: var(--padding-x);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -141,14 +143,14 @@
 .textCompact {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-xs);
 }
 
 .headlineCompact {
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: clamp(1.5rem, 3vw, 2.25rem);
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
@@ -165,12 +167,12 @@
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-xs);
   justify-content: center;
   padding: 0.875rem 2rem;
-  border: 1px solid var(--color-accent-gold);
+  border: 1px solid var(--color-primary);
   background-color: transparent;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   font-family: var(--font-primary);
   font-weight: 500;
   font-size: 0.875rem;
@@ -194,7 +196,7 @@
   background: linear-gradient(
     to right,
     transparent,
-    color-mix(in srgb, var(--color-accent-gold) 20%, transparent),
+    color-mix(in srgb, var(--color-primary) 20%, transparent),
     transparent
   );
   transition: left 0.5s ease;
@@ -206,14 +208,14 @@
 }
 
 .buttonCompact:hover {
-  background-color: var(--color-accent-gold);
+  background-color: var(--color-primary);
   color: var(--color-bg);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(195, 164, 102, 0.2);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--color-primary) 20%, transparent);
 }
 
 .buttonCompact:focus-visible {
-  outline: 2px solid var(--color-accent-gold);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 

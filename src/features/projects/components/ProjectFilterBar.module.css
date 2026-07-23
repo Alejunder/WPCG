@@ -5,6 +5,7 @@
   padding-inline: var(--gutter);
   padding-block: 1rem;
   background-color: var(--color-bg);
+  position: relative; /* contains the absolute .divider line */
 }
 
 @media (min-width: 640px) {
@@ -12,35 +13,96 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    /* Subtle bottom separator */
-    border-bottom: 1px solid var(--color-accent-brown);
   }
+}
+
+/* Drawn divider line — animated via Framer Motion scaleX */
+.divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform-origin: left;
+  pointer-events: none;
+  /* Smooth colour crossfade when switching categories */
+  transition: background-color 0.4s ease;
 }
 
 .pill {
   padding: 0.4rem 1.125rem;
-  border: 1px solid var(--color-accent-brown);
+  border: 1px solid var(--color-secondary);
   background-color: transparent;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   font-family: var(--font-primary);
   font-size: 0.8125rem;
   letter-spacing: 0.06em;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.pill:hover {
-  border-color: var(--color-accent-gold);
-  color: var(--color-accent-gold);
+/* ------------------------------------------------------------------ */
+/* Per-category hover — border + text adopt the category colour        */
+/* ------------------------------------------------------------------ */
+
+.pill[data-category='all']:hover,
+.pill[data-category='all']:focus-visible {
+  border-color: var(--color-category-all);
+  color: var(--color-category-all);
+  outline: none;
 }
 
-.pill[aria-pressed='true'] {
-  background-color: var(--color-accent-green);
-  border-color: var(--color-accent-green);
+.pill[data-category='residential']:hover,
+.pill[data-category='residential']:focus-visible {
+  border-color: var(--color-category-residential);
+  color: var(--color-category-residential);
+  outline: none;
+}
+
+.pill[data-category='retail']:hover,
+.pill[data-category='retail']:focus-visible {
+  border-color: var(--color-category-retail);
+  color: var(--color-category-retail);
+  outline: none;
+}
+
+.pill[data-category='office']:hover,
+.pill[data-category='office']:focus-visible {
+  border-color: var(--color-category-office);
+  color: var(--color-category-office);
+  outline: none;
+}
+
+/* ------------------------------------------------------------------ */
+/* Per-category active — category bg, no pill shadow (glow is on bar) */
+/* ------------------------------------------------------------------ */
+
+.pill[data-category='all'][aria-pressed='true'] {
+  background-color: var(--color-category-all);
+  border-color: var(--color-category-all);
   color: var(--color-bg);
 }
 
+.pill[data-category='residential'][aria-pressed='true'] {
+  background-color: var(--color-category-residential);
+  border-color: var(--color-category-residential);
+  color: var(--color-white);
+}
+
+.pill[data-category='retail'][aria-pressed='true'] {
+  background-color: var(--color-category-retail);
+  border-color: var(--color-category-retail);
+  color: var(--color-bg);
+}
+
+.pill[data-category='office'][aria-pressed='true'] {
+  background-color: var(--color-category-office);
+  border-color: var(--color-category-office);
+  color: var(--color-bg);
+}
+
+/* Generic focus ring fallback for keyboard-only users */
 .pill:focus-visible {
-  outline: 2px solid var(--color-accent-green);
+  outline: 2px solid currentColor;
   outline-offset: 2px;
 }

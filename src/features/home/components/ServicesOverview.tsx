@@ -1,7 +1,10 @@
-import TransitionLink from '@/features/shared/motion/TransitionLink'
+import Link from 'next/link'
 import FadeIn from '@/features/shared/motion/FadeIn'
+import AnimatedDivider from '@/features/shared/motion/AnimatedDivider'
 import type { Locale } from '@/config/i18n'
 import type { ServiceCard } from '@/features/services/types'
+import SectionWrapper from '@/features/shared/components/SectionWrapper'
+import LayoutContainer from '@/features/shared/components/LayoutContainer'
 import styles from './ServicesOverview.module.css'
 
 interface ServicesOverviewProps {
@@ -13,9 +16,10 @@ interface ServicesOverviewProps {
 
 export default function ServicesOverview({ locale, services, heading, exploreLabel }: ServicesOverviewProps) {
   return (
-    <section className={styles.section} aria-label="Services overview">
+    <SectionWrapper className={styles.section} aria-label="Services overview">
+      <AnimatedDivider className={styles.topDivider} />
       <FadeIn enableExit>
-        <div className={styles.inner}>
+        <LayoutContainer className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.eyebrow} aria-hidden="true">02</span>
             <h2 className={styles.heading}>{heading}</h2>
@@ -25,25 +29,27 @@ export default function ServicesOverview({ locale, services, heading, exploreLab
             {services.map((service, i) => (
               <FadeIn key={service.slug.current} delay={i * 0.12}>
                 <article role="listitem" className={styles.card}>
+                  <AnimatedDivider className={styles.cardTopDivider} delay={i * 0.12} />
                   <span className={styles.cardNumber} aria-hidden="true">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <h3 className={styles.cardTitle}>{service.name}</h3>
                   <p className={styles.cardDesc}>{service.shortDescription}</p>
-                  <TransitionLink
+                  <Link
                     href={`/${locale}/services/${service.slug.current}`}
                     className={styles.cardLink}
                     aria-label={`${exploreLabel} ${service.name}`}
+                    transitionTypes={['nav-forward']}
                   >
                     {exploreLabel}
                     <span className={styles.cardArrow} aria-hidden="true">→</span>
-                  </TransitionLink>
+                  </Link>
                 </article>
               </FadeIn>
             ))}
           </div>
-        </div>
+        </LayoutContainer>
       </FadeIn>
-    </section>
+    </SectionWrapper>
   )
 }

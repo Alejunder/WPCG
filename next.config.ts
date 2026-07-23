@@ -4,6 +4,12 @@ import createNextIntlPlugin from 'next-intl/plugin'
 const withNextIntl = createNextIntlPlugin('./src/config/request.ts')
 
 const nextConfig: NextConfig = {
+  env: {
+    SC_DISABLE_SPEEDY: 'false',
+  },
+  experimental: {
+    viewTransition: true,
+  },
   turbopack: {
     root: process.cwd(),
   },

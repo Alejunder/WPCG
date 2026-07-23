@@ -1,0 +1,11 @@
+.default {
+  padding-block: var(--section-spacing);
+}
+
+.sm {
+  padding-block: var(--section-spacing-sm);
+}
+
+.none {
+  /* Caller's className controls vertical spacing */
+}

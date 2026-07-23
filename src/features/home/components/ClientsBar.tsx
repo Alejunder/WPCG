@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 import FadeIn from '@/features/shared/motion/FadeIn'
+import AnimatedDivider from '@/features/shared/motion/AnimatedDivider'
+import SectionWrapper from '@/features/shared/components/SectionWrapper'
 import type { ClientLogo } from '../schemas/home.schema'
 import styles from './ClientsBar.module.css'
 
@@ -26,11 +28,13 @@ export default async function ClientsBar({ clients }: ClientsBarProps) {
   const track = [...clients, ...clients, ...clients, ...clients]
 
   return (
-    <section className={styles.section} aria-label={label}>
+    <SectionWrapper className={styles.section} spacing="none" aria-label={label}>
+      <AnimatedDivider className={styles.topDivider} />
       <FadeIn>
         <div className={styles.eyebrowRow}>
-          <span className={styles.eyebrow}>03</span>
+          <span className={styles.eyebrow}>05</span>
           <span className={styles.label}>{label}</span>
+          <AnimatedDivider className={styles.eyebrowLineDivider} />
         </div>
       </FadeIn>
 
@@ -50,6 +54,6 @@ export default async function ClientsBar({ clients }: ClientsBarProps) {
           ))}
         </div>
       </div>
-    </section>
+    </SectionWrapper>
   )
 }

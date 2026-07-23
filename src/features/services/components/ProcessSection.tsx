@@ -3,6 +3,8 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/features/shared/motion/motion.config'
 import type { ProcessStep } from '@/features/services/types'
+import SectionWrapper from '@/features/shared/components/SectionWrapper'
+import LayoutContainer from '@/features/shared/components/LayoutContainer'
 import styles from './ProcessSection.module.css'
 
 interface ProcessSectionProps {
@@ -14,8 +16,8 @@ export default function ProcessSection({ steps, heading }: ProcessSectionProps) 
   const shouldReduce = useReducedMotion()
 
   return (
-    <section className={styles.section} aria-label={heading}>
-      <div className={styles.inner}>
+    <SectionWrapper className={styles.section} spacing="sm" aria-label={heading}>
+      <LayoutContainer className={styles.inner}>
         <motion.h2
           className={styles.heading}
           initial={shouldReduce ? false : { opacity: 0, y: 20 }}
@@ -52,7 +54,7 @@ export default function ProcessSection({ steps, heading }: ProcessSectionProps) 
             </motion.li>
           ))}
         </motion.ol>
-      </div>
-    </section>
+      </LayoutContainer>
+    </SectionWrapper>
   )
 }

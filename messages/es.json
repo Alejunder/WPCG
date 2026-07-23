@@ -1,7 +1,7 @@
 {
   "Navbar": {
     "home": "Inicio",
-    "projects": "Proyectos",
+    "projects": "Proyectos y obras",
     "about": "Nosotros",
     "services": "Servicios",
     "team": "Equipo",
@@ -15,17 +15,19 @@
     "heroNext": "Imagen siguiente",
     "aboutLabel": "Sobre nosotros",
     "aboutHeading": "Arquitectura que <em>piensa</em> y espacios que <em>funcionan</em>",
-    "aboutCta": "Con\u00f3cenos",
+    "aboutCta": "Conócenos",
     "servicesHeading": "Nuestras Soluciones",
     "servicesExplore": "Explorar",
     "projectsHeading": "Proyectos Destacados",
     "projectsEyebrow": "Obra Seleccionada",
     "projectsViewAll": "Ver todos los proyectos",
     "projectsViewProject": "Ver proyecto",
+    "sketchesHeading": "Bocetos",
+    "sketchesViewAll": "Ver todos los bocetos",
     "clientsHeading": "Nuestros Clientes",
-    "ctaHeadline": "\u00bfTe gusta lo que ves?",
+    "ctaHeadline": "¿Te gusta lo que ves?",
     "ctaSub": "Construyamos algo extraordinario juntos.",
-    "ctaButton": "Cont\u00e1ctanos"
+    "ctaButton": "Contáctanos"
   },
   "ProjectCard": {
     "viewProject": "Ver proyecto {title}",
@@ -36,9 +38,9 @@
     }
   },
   "ProjectsPage": {
-    "title": "Nuestros Proyectos",
+    "title": "Proyectos y obras de construcción",
     "breadcrumbHome": "Inicio",
-    "breadcrumbProjects": "Proyectos"
+    "breadcrumbProjects": "Proyectos y obras"
   },
   "LoadMoreButton": {
     "label": "Cargar más",
@@ -58,78 +60,115 @@
     "breadcrumbServices": "Servicios",
     "sectionHeading": "Nuestros Servicios",
     "processHeading": "Nuestro Proceso",
-    "ctaHeadline": "\u00bfListo para empezar tu proyecto?",
-    "ctaSub": "Dise\u00f1emos algo extraordinario juntos.",
-    "ctaButton": "Cont\u00e1ctanos",
-    "learnMore": "M\u00e1s informaci\u00f3n"
+    "ctaHeadline": "¿Listo para empezar tu proyecto?",
+    "ctaSub": "Diseñemos algo extraordinario juntos.",
+    "ctaButton": "Contáctanos",
+    "learnMore": "Más información"
   },
   "AboutPage": {
     "breadcrumbHome": "Inicio",
     "breadcrumbAbout": "Nosotros",
     "valuesHeading": "Nuestros Valores",
-    "ctaHeadline": "\u00bfListo para transformar tu espacio?",
-    "ctaSub": "Dise\u00f1emos algo extraordinario juntos.",
-    "ctaButton": "Cont\u00e1ctanos"
+    "ctaHeadline": "¿Listo para transformar tu espacio?",
+    "ctaSub": "Diseñemos algo extraordinario juntos.",
+    "ctaButton": "Contáctanos"
   },
   "TeamPage": {
     "breadcrumbHome": "Inicio",
     "breadcrumbTeam": "Equipo",
     "sectionHeading": "El equipo",
     "linkedinLabel": "Ver perfil de LinkedIn de",
-    "ctaHeadline": "\u00bfQuieres trabajar con nosotros?",
+    "ctaHeadline": "¿Quieres trabajar con nosotros?",
     "ctaSub": "Siempre estamos buscando personas con talento.",
-    "ctaButton": "Cont\u00e1ctanos"
+    "ctaButton": "Contáctanos"
   },
   "ServiceDetailPage": {
     "breadcrumbHome": "Inicio",
     "breadcrumbServices": "Servicios",
-    "highlightsHeading": "Qu\u00e9 Incluye",
+    "highlightsHeading": "Qué Incluye",
     "metaDescriptionFallback": "Descubra nuestro servicio profesional.",
-    "ctaHeadline": "\u00bfInteresado en este servicio?",
-    "ctaSub": "Hablemos sobre c\u00f3mo podemos ayudar a tu proyecto.",
-    "ctaButton": "Cont\u00e1ctanos"
+    "ctaHeadline": "¿Interesado en este servicio?",
+    "ctaSub": "Hablemos sobre cómo podemos ayudar a tu proyecto.",
+    "ctaButton": "Contáctanos"
   },
   "ContactPage": {
     "breadcrumbHome": "Inicio",
     "breadcrumbContact": "Contacto",
     "heroHeading": "Hablemos",
-    "heroSub": "Cu\u00e9ntanos tu proyecto y te responderemos en menos de 24 horas."
+    "heroSub": "Cuéntanos tu proyecto y te responderemos en menos de 24 horas."
   },
   "ContactForm": {
     "formAriaLabel": "Formulario de contacto",
     "labelName": "Nombre completo",
-    "placeholderName": "Ana Garc\u00eda",
-    "labelEmail": "Correo electr\u00f3nico",
+    "placeholderName": "Ana García",
+    "labelEmail": "Correo electrónico",
     "placeholderEmail": "ana@empresa.com",
-    "labelPhone": "Tel\u00e9fono",
+    "labelPhone": "Teléfono",
     "placeholderPhone": "+34 600 000 000",
     "labelCompany": "Empresa",
     "placeholderCompany": "Acme Corp",
-    "labelProjectType": "Tipo de proyecto",
-    "optionOffice": "Oficina",
-    "optionResidential": "Residencial",
-    "optionRetail": "Comercial",
-    "optionOther": "Otro",
     "labelMessage": "Mensaje",
-    "placeholderMessage": "Cu\u00e9ntanos tu proyecto, plazos y cualquier requisito espec\u00edfico\u2026",
-    "privacyPrefix": "He le\u00eddo y acepto la",
-    "privacyLink": "Pol\u00edtica de Privacidad",
-    "submit": "Cu\u00e9ntanos tu proyecto",
-    "submitting": "Enviando\u2026",
+    "placeholderMessage": "Cuéntanos tu proyecto, plazos y cualquier requisito específico…",
+    "privacyPrefix": "He leído y acepto la",
+    "privacyLink": "Política de Privacidad",
+    "submit": "Cuéntanos tu proyecto",
+    "submitting": "Enviando…",
     "successHeadline": "Gracias. Nos pondremos en contacto pronto.",
-    "successSub": "Nuestro equipo responder\u00e1 en menos de 24 horas.",
-    "errorGeneric": "Algo ha salido mal. Vuelve a intentarlo o env\u00edanos un correo directamente.",
-    "errorRateLimit": "Demasiadas solicitudes. Espera un momento antes de intentarlo de nuevo."
+    "successSub": "Nuestro equipo responderá en menos de 24 horas.",
+    "labelSubject": "Asunto",
+    "placeholderSubject": "¿En qué podemos ayudarte?",
+    "errValidation": "Revisa los campos marcados.",
+    "errRateLimit": "Demasiadas solicitudes. Espera un momento antes de volver a intentarlo.",
+    "errTurnstile": "La verificación anti-spam ha fallado. Inténtalo de nuevo.",
+    "errGeneric": "Algo ha salido mal. Inténtalo de nuevo o escríbenos directamente.",
+    "errNameShort": "El nombre debe tener al menos 2 caracteres.",
+    "errNameLong": "El nombre es demasiado largo.",
+    "errEmailRequired": "El correo electrónico es obligatorio.",
+    "errEmailInvalid": "Introduce una dirección de correo válida.",
+    "errEmailLong": "El correo electrónico es demasiado largo.",
+    "errSubjectShort": "El asunto debe tener al menos 3 caracteres.",
+    "errSubjectLong": "El asunto es demasiado largo.",
+    "errMessageShort": "El mensaje debe tener al menos 20 caracteres.",
+    "errMessageLong": "El mensaje es demasiado largo.",
+    "errPhoneLong": "El número de teléfono es demasiado largo.",
+    "errCompanyLong": "El nombre de la empresa es demasiado largo.",
+    "errPrivacy": "Debes aceptar la Política de Privacidad para continuar.",
+    "errTurnstileRequired": "Completa la verificación anti-spam."
   },
   "ContactInfo": {
-    "ariaLabel": "Informaci\u00f3n de contacto",
-    "labelAddress": "Direcci\u00f3n",
+    "ariaLabel": "Información de contacto",
+    "labelAddress": "Dirección",
     "labelEmail": "Correo",
-    "labelPhone": "Tel\u00e9fono",
-    "labelHours": "Horario"  },
+    "labelPhone": "Teléfono",
+    "labelHours": "Horario"
+  },
   "ErrorPage": {
     "heading": "Algo ha salido mal",
     "body": "Ha ocurrido un error inesperado. Puedes intentarlo de nuevo o volver a la página de inicio.",
     "retry": "Intentar de nuevo",
-    "home": "Ir al inicio"  }
+    "home": "Ir al inicio"
+  },
+  "SketchesPage": {
+    "eyebrow": "Proceso Creativo",
+    "heading": "Antes de construir, dibujar",
+    "intro": "Los bocetos son una parte fundamental de nuestro proceso creativo, ya que nos permiten ofrecer una primera visión muy cercana al resultado final del proyecto. Gracias al dibujo a mano alzada, podemos interactuar de forma ágil y directa con el cliente desde las primeras fases del diseño. A través de estos bocetos, el cliente comienza a visualizar cómo será el proyecto terminado y puede participar activamente en su evolución. Además, durante las reuniones in situ es posible realizar modificaciones y ajustes al momento, sin necesidad de desplazarse al estudio ni esperar a la generación de imágenes en 3D. Aunque hoy en día las herramientas digitales permiten crear renders con gran rapidez, el boceto a mano sigue siendo el método más inmediato, flexible y dinámico para transmitir ideas, explorar soluciones y tomar decisiones de forma eficiente.",
+    "viewProject": "Ver proyecto"
+  },
+  "Footer": {
+    "copyright": "© Copyright Work Place Consulting Group",
+    "privacyPolicy": "Política de Privacidad",
+    "qualityPolicy": "Política de Calidad",
+    "navAriaLabel": "Legal",
+    "socialAriaLabel": "Redes sociales",
+    "social": {
+      "linkedin": "LinkedIn — WPCG",
+      "instagram": "Instagram — WPCG",
+      "facebook": "Facebook — WPCG"
+    }
+  },
+  "LegalPage": {
+    "breadcrumbHome": "Inicio",
+    "privacyBreadcrumb": "Política de Privacidad",
+    "qualityBreadcrumb": "Política de Calidad"
+  }
 }

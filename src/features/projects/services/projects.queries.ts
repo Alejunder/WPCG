@@ -15,12 +15,19 @@ export const PROJECT_CARD_PROJECTION = /* groq */ `{
   "title": coalesce(title[$locale], title.en),
   slug { current },
   category,
+  servicesInvolved,
+  ecoFriendly,
   "heroImage": heroImage {
     "url": asset->url,
     alt
   }
 }`
 
+/**
+ * Extended card projection used for related projects on the detail page.
+ * Includes servicesInvolved so RelatedProjects can dim cards by hovered service.
+ * NOT exported — only consumed by PROJECT_PROJECTION below.
+ */
 const PROJECT_PROJECTION = /* groq */ `{
   "title": coalesce(title[$locale], title.en),
   slug { current },
@@ -40,15 +47,19 @@ const PROJECT_PROJECTION = /* groq */ `{
   "duration": coalesce(duration[$locale], duration.en),
   servicesInvolved,
   "relatedProjects": relatedProjects[0..2]->${PROJECT_CARD_PROJECTION},
-  featured
+  featured,
+  ecoFriendly
 }`
 
+// Manual ordering: `displayOrder` (1 = first) drives the grid position
+// (top-left, then left-to-right, wrapping to the next row). Projects without a
+// displayOrder are pushed to the end via coalesce and fall back to newest-first.
 export const getAllProjectsQuery = /* groq */ `
-  *[_type == "project"] | order(_createdAt desc) ${PROJECT_CARD_PROJECTION}
+  *[_type == "project"] | order(coalesce(displayOrder, 999999) asc, _createdAt desc) ${PROJECT_CARD_PROJECTION}
 `
 
 export const getFeaturedProjectsQuery = /* groq */ `
-  *[_type == "project" && featured == true] | order(_createdAt desc) ${PROJECT_CARD_PROJECTION}
+  *[_type == "project" && featured == true] | order(coalesce(displayOrder, 999999) asc, _createdAt desc) ${PROJECT_CARD_PROJECTION}
 `
 
 export const getProjectBySlugQuery = /* groq */ `
@@ -58,4 +69,13 @@ export const getProjectBySlugQuery = /* groq */ `
 // Locale-agnostic — slugs are shared across locales.
 export const getAllProjectSlugsQuery = /* groq */ `
   *[_type == "project"]{ slug { current } }
+`
+
+export const getProjectsPageQuery = /* groq */ `
+  *[_type == "projectsPage"][0] {
+    "title": coalesce(title[$locale], title.en),
+    "subtitle": coalesce(subtitle[$locale], subtitle.en),
+    "seoTitle": coalesce(seoTitle[$locale], seoTitle.en),
+    "seoDescription": coalesce(seoDescription[$locale], seoDescription.en),
+  }
 `

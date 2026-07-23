@@ -1,5 +1,3 @@
-'use client'
-
 import type { ElementType, ReactNode, CSSProperties } from 'react'
 import FadeIn from './FadeIn'
 

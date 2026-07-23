@@ -12,6 +12,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://wpcg.es'),
   title: {
     template: '%s | WPCG',
     default: 'WPCG — Architecture & Interior Design · Madrid',

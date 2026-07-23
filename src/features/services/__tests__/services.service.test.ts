@@ -40,7 +40,6 @@ const minimalServiceCard = {
 }
 
 const minimalServicesPage = {
-  title: 'Our Services',
   intro: 'Premium workspace solutions.',
   services: [],
   processSteps: [],
@@ -81,7 +80,7 @@ describe('getServicesPage', () => {
     const result = await getServicesPage('en')
 
     expect(result).not.toBeNull()
-    expect(result?.title).toBe('Our Services')
+    expect(result?.intro).toBe('Premium workspace solutions.')
     expect(result?.services).toEqual([])
     expect(result?.processSteps).toEqual([])
   })

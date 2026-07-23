@@ -2,8 +2,11 @@
 
 import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
+import AnimatedDivider from '@/features/shared/motion/AnimatedDivider'
 import type { ContactInfoData } from '../types'
 import styles from './ContactInfo.module.css'
+import logo from '@/assets/wpcg-removebg-preview.png'
 
 interface ContactInfoProps {
   info: ContactInfoData | null
@@ -25,7 +28,9 @@ export default function ContactInfo({ info }: ContactInfoProps) {
       animate="visible"
       aria-label={t('ariaLabel')}
     >
-      <div className={styles.brand}>WPCG</div>
+      <div className={styles.brand}>
+        <Image src={logo} alt="WPCG Logo" className={styles.logo} style={{ height: '85px', width: 'auto' }} loading="eager" priority />
+      </div>
 
       {info?.address && (
         <div className={styles.group}>
@@ -60,7 +65,10 @@ export default function ContactInfo({ info }: ContactInfoProps) {
       )}
 
       {info?.socialLinks && info.socialLinks.length > 0 && (
-        <div className={styles.socials}>
+        <>
+          {/* Scroll-draw divider above social links */}
+          <AnimatedDivider className={styles.socialsDivider} />
+          <div className={styles.socials}>
           {info.socialLinks.map((link) => (
             <a
               key={link.platform}
@@ -83,7 +91,8 @@ export default function ContactInfo({ info }: ContactInfoProps) {
               <span className={styles.socialLabel}>{link.platform}</span>
             </a>
           ))}
-        </div>
+          </div>
+        </>
       )}
     </motion.aside>
   )

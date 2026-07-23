@@ -16,8 +16,10 @@
   display: block;
   width: 2rem;
   height: 1px;
-  background-color: var(--color-accent-gold);
+  background-color: var(--category-color, var(--color-primary));
   flex-shrink: 0;
+  transform-origin: left;
+  transition: background-color 0.4s ease;
 }
 
 .category {
@@ -25,7 +27,8 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--color-accent-gold);
+  color: var(--category-color, var(--color-primary));
+  transition: color 0.4s ease;
 }
 
 /* Title clip-mask — skewY reveal needs overflow hidden */
@@ -37,25 +40,26 @@
   font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 700;
   line-height: 1.08;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   font-family: var(--font-primary);
   margin: 0;
   transform-origin: left center;
 }
 
-/* Gold accent bar — scaleX animated from left */
+/* Category-coloured accent bar — scaleX animated from left */
 .accentBar {
   height: 1px;
   width: 4rem;
-  background: linear-gradient(to right, var(--color-accent-gold), transparent);
+  background: linear-gradient(to right, var(--category-color, var(--color-primary)), transparent);
   transform-origin: left center;
+  transition: background 0.4s ease;
 }
 
 /* Meta list */
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem 3rem;
+  gap: var(--space-md) 3rem;
   margin: 0.25rem 0 0;
 }
 
@@ -76,7 +80,7 @@
 .metaValue {
   font-size: 1rem;
   font-weight: 500;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   font-family: var(--font-primary);
   margin: 0;
 }

@@ -8,7 +8,7 @@
   font-family: var(--font-primary);
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   font-weight: 700;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin: 0;
@@ -31,7 +31,7 @@
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.55;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
 }
 
 .bullet {
@@ -39,6 +39,6 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--color-accent-green);
+  background-color: var(--color-accent-logo);
   margin-top: 0.48em;
 }

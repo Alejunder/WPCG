@@ -1,4 +1,4 @@
-import type { Variants, Transition } from 'framer-motion'
+import type { Variants, Transition, Spring } from 'framer-motion'
 
 // Shared cubic-bezier — architectural, elastic feel
 // Used inline across 12+ components; centralised here as the single source of truth
@@ -10,6 +10,16 @@ export const ARCH_EASE = [0.25, 1, 0.5, 1] as const
 export const DURATION_FAST = 0.4
 export const DURATION_BASE = 0.6
 export const DURATION_SLOW = 0.9
+
+// ---------------------------------------------------------------------------
+// Spring presets
+// ---------------------------------------------------------------------------
+
+/** Relaxed spring for lift-on-hover and subtle position nudges */
+export const SPRING_GENTLE: Spring = { type: 'spring', stiffness: 100, damping: 20 }
+
+/** Snappy spring for quick interactive responses */
+export const SPRING_SNAPPY: Spring = { type: 'spring', stiffness: 300, damping: 30 }
 
 // ---------------------------------------------------------------------------
 // Transition presets
@@ -31,6 +41,12 @@ export const slowTransition: Transition = {
 export const fastTransition: Transition = {
   duration: 0.4,
   ease: ARCH_EASE,
+}
+
+/** Divider line drawing transition: 1.8s, easeOut — slow deliberate draw, clearly visible */
+export const dividerTransition: Transition = {
+  duration: 1.8,
+  ease: 'easeOut',
 }
 
 // ---------------------------------------------------------------------------

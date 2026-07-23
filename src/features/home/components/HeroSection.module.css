@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   min-height: 620px;
   overflow: hidden;
   display: flex;
@@ -28,6 +29,298 @@
   object-fit: cover;
 }
 
+/* ── Brand lockup — hero overlay ──────────────────────────────────────────── */
+
+.brandOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Centred in the hero */
+.brandLockupWrapper {
+  position: absolute;
+  top: 55%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  padding-inline: var(--padding-x);
+}
+
+.brandLockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: min(30rem, 100%);
+}
+
+.brandLogo {
+  display: block;
+  width: clamp(14rem, 38vw, 30rem);
+  max-width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1) drop-shadow(0 2px 40px rgba(0 0 0 / 0.55));
+}
+
+/* Bottom CTA stack — logo (mobile), services, buttons */
+
+.heroCtaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1.25rem;
+  margin-bottom: 7.5rem;
+}
+
+.mobileHeaderStack {
+  display: contents;
+}
+
+.mobileBrandLockup {
+  display: none;
+}
+
+.serviceLinksRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.25rem var(--space-xs);
+  width: 100%;
+  margin-bottom: 0;
+  padding-inline: 0;
+}
+
+.serviceLink {
+  font-family: var(--font-primary);
+  font-size: clamp(1.125rem, 1.75vw, 2.5rem);
+  font-weight: 200;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  text-decoration: none;
+  text-shadow: 0 2px 24px rgba(0 0 0 / 0.45);
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.serviceLink:hover {
+  color: var(--color-primary);
+  text-shadow: 0 2px 24px rgba(0 0 0 / 0.3);
+}
+
+.serviceSep {
+  font-family: var(--font-primary);
+  font-size: clamp(1.125rem, 1.75vw, 2.5rem);
+  font-weight: 200;
+  color: var(--color-white);
+  opacity: 0.4;
+  padding-inline: clamp(0.25rem, 1vw, 1rem);
+  line-height: 1;
+}
+
+@media (max-width: 1023px) {
+  .brandLockupWrapper {
+    top: 50%;
+  }
+
+  .brandLogo {
+    width: clamp(11rem, 52vw, 22rem);
+  }
+
+  .serviceLink,
+  .serviceSep {
+    font-size: clamp(0.9375rem, 2.8vw, 1.5rem);
+    letter-spacing: 0.05em;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 560px;
+  }
+
+  .brandLockupWrapper {
+    top: 44%;
+    padding-inline: max(var(--padding-x), 1rem);
+  }
+
+  .brandLogo {
+    width: clamp(9.5rem, 68vw, 16rem);
+  }
+
+  .serviceLinksRow {
+    gap: 0.2rem 0.4rem;
+  }
+
+  .serviceLink,
+  .serviceSep {
+    font-size: clamp(0.75rem, 3.4vw, 1rem);
+    letter-spacing: 0.06em;
+  }
+
+  .heroCtaContainer {
+    gap: var(--space-sm);
+    margin-bottom: 5rem;
+  }
+
+  .carouselBtn {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero {
+    min-height: 520px;
+  }
+
+  .brandOverlay {
+    display: none;
+  }
+
+  .mobileHeaderStack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: var(--space-xs);
+    margin-bottom: 0;
+  }
+
+  .mobileBrandLockup {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .mobileBrandLockup .brandLogo {
+    width: min(68vw, 12rem);
+  }
+
+  .serviceLinksRow {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 0;
+    max-width: 100%;
+    width: 100%;
+    padding-inline: 0;
+    overflow: hidden;
+  }
+
+  .serviceLink {
+    font-size: clamp(0.5625rem, 3.35vw, 0.8125rem);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+    white-space: nowrap;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .serviceSep {
+    display: inline;
+    font-size: clamp(0.5625rem, 3.35vw, 0.8125rem);
+    font-weight: 700;
+    flex-shrink: 0;
+    padding-inline: clamp(0.2rem, 1.2vw, 0.4rem);
+  }
+
+  .heroCtaContainer {
+    gap: 0.75rem;
+    margin-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+    padding-right: 2.25rem;
+  }
+
+  .ctaGroup {
+    flex-direction: column;
+    align-items: stretch;
+    width: 80%;
+    max-width: 260px;
+    margin-inline: auto;
+    margin-bottom: 0;
+    gap: 0.625rem;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+    justify-content: center;
+    padding-block: 0.875rem;
+    padding-inline: 1.5rem;
+  }
+
+  .scrollHint {
+    bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+    right: max(var(--gutter), env(safe-area-inset-right, 0px));
+    z-index: 3;
+  }
+
+  .carouselNavDesktop {
+    display: none;
+  }
+
+  .carouselNavMobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .carouselNavMobile .carouselBtn {
+    position: static;
+    transform: none;
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 0.9375rem;
+    flex-shrink: 0;
+  }
+
+  .carouselNavMobile .carouselBtnPrev,
+  .carouselNavMobile .carouselBtnNext {
+    left: auto;
+    right: auto;
+  }
+
+  .carouselNavMobile .dots {
+    position: static;
+    transform: none;
+    bottom: auto;
+    left: auto;
+  }
+
+  .scrollLine {
+    height: 2rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .mobileBrandLockup .brandLogo {
+    width: min(72vw, 10.5rem);
+  }
+
+  .serviceLink,
+  .serviceSep {
+    font-size: clamp(0.5rem, 3.1vw, 0.6875rem);
+    letter-spacing: 0.02em;
+  }
+
+  .serviceSep {
+    padding-inline: 0.15rem;
+  }
+}
+
 /* Layered overlay for legibility */
 .overlay {
   position: absolute;
@@ -35,10 +328,10 @@
   background:
     linear-gradient(
       to top,
-      rgba(29, 26, 21, 0.94) 0%,
-      rgba(29, 26, 21, 0.5) 35%,
-      rgba(29, 26, 21, 0.15) 65%,
-      rgba(29, 26, 21, 0.3) 100%
+      color-mix(in srgb, var(--color-bg) 94%, transparent) 0%,
+      color-mix(in srgb, var(--color-bg) 50%, transparent) 35%,
+      color-mix(in srgb, var(--color-bg) 15%, transparent) 65%,
+      color-mix(in srgb, var(--color-bg) 30%, transparent) 100%
     );
   z-index: 1;
 }
@@ -51,27 +344,33 @@
 .content {
   position: relative;
   z-index: 2;
-  max-width: 1200px;
+  max-width: var(--max-width);
   width: 100%;
   margin-inline: auto;
-  padding-inline: var(--gutter);
-  padding-bottom: 7.5rem;
+  padding-inline: var(--padding-x);
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ctaGroup {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: var(--space-sm);
   justify-content: center;
+  width: 100%;
+  max-width: 36rem;
 }
 
 /* Primary CTA — solid gold */
 .ctaPrimary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.625rem;
-  padding: 1rem 2.5rem;
-  background-color: var(--color-accent-gold);
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--color-primary);
   color: var(--color-bg);
   font-family: var(--font-primary);
   font-weight: 700;
@@ -79,16 +378,17 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
+  text-align: center;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .ctaPrimary:hover {
-  background-color: #d4b87a;
+  background-color: var(--color-primary-hover);
   transform: translateY(-2px);
 }
 
 .ctaPrimary:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--color-white);
   outline-offset: 3px;
 }
 
@@ -96,33 +396,43 @@
 .ctaSecondary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.625rem;
-  padding: 1rem 2.5rem;
-  border: 1px solid rgba(195, 164, 102, 0.5);
+  padding: var(--space-sm) var(--space-lg);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 50%, transparent);
   background-color: transparent;
-  color: rgba(195, 164, 102, 0.85);
+  color: color-mix(in srgb, var(--color-primary) 85%, transparent);
   font-family: var(--font-primary);
   font-weight: 500;
   font-size: 0.8125rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
+  text-align: center;
   transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
 
 .ctaSecondary:hover {
-  border-color: var(--color-accent-gold);
+  border-color: var(--color-primary);
   color: var(--color-bg);
-  background-color: var(--color-accent-gold);
+  background-color: var(--color-primary);
   transform: translateY(-2px);
 }
 
 .ctaSecondary:focus-visible {
-  outline: 2px solid var(--color-accent-gold);
+  outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }
 
 /* ── Carousel navigation ─────────────────────────────────────────────────── */
+
+.carouselNavDesktop {
+  display: contents;
+}
+
+.carouselNavMobile {
+  display: none;
+}
 
 .carouselBtn {
   position: absolute;
@@ -135,8 +445,8 @@
   align-items: center;
   justify-content: center;
   background: transparent;
-  border: 1px solid rgba(195, 164, 102, 0.3);
-  color: rgba(195, 164, 102, 0.65);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
+  color: color-mix(in srgb, var(--color-primary) 65%, transparent);
   font-size: 1.125rem;
   cursor: pointer;
   padding: 0;
@@ -144,13 +454,13 @@
 }
 
 .carouselBtn:hover {
-  border-color: var(--color-accent-gold);
+  border-color: var(--color-primary);
   color: var(--color-bg);
-  background-color: var(--color-accent-gold);
+  background-color: var(--color-primary);
 }
 
 .carouselBtn:focus-visible {
-  outline: 2px solid var(--color-accent-gold);
+  outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }
 
@@ -171,14 +481,14 @@
   z-index: 3;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-xs);
 }
 
 .dot {
   display: block;
   width: 1.75rem;
   height: 2px;
-  background-color: rgba(195, 164, 102, 0.25);
+  background-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
   border: none;
   cursor: pointer;
   padding: 0;
@@ -186,12 +496,12 @@
 }
 
 .dot:focus-visible {
-  outline: 2px solid var(--color-accent-gold);
+  outline: 2px solid var(--color-primary);
   outline-offset: 4px;
 }
 
 .dotActive {
-  background-color: var(--color-accent-gold);
+  background-color: var(--color-primary);
   width: 3rem;
 }
 
@@ -213,7 +523,7 @@
   font-size: 0.5625rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(195, 164, 102, 0.55);
+  color: color-mix(in srgb, var(--color-primary) 55%, transparent);
   writing-mode: vertical-rl;
 }
 
@@ -221,7 +531,7 @@
   display: block;
   width: 1px;
   height: 3.5rem;
-  background: linear-gradient(to bottom, var(--color-accent-gold), transparent);
+  background: linear-gradient(to bottom, var(--color-primary), transparent);
   animation: scrollPulse 2.4s ease-in-out infinite;
 }
 
@@ -229,27 +539,3 @@
   0%, 100% { opacity: 0.25; transform: scaleY(0.7); transform-origin: top; }
   50%       { opacity: 0.9;  transform: scaleY(1);   transform-origin: top; }
 }
-
-@media (max-width: 767px) {
-  .carouselBtn {
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 639px) {
-  .ctaGroup {
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .scrollHint {
-    display: none;
-  }
-}
-
-

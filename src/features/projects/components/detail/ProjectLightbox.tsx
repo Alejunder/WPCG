@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import styles from './ProjectLightbox.module.css'
 
 interface ProjectLightboxProps {
@@ -25,6 +25,15 @@ export default function ProjectLightbox({
   const dialogRef = useRef<HTMLDivElement>(null)
   const touchStartX = useRef<number>(0)
   const image = images[activeIndex]
+  const shouldReduce = useReducedMotion()
+
+  // Auto-advance every 7s while open. Resets on manual navigation (via
+  // `activeIndex` dep) and is disabled for single images or reduced motion.
+  useEffect(() => {
+    if (images.length <= 1 || shouldReduce) return
+    const id = setInterval(onNext, 7000)
+    return () => clearInterval(id)
+  }, [images.length, shouldReduce, onNext, activeIndex])
 
   // Scroll lock
   useEffect(() => {

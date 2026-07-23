@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 import Breadcrumb from '@/features/shared/components/Breadcrumb'
+import AnimatedDivider from '@/features/shared/motion/AnimatedDivider'
 import type { Locale } from '@/config/i18n'
 import styles from './ContactHero.module.css'
 
@@ -39,6 +40,8 @@ export default function ContactHero({ locale }: ContactHeroProps) {
           {t('heroSub')}
         </motion.p>
       </div>
+      {/* Scroll-draw bottom border */}
+      <AnimatedDivider className={styles.bottomDivider} delay={0.4} />
     </section>
   )
 }

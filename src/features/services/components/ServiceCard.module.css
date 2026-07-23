@@ -5,7 +5,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  background-color: var(--color-navbar);
+  background-color: var(--color-surface);
   overflow: hidden;
   text-decoration: none;
   height: 100%;
@@ -17,8 +17,8 @@
 
 .card:hover,
 .card:focus-visible {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(195, 164, 102, 0.07);
-  border-color: rgba(195, 164, 102, 0.2);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 4px 12px color-mix(in srgb, var(--color-primary) 7%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
   outline: none;
 }
 
@@ -48,7 +48,7 @@
   background: linear-gradient(
     to bottom,
     transparent 40%,
-    rgba(29, 26, 21, 0.6) 100%
+    color-mix(in srgb, var(--color-bg) 60%, transparent) 100%
   );
 }
 
@@ -59,7 +59,7 @@
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: 1.5rem;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   opacity: 0.85;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -71,14 +71,14 @@
   align-items: center;
   justify-content: center;
   aspect-ratio: 16 / 9;
-  background-color: var(--color-accent-brown);
+  background-color: var(--color-secondary);
 }
 
 .accent {
   font-family: var(--font-primary);
   font-weight: 700;
   font-size: 3rem;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   opacity: 0.6;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -92,7 +92,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
-  padding: 1.5rem;
+  padding: var(--space-md);
   flex: 1;
 }
 
@@ -102,7 +102,7 @@
   font-weight: 700;
   font-size: 1.125rem;
   line-height: 1.25;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .description {
@@ -111,7 +111,7 @@
   font-weight: 300;
   font-size: 0.9rem;
   line-height: 1.65;
-  color: var(--color-text);
+  color: var(--color-text-secondary);
   flex: 1;
 }
 
@@ -123,7 +123,7 @@
   font-size: 0.8125rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
   transition: letter-spacing 0.3s;
 }
 

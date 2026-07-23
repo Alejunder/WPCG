@@ -1,10 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { motion, useAnimation, useInView, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import { ARCH_EASE } from './motion.config'
-import { useSafeSceneTransition } from './SceneTransitionContext'
 
 // ---------------------------------------------------------------------------
 // Exported child variant — import this in any `motion.*` child
@@ -72,96 +70,64 @@ export default function StaggerContainer({
   staggerDelay = 0.1,
   delayChildren = 0.1,
   className,
-  enableExit = false,
 }: StaggerContainerProps) {
   const shouldReduce = useReducedMotion()
-  const { phase }    = useSafeSceneTransition()
 
-  // Always call hooks unconditionally
-  const controls   = useAnimation()
-  const ref        = useRef<HTMLDivElement>(null)
-  const hasEntered = useRef(false)
-  const isInView   = useInView(ref, { once: true, margin: '-60px' })
-
-  // --- Enter (exit-enabled mode only) ---
-  useEffect(() => {
-    if (!enableExit) return
-
-    if (shouldReduce) {
-      controls.set('visible')
-      hasEntered.current = true
-      return
-    }
-
-    if (isInView && !hasEntered.current) {
-      hasEntered.current = true
-      void controls.start('visible')
-    }
-  }, [isInView, enableExit, shouldReduce, controls])
-
-  // --- Exit (exit-enabled mode only) ---
-  // Reverse stagger: staggerDirection -1 makes the last child exit first.
-  // Guard on hasEntered prevents newly-mounted incoming-page components
-  // from incorrectly firing the exit animation.
-  useEffect(() => {
-    if (!enableExit) return
-    if (shouldReduce) return
-    if (phase === 'exiting' && hasEntered.current) {
-      void controls.start('exit')
-    }
-  }, [phase, enableExit, shouldReduce, controls])
-
-  // ---------------------------------------------------------------------------
-  // Standard mode — declarative whileInView, no exit support
-  // ---------------------------------------------------------------------------
-  if (!enableExit) {
-    const containerVariants: Variants = {
-      hidden: {},
-      visible: {
-        transition: shouldReduce
-          ? {}
-          : { staggerChildren: staggerDelay, delayChildren },
-      },
-    }
-
-    return (
-      <motion.div
-        className={className}
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-60px' }}
-      >
-        {children}
-      </motion.div>
-    )
-  }
-
-  // ---------------------------------------------------------------------------
-  // Exit-enabled mode — programmatic control via useAnimation + useInView
-  // ---------------------------------------------------------------------------
-  const exitContainerVariants: Variants = {
+  const containerVariants: Variants = {
     hidden: {},
     visible: {
       transition: shouldReduce
         ? {}
         : { staggerChildren: staggerDelay, delayChildren },
     },
-    exit: {
-      transition: shouldReduce
-        ? {}
-        : { staggerChildren: 0.06, staggerDirection: -1 },
-    },
   }
 
   return (
     <motion.div
-      ref={ref}
       className={className}
-      variants={exitContainerVariants}
+      variants={containerVariants}
       initial="hidden"
-      animate={controls}
+      whileInView="visible"
+      viewport={{ once: true, margin: '-60px' }}
     >
+      {children}
+    </motion.div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// StaggerItem — thin wrapper for use in Server Components
+//
+// Server Component pages cannot use `motion.div` directly. Import this
+// component alongside StaggerContainer so each section can participate
+// in the stagger sequence without the page needing 'use client'.
+//
+// ⚠️  Must be a direct child of <StaggerContainer> for variant propagation
+// to work (Framer Motion requires an unbroken motion tree).
+// ---------------------------------------------------------------------------
+
+interface StaggerItemProps {
+  children: React.ReactNode
+  className?: string
+}
+
+/**
+ * Wrap each direct child of `<StaggerContainer>` with this component.
+ *
+ * When `prefers-reduced-motion` is active, renders a plain `<div>` with no
+ * animation — bypassing Framer Motion entirely so children appear
+ * instantaneously. `StaggerContainer` already strips stagger delays at the
+ * container level; this ensures individual item transitions are also skipped.
+ */
+export function StaggerItem({ children, className }: StaggerItemProps) {
+  const shouldReduce = useReducedMotion()
+
+  if (shouldReduce) {
+    return <div className={className}>{children}</div>
+  }
+
+  return (
+    <motion.div variants={staggerItem} className={className}>
       {children}
     </motion.div>
   )

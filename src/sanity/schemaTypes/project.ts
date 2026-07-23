@@ -6,6 +6,15 @@ export const projectType = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'displayOrder',
+      title: 'Display Order',
+      type: 'number',
+      description:
+        'Controls the position in the projects grid. Lower numbers come first: 1 appears top-left, then the rest fill left-to-right and wrap to the next row. Projects without a number are shown last (newest first).',
+      validation: (r) => r.integer().positive(),
+    }),
+
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'object',
@@ -147,13 +156,38 @@ export const projectType = defineType({
       type: 'boolean',
       initialValue: false,
     }),
+
+    defineField({
+      name: 'ecoFriendly',
+      title: 'Eco-Friendly',
+      type: 'boolean',
+      initialValue: false,
+      description: 'Mark this project as eco-friendly. An eco-friendly badge will be displayed on the project card and detail page.',
+    }),
+  ],
+
+  orderings: [
+    {
+      title: 'Display Order',
+      name: 'displayOrderAsc',
+      by: [{ field: 'displayOrder', direction: 'asc' }],
+    },
   ],
 
   preview: {
     select: {
       title: 'title.en',
-      subtitle: 'category',
+      category: 'category',
+      displayOrder: 'displayOrder',
       media: 'heroImage',
+    },
+    prepare({ title, category, displayOrder, media }) {
+      const order = typeof displayOrder === 'number' ? `#${displayOrder} · ` : ''
+      return {
+        title,
+        subtitle: `${order}${category ?? ''}`,
+        media,
+      }
     },
   },
 })

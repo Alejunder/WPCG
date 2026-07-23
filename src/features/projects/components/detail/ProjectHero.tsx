@@ -3,6 +3,9 @@
 import { useRef } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { ViewTransition } from 'react'
+import ParallaxLayer from '@/features/shared/motion/ParallaxLayer'
+import SlowZoom from '@/features/shared/motion/SlowZoom'
 import styles from './ProjectHero.module.css'
 
 interface ProjectHeroProps {
@@ -10,46 +13,43 @@ interface ProjectHeroProps {
     url: string
     alt: string
   }
+  slug: string
 }
 
-export default function ProjectHero({ heroImage }: ProjectHeroProps) {
-  const ref = useRef<HTMLElement>(null)
+export default function ProjectHero({ heroImage, slug }: ProjectHeroProps) {
+  const sectionRef = useRef<HTMLElement>(null)
   const shouldReduce = useReducedMotion()
 
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: sectionRef,
     offset: ['start start', 'end start'],
   })
 
-  // Image drifts 25% slower than scroll — parallax depth
-  const imageY = useTransform(scrollYProgress, [0, 1], shouldReduce ? ['0%', '0%'] : ['0%', '25%'])
-  // Subtle scale breath on entry
-  const imageScale = useTransform(scrollYProgress, [0, 0.5], shouldReduce ? [1, 1] : [1.08, 1.0])
   // Content fades out as user scrolls away
   const contentOpacity = useTransform(scrollYProgress, [0, 0.4], shouldReduce ? [1, 1] : [1, 0])
 
   return (
-    <motion.section
-      ref={ref}
-      className={styles.hero}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-    >
-      {/* Parallax image layer */}
-      <motion.div
-        className={styles.imageWrapper}
-        style={{ y: imageY, scale: imageScale }}
-      >
-        <Image
-          src={heroImage.url}
-          alt={heroImage.alt}
-          fill
-          priority
-          sizes="100vw"
-          className={styles.image}
-        />
-      </motion.div>
+    <section ref={sectionRef} className={styles.hero}>
+      {/* Morph + parallax + slow-zoom image layer.
+          MorphElement provides the VT snapshot rect (contain:paint clips to its bounds).
+          ParallaxLayer and SlowZoom fill it completely so the image covers the full area. */}
+      <ViewTransition name={`project-hero-${slug}`}>
+      <div className={styles.imageWrapper}>
+        <ParallaxLayer speed="25%" style={{ position: 'absolute', inset: 0 }}>
+          <SlowZoom style={{ position: 'absolute', inset: 0 }}>
+            <Image
+              src={heroImage.url}
+              alt={heroImage.alt}
+              fill
+              priority
+              loading="eager"
+              sizes="100vw"
+              className={styles.image}
+            />
+          </SlowZoom>
+        </ParallaxLayer>
+      </div>
+      </ViewTransition>
 
       {/* Depth overlays */}
       <div className={styles.vignette} aria-hidden="true" />
@@ -57,6 +57,7 @@ export default function ProjectHero({ heroImage }: ProjectHeroProps) {
 
       {/* Scroll-fade content slot (title overlay if passed later) */}
       <motion.div className={styles.contentSlot} style={{ opacity: contentOpacity }} />
-    </motion.section>
+    </section>
   )
 }
+

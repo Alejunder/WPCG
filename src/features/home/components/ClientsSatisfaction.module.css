@@ -1,0 +1,89 @@
+.section {
+  background-color: var(--color-bg);
+  position: relative;
+}
+
+/* Top separator — matches the pattern used by every other section */
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--color-primary) 20%, transparent) 30%,
+    color-mix(in srgb, var(--color-primary) 20%, transparent) 70%,
+    transparent
+  );
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Section heading — identical treatment to ServicesOverview/Projects  */
+/* ------------------------------------------------------------------ */
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.heading {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Stats grid                                                           */
+/* ------------------------------------------------------------------ */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 0 var(--space-xl);
+}
+
+@media (max-width: 720px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md) 0;
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+
+.statValue {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+
+.statLabel {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+

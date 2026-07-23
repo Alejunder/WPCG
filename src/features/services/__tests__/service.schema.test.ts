@@ -24,7 +24,7 @@ const validServiceFull = {
   longDescription: [{ _key: 'block1', _type: 'block', children: [] }],
   highlights: ['Fast delivery', 'Premium quality'],
   icon: 'office-icon',
-  image: validImage,
+  heroImage: validImage,
   order: 1,
   featured: true,
 }
@@ -73,7 +73,7 @@ describe('ServiceSchema', () => {
     const result = ServiceSchema.safeParse({
       ...validService,
       icon: null,
-      image: null,
+      heroImage: null,
       order: null,
       featured: null,
     })
@@ -106,7 +106,7 @@ describe('ServiceSchema', () => {
 describe('ServiceCardSchema', () => {
   it('accepts required fields only, and with optional image and icon', () => {
     expect(ServiceCardSchema.safeParse(validService).success).toBe(true)
-    expect(ServiceCardSchema.safeParse({ ...validService, icon: 'office', image: validImage }).success).toBe(true)
+    expect(ServiceCardSchema.safeParse({ ...validService, icon: 'office', heroImage: validImage }).success).toBe(true)
   })
 
   it('fails when name is missing or shortDescription is empty', () => {
@@ -156,7 +156,6 @@ describe('ServicesPageSchema', () => {
   it('accepts a fully populated services page', () => {
     const result = ServicesPageSchema.safeParse({
       heroImage: validImage,
-      title: 'Our Services',
       intro: 'We offer premium workspace solutions.',
       services: [validServiceFull],
       processSteps: [validProcessStep],

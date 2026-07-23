@@ -1,0 +1,176 @@
+/* ============================================================
+   SketchCarousel — horizontal page-based carousel
+   "A window onto the studio table"
+   ============================================================ */
+
+/*
+ * Root — focus container for keyboard navigation.
+ * We suppress the default outline and manage it manually so it only
+ * appears when keyboard-navigated, not on mouse click.
+ */
+.root {
+  outline: none;
+  position: relative;
+}
+
+.root:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/*
+ * Stage — the "table surface" visible through the carousel window.
+ *
+ * `overflow: visible` keeps card drop-shadows from being clipped.
+ * The drag cursor is set here so the entire stage signals draggability.
+ * Extra padding on the sides absorbs the slight `scale` and `rotate`
+ * effects during entry/exit without clipping them.
+ */
+.stage {
+  position: relative;
+  overflow: visible;
+  cursor: default;
+  padding: var(--space-md) var(--space-xs) 2rem;
+  /* Reserve a stable min-height so the controls don't jump during
+     AnimatePresence mode="wait" (brief moment when page content is absent) */
+  min-height: 380px;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+/*
+ * Page — flex row of cards for the current page.
+ * `align-items: flex-start` lets each card keep its own height so the
+ * Framer Motion `translateY` tilt inside SketchCard still produces an
+ * organically irregular silhouette across the row.
+ */
+.page {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-lg);
+  align-items: flex-start;
+  width: 100%;
+}
+
+/*
+ * Item — each card's flex slot.
+ * Equal flex-grow so cards share the available width evenly.
+ * `min-width: 0` prevents flex children from overflowing their slot.
+ */
+.item {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* ── Navigation controls ────────────────────────────────────── */
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: var(--space-xs) 0 2rem;
+}
+
+/*
+ * navBtn — subtle gold-tinted circle.
+ * Disabled state dims the button when at the first or last page.
+ */
+.navBtn {
+  appearance: none;
+  background: none;
+  border: 1px solid rgba(180, 179, 70, 0.35);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.navBtn:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background-color: rgba(180, 179, 70, 0.08);
+}
+
+.navBtn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.navBtn:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.navBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Page dot indicators ────────────────────────────────────── */
+
+.dots {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.dot {
+  appearance: none;
+  background: rgba(180, 179, 70, 0.28);
+  border: none;
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.dot:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.dotActive {
+  background: var(--color-primary);
+  transform: scale(1.45);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .page {
+    gap: 2rem;
+  }
+
+  .stage {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    gap: 1.25rem;
+  }
+
+  .stage {
+    min-height: 260px;
+    padding: var(--space-sm) 0 var(--space-md);
+  }
+
+  .controls {
+    padding-bottom: 1.5rem;
+  }
+}

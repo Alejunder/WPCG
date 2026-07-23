@@ -14,11 +14,23 @@ export const getHomePageQuery = /* groq */ `
       "url": asset->url,
       alt
     },
+    "heroServiceLinks": heroServiceLinks[] {
+      "label": select($locale == "es" => es, en),
+      "href": href
+    },
     "aboutExcerpt": coalesce(aboutExcerpt[$locale], aboutExcerpt.en),
     "featuredProjects": featuredProjects[]->${PROJECT_CARD_PROJECTION},
     "clients": clients[] {
       "url": asset->url,
       alt
+    },
+    "clientSatisfaction": clientSatisfaction {
+      "heading": coalesce(heading[$locale], heading.en),
+      "tagline": coalesce(tagline[$locale], tagline.en),
+      "stats": stats[] {
+        value,
+        "label": coalesce(label[$locale], label.en)
+      }
     }
   }
 `

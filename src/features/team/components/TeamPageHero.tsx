@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Breadcrumb from '@/features/shared/components/Breadcrumb'
 import FadeIn from '@/features/shared/motion/FadeIn'
+import AnimatedDivider from '@/features/shared/motion/AnimatedDivider'
 import type { Locale } from '@/config/i18n'
 import type { TeamPageImage } from '@/features/team/types'
 import styles from './TeamPageHero.module.css'
@@ -67,6 +68,7 @@ export default function TeamPageHero({
           )}
         </div>
       </div>
+      <AnimatedDivider className={styles.bottomDivider} delay={0.3} />
     </section>
   )
 }

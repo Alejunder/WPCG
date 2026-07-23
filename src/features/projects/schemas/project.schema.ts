@@ -29,4 +29,5 @@ export const ProjectSchema = z.object({
   servicesInvolved: z.array(z.string()).nullable().default([]),
   relatedProjects: z.array(ProjectCardSchema).max(3).nullable().default([]),
   featured: z.boolean().nullable().default(false),
+  ecoFriendly: z.boolean().nullable().default(false),
 })

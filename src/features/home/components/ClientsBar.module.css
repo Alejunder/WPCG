@@ -5,23 +5,23 @@
   position: relative;
 }
 
-.section::before {
-  content: '';
+/* Top separator — replaced static ::before with AnimatedDivider */
+.topDivider {
   position: absolute;
   top: 0;
   left: var(--gutter);
   right: var(--gutter);
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(195, 164, 102, 0.2) 30%, rgba(195, 164, 102, 0.2) 70%, transparent);
+  background: linear-gradient(to right, transparent, color-mix(in srgb, var(--color-primary) 20%, transparent) 30%, color-mix(in srgb, var(--color-primary) 20%, transparent) 70%, transparent);
 }
 
 .eyebrowRow {
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-inline: var(--padding-x);
   margin-bottom: 4rem;
 }
 
@@ -31,15 +31,14 @@
   font-size: 0.625rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--color-accent-gold);
+  color: var(--color-primary);
 }
 
-/* Thin gold dash separator */
-.eyebrowRow::after {
-  content: '';
+/* Thin gold dash separator — replaced ::after with AnimatedDivider */
+.eyebrowLineDivider {
   flex: 1;
   height: 1px;
-  background: linear-gradient(to right, rgba(195, 164, 102, 0.2), transparent);
+  background: linear-gradient(to right, color-mix(in srgb, var(--color-primary) 20%, transparent), transparent);
 }
 
 .label {
@@ -48,7 +47,7 @@
   font-size: 0.8125rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(148, 163, 184, 0.6);
+  color: color-mix(in srgb, var(--color-text-muted) 60%, transparent);
 }
 
 /* Overflow mask with edge fade — logos fade out left, fade in right */
