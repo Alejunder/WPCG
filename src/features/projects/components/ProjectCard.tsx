@@ -1,7 +1,7 @@
 'use client'
 
 import { type CSSProperties } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import MotionImage from '@/features/shared/motion/MotionImage'
@@ -38,26 +38,26 @@ const CATEGORY_COLOR: Record<ProjectCategory, string> = {
 // to all children that declare the same variant key.
 // ---------------------------------------------------------------------------
 
-const cardVariants = {
+const cardVariants: Variants = {
   rest: { scale: 1, y: 0, boxShadow: 'none', transition: { duration: 0.5, ease: ARCH_EASE } },
   hover: { scale: 1.02, y: -6, boxShadow: 'var(--shadow-card-hover)', transition: { duration: 0.5, ease: ARCH_EASE } },
 }
 
-const overlayVariants = {
+const overlayVariants: Variants = {
   rest: { opacity: 0, transition: { duration: 0.2, ease: 'easeIn' } },
   hover: { opacity: 1, transition: { duration: 0.35, ease: 'easeOut' } },
 }
 
-const chipsContainerVariants = {
+const chipsContainerVariants: Variants = {
   rest: {
-    transition: { staggerChildren: 0.04, staggerDirection: -1 as const },
+    transition: { staggerChildren: 0.04, staggerDirection: -1 },
   },
   hover: {
     transition: { staggerChildren: 0.08, delayChildren: 0.1 },
   },
 }
 
-const chipVariants = {
+const chipVariants: Variants = {
   rest: { opacity: 0, y: 10, transition: { duration: 0.15, ease: 'easeIn' } },
   hover: { opacity: 1, y: 0, transition: { duration: 0.28, ease: 'easeOut' } },
 }

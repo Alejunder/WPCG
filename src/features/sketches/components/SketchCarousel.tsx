@@ -1,7 +1,7 @@
 ﻿'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion, type Variants } from 'framer-motion'
 import SketchCard from './SketchCard'
 import SketchModal from './SketchModal'
 import type { Sketch } from '../types'
@@ -36,7 +36,7 @@ interface Props {
  * the first card exits first (left-to-right sweep), and on a backward swipe
  * the last card exits first (right-to-left sweep).
  */
-const pageVariants = {
+const pageVariants: Variants = {
   hidden: { opacity: 1 },
   visible: {
     opacity: 1,
@@ -59,7 +59,7 @@ const pageVariants = {
  * EXIT:  blows *opposite* to the navigation direction â€” going right means
  *        the old sheets blow to the left, tilting as if caught in a gust.
  */
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: (dir: number) => ({
     opacity: 0,
     x: dir * 55,
@@ -86,12 +86,12 @@ const cardVariants = {
 }
 
 // Reduced-motion equivalents â€” cross-fade only, no movement.
-const pageVariantsReduced = {
+const pageVariantsReduced: Variants = {
   hidden: { opacity: 1 },
   visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
   exit: { opacity: 1 },
 }
-const cardVariantsReduced = {
+const cardVariantsReduced: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.3 } },
   exit: { opacity: 0, transition: { duration: 0.2 } },

@@ -11,15 +11,15 @@ interface SiteFooterProps {
 const FALLBACK_SOCIALS = [
   {
     platform: 'linkedin' as const,
-    href: 'https://www.linkedin.com/company/wpcg',
+    href: 'https://www.linkedin.com/company/wpcg-arquitectura-y-construccion/',
   },
   {
     platform: 'instagram' as const,
-    href: 'https://www.instagram.com/wpcg',
+    href: 'https://www.instagram.com/wpcg_arquitectos/',
   },
   {
     platform: 'facebook' as const,
-    href: 'https://www.facebook.com/wpcg',
+    href: 'https://www.facebook.com/wpcg.es',
   },
 ]
 

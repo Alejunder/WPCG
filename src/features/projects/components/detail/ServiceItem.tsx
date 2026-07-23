@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { useServiceHover } from './ServiceHoverContext'
 import styles from './ServiceItem.module.css'
 
@@ -8,17 +8,17 @@ import styles from './ServiceItem.module.css'
 // Variants — parent whileHover propagates to children by variant name
 // ---------------------------------------------------------------------------
 
-const textVariants = {
+const textVariants: Variants = {
   rest: { opacity: 0.42 },
   hover: { opacity: 1, transition: { duration: 0.2, ease: 'easeOut' } },
 }
 
-const underlineVariants = {
+const underlineVariants: Variants = {
   rest: { scaleX: 0 },
   hover: { scaleX: 1, transition: { duration: 0.35, ease: 'easeOut' } },
 }
 
-const tooltipVariants = {
+const tooltipVariants: Variants = {
   rest: { opacity: 0, y: 4 },
   hover: {
     opacity: 1,

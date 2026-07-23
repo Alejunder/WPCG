@@ -90,7 +90,7 @@ describe('ContactInfoSchema', () => {
       email: 'info@wpcg.es',
       phone: '+34 91 000 00 00',
       workingHours: 'Mon–Fri 09:00–18:00',
-      socialLinks: [{ platform: 'linkedin', url: 'https://linkedin.com/company/wpcg' }],
+      socialLinks: [{ platform: 'linkedin', url: 'https://www.linkedin.com/company/wpcg-arquitectura-y-construccion/' }],
     })
     expect(result.success).toBe(true)
   })

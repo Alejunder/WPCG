@@ -1,4 +1,4 @@
-import type { Variants, Transition, Spring } from 'framer-motion'
+import type { Variants, Transition } from 'framer-motion'
 
 // Shared cubic-bezier — architectural, elastic feel
 // Used inline across 12+ components; centralised here as the single source of truth
@@ -16,10 +16,10 @@ export const DURATION_SLOW = 0.9
 // ---------------------------------------------------------------------------
 
 /** Relaxed spring for lift-on-hover and subtle position nudges */
-export const SPRING_GENTLE: Spring = { type: 'spring', stiffness: 100, damping: 20 }
+export const SPRING_GENTLE: Transition = { type: 'spring', stiffness: 100, damping: 20 }
 
 /** Snappy spring for quick interactive responses */
-export const SPRING_SNAPPY: Spring = { type: 'spring', stiffness: 300, damping: 30 }
+export const SPRING_SNAPPY: Transition = { type: 'spring', stiffness: 300, damping: 30 }
 
 // ---------------------------------------------------------------------------
 // Transition presets

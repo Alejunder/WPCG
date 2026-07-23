@@ -45,7 +45,7 @@ export type ContactFormData = z.infer<typeof ContactFormSchema>
 // Contact Info Schema (CMS data — unchanged)
 // ---------------------------------------------------------------------------
 
-const SocialPlatformSchema = z.enum(['linkedin', 'instagram'])
+const SocialPlatformSchema = z.enum(['linkedin', 'instagram', 'facebook'])
 
 const SocialLinkSchema = z.object({
   platform: SocialPlatformSchema,

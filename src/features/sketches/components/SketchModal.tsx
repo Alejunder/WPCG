@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Sketch } from '../types'
@@ -13,7 +13,7 @@ import styles from './SketchModal.module.css'
 // The user sees a gradual fade rather than a lateral movement, which
 // matches the still, contemplative mood of viewing studio sketches.
 // ---------------------------------------------------------------------------
-const slideVariants = {
+const slideVariants: Variants = {
   enter: { opacity: 0 },
   center: {
     opacity: 1,
@@ -25,7 +25,7 @@ const slideVariants = {
   },
 }
 
-const textVariants = {
+const textVariants: Variants = {
   enter: { opacity: 0 },
   center: { opacity: 1, transition: { duration: 0.28, delay: 0.08 } },
   exit: { opacity: 0, transition: { duration: 0.18 } },

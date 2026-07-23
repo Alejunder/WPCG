@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion, type Variants } from 'framer-motion'
 import { ARCH_EASE } from '@/features/shared/motion/motion.config'
 import SketchCard from './SketchCard'
 import SketchModal from './SketchModal'
@@ -20,7 +20,7 @@ const V_OFFSETS = [10, -18, 6, -22, 14, -8, 20, -12, 4, -16] as const
 // Variant definitions
 // ---------------------------------------------------------------------------
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.09, delayChildren: 0.1 },
@@ -31,7 +31,7 @@ const containerVariants = {
 // Framer Motion calls variant functions with `custom` when the variant
 // is a function — this gives per-card scatter without hard-coding offsets
 // in the JSX.
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: (offset: number) => ({ opacity: 0, y: offset + 24 }),
   visible: (offset: number) => ({
     opacity: 1,
