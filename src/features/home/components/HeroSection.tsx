@@ -149,14 +149,14 @@ export default function HeroSection({ heroImages, locale, heroServiceLinks }: He
               width={480}
               height={140}
               priority
-              sizes="(max-width: 390px) 76vw, (max-width: 639px) 72vw, (max-width: 1023px) 52vw, 480px"
+              sizes="(max-width: 390px) 56vw, (max-width: 639px) 52vw, (max-width: 1023px) 52vw, 480px"
               className={styles.brandLogo}
             />
           </div>
         </div>
       </motion.div>
 
-      {/* Bottom stack: logo (mobile) + services + CTAs */}
+      {/* Bottom stack: services + CTAs */}
       <div className={styles.exitWrapper}>
         <motion.div
           className={styles.content}
@@ -165,38 +165,24 @@ export default function HeroSection({ heroImages, locale, heroServiceLinks }: He
           transition={{ duration: 0.7, ease: ARCH_EASE, delay: 0.3 }}
         >
           <div className={styles.heroCtaContainer}>
-            <div className={styles.mobileHeaderStack}>
-              <div className={styles.mobileBrandLockup}>
-                <Image
-                  src="/images/wpcg-logo.png"
-                  alt="WPCG"
-                  width={480}
-                  height={140}
-                  priority
-                  sizes="(max-width: 390px) 68vw, (max-width: 639px) 72vw, 480px"
-                  className={styles.brandLogo}
-                />
-              </div>
-
-              {heroServiceLinks && heroServiceLinks.length > 0 && (
-                <nav className={styles.serviceLinksRow} aria-label="Services">
-                  {heroServiceLinks.map((item, i) => (
-                    <Fragment key={`${item.href}-${i}`}>
-                      {i > 0 && (
-                        <span className={styles.serviceSep} aria-hidden="true">|</span>
-                      )}
-                      <Link
-                        href={`/${locale}${item.href}`}
-                        className={styles.serviceLink}
-                        transitionTypes={['nav-forward']}
-                      >
-                        {item.label}
-                      </Link>
-                    </Fragment>
-                  ))}
-                </nav>
-              )}
-            </div>
+            {heroServiceLinks && heroServiceLinks.length > 0 && (
+              <nav className={styles.serviceLinksRow} aria-label="Services">
+                {heroServiceLinks.map((item, i) => (
+                  <Fragment key={`${item.href}-${i}`}>
+                    {i > 0 && (
+                      <span className={styles.serviceSep} aria-hidden="true">|</span>
+                    )}
+                    <Link
+                      href={`/${locale}${item.href}`}
+                      className={styles.serviceLink}
+                      transitionTypes={['nav-forward']}
+                    >
+                      {item.label}
+                    </Link>
+                  </Fragment>
+                ))}
+              </nav>
+            )}
 
             <div className={styles.ctaGroup}>
               <Link href={`/${locale}/projects`} className={styles.ctaPrimary} transitionTypes={['nav-forward']}>
@@ -206,8 +192,6 @@ export default function HeroSection({ heroImages, locale, heroServiceLinks }: He
                 {t('heroContact')}
               </Link>
             </div>
-
-            {hasMultiple && renderCarouselNav(styles.carouselNavMobile)}
           </div>
         </motion.div>
       </div>

@@ -1,13 +1,15 @@
 .hero {
   position: relative;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   height: 100vh;
   height: 100dvh;
   min-height: 620px;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 /* Carousel image layer — full cover, managed by AnimatePresence */
@@ -66,23 +68,20 @@
   filter: brightness(0) invert(1) drop-shadow(0 2px 40px rgba(0 0 0 / 0.55));
 }
 
-/* Bottom CTA stack — logo (mobile), services, buttons */
+/* Bottom CTA stack — services + buttons */
 
 .heroCtaContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   gap: 1.25rem;
   margin-bottom: 7.5rem;
-}
-
-.mobileHeaderStack {
-  display: contents;
-}
-
-.mobileBrandLockup {
-  display: none;
+  padding-inline: 0;
+  text-align: center;
 }
 
 .serviceLinksRow {
@@ -92,6 +91,8 @@
   flex-wrap: wrap;
   gap: 0.25rem var(--space-xs);
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   margin-bottom: 0;
   padding-inline: 0;
 }
@@ -125,202 +126,6 @@
   line-height: 1;
 }
 
-@media (max-width: 1023px) {
-  .brandLockupWrapper {
-    top: 50%;
-  }
-
-  .brandLogo {
-    width: clamp(11rem, 52vw, 22rem);
-  }
-
-  .serviceLink,
-  .serviceSep {
-    font-size: clamp(0.9375rem, 2.8vw, 1.5rem);
-    letter-spacing: 0.05em;
-  }
-}
-
-@media (max-width: 767px) {
-  .hero {
-    min-height: 560px;
-  }
-
-  .brandLockupWrapper {
-    top: 44%;
-    padding-inline: max(var(--padding-x), 1rem);
-  }
-
-  .brandLogo {
-    width: clamp(9.5rem, 68vw, 16rem);
-  }
-
-  .serviceLinksRow {
-    gap: 0.2rem 0.4rem;
-  }
-
-  .serviceLink,
-  .serviceSep {
-    font-size: clamp(0.75rem, 3.4vw, 1rem);
-    letter-spacing: 0.06em;
-  }
-
-  .heroCtaContainer {
-    gap: var(--space-sm);
-    margin-bottom: 5rem;
-  }
-
-  .carouselBtn {
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 639px) {
-  .hero {
-    min-height: 520px;
-  }
-
-  .brandOverlay {
-    display: none;
-  }
-
-  .mobileHeaderStack {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: var(--space-xs);
-    margin-bottom: 0;
-  }
-
-  .mobileBrandLockup {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .mobileBrandLockup .brandLogo {
-    width: min(68vw, 12rem);
-  }
-
-  .serviceLinksRow {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    margin-bottom: 0;
-    max-width: 100%;
-    width: 100%;
-    padding-inline: 0;
-    overflow: hidden;
-  }
-
-  .serviceLink {
-    font-size: clamp(0.5625rem, 3.35vw, 0.8125rem);
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    line-height: 1.1;
-    white-space: nowrap;
-    flex-shrink: 1;
-    min-width: 0;
-  }
-
-  .serviceSep {
-    display: inline;
-    font-size: clamp(0.5625rem, 3.35vw, 0.8125rem);
-    font-weight: 700;
-    flex-shrink: 0;
-    padding-inline: clamp(0.2rem, 1.2vw, 0.4rem);
-  }
-
-  .heroCtaContainer {
-    gap: 0.75rem;
-    margin-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
-    padding-right: 2.25rem;
-  }
-
-  .ctaGroup {
-    flex-direction: column;
-    align-items: stretch;
-    width: 80%;
-    max-width: 260px;
-    margin-inline: auto;
-    margin-bottom: 0;
-    gap: 0.625rem;
-  }
-
-  .ctaPrimary,
-  .ctaSecondary {
-    width: 100%;
-    justify-content: center;
-    padding-block: 0.875rem;
-    padding-inline: 1.5rem;
-  }
-
-  .scrollHint {
-    bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
-    right: max(var(--gutter), env(safe-area-inset-right, 0px));
-    z-index: 3;
-  }
-
-  .carouselNavDesktop {
-    display: none;
-  }
-
-  .carouselNavMobile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    width: 100%;
-  }
-
-  .carouselNavMobile .carouselBtn {
-    position: static;
-    transform: none;
-    width: 2.25rem;
-    height: 2.25rem;
-    font-size: 0.9375rem;
-    flex-shrink: 0;
-  }
-
-  .carouselNavMobile .carouselBtnPrev,
-  .carouselNavMobile .carouselBtnNext {
-    left: auto;
-    right: auto;
-  }
-
-  .carouselNavMobile .dots {
-    position: static;
-    transform: none;
-    bottom: auto;
-    left: auto;
-  }
-
-  .scrollLine {
-    height: 2rem;
-  }
-}
-
-@media (max-width: 390px) {
-  .mobileBrandLockup .brandLogo {
-    width: min(72vw, 10.5rem);
-  }
-
-  .serviceLink,
-  .serviceSep {
-    font-size: clamp(0.5rem, 3.1vw, 0.6875rem);
-    letter-spacing: 0.02em;
-  }
-
-  .serviceSep {
-    padding-inline: 0.15rem;
-  }
-}
-
 /* Layered overlay for legibility */
 .overlay {
   position: absolute;
@@ -339,13 +144,16 @@
 /* CTA container — bottom centre, above overlay */
 .exitWrapper {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .content {
   position: relative;
   z-index: 2;
-  max-width: var(--max-width);
+  max-width: min(var(--max-width), 100%);
   width: 100%;
+  min-width: 0;
   margin-inline: auto;
   padding-inline: var(--padding-x);
   padding-bottom: 0;
@@ -360,7 +168,8 @@
   gap: var(--space-sm);
   justify-content: center;
   width: 100%;
-  max-width: 36rem;
+  max-width: min(36rem, 100%);
+  min-width: 0;
 }
 
 /* Primary CTA — solid gold */
@@ -428,10 +237,6 @@
 
 .carouselNavDesktop {
   display: contents;
-}
-
-.carouselNavMobile {
-  display: none;
 }
 
 .carouselBtn {
@@ -538,4 +343,167 @@
 @keyframes scrollPulse {
   0%, 100% { opacity: 0.25; transform: scaleY(0.7); transform-origin: top; }
   50%       { opacity: 0.9;  transform: scaleY(1);   transform-origin: top; }
+}
+
+@media (max-width: 1023px) {
+  .brandLockupWrapper {
+    top: 50%;
+  }
+
+  .brandLogo {
+    width: clamp(11rem, 52vw, 22rem);
+  }
+
+  .serviceLink,
+  .serviceSep {
+    font-size: clamp(0.9375rem, 2.8vw, 1.5rem);
+    letter-spacing: 0.05em;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 560px;
+  }
+
+  .brandLockupWrapper {
+    top: 50%;
+    padding-inline: var(--padding-x);
+  }
+
+  .brandLogo {
+    width: clamp(9.5rem, 58vw, 16rem);
+  }
+
+  .serviceLinksRow {
+    gap: 0.2rem 0.4rem;
+  }
+
+  .serviceLink,
+  .serviceSep {
+    font-size: clamp(0.6875rem, 2.6vw, 1rem);
+    letter-spacing: 0.05em;
+  }
+
+  .heroCtaContainer {
+    gap: var(--space-sm);
+    margin-bottom: 5rem;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    font-size: 0.75rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .carouselBtn {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero {
+    min-height: 520px;
+  }
+
+  /* Optical centre above the bottom navbar (72px) */
+  .brandLockupWrapper {
+    top: calc(50% - 2.25rem);
+  }
+
+  .brandLogo {
+    width: clamp(8rem, 52vw, 13rem);
+  }
+
+  .serviceLinksRow {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem 0.25rem;
+    max-width: 100%;
+  }
+
+  .serviceLink,
+  .serviceSep {
+    font-size: min(2.05vw, 0.6875rem);
+    font-weight: 200;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+    white-space: nowrap;
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .serviceSep {
+    padding-inline: clamp(0.15rem, 1vw, 0.4rem);
+  }
+
+  .heroCtaContainer {
+    gap: 0.75rem;
+    margin-bottom: calc(72px + 3.25rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .ctaGroup {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: min(36rem, 100%);
+    margin-inline: auto;
+    gap: 0.5rem;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: auto;
+    max-width: 100%;
+    flex: 0 1 auto;
+    justify-content: center;
+    font-size: 0.6875rem;
+    padding: 0.5625rem 0.9rem;
+  }
+
+  .carouselBtn {
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .dots {
+    bottom: calc(72px + 0.85rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .scrollHint {
+    display: none;
+  }
+
+  .scrollLine {
+    height: 2rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .brandLogo {
+    width: clamp(7rem, 56vw, 10.5rem);
+  }
+
+  .serviceLink,
+  .serviceSep {
+    font-size: min(1.95vw, 0.5625rem);
+    letter-spacing: 0.02em;
+  }
+
+  .serviceSep {
+    padding-inline: 0.15rem;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    font-size: 0.625rem;
+    padding: 0.5rem 0.75rem;
+  }
 }
