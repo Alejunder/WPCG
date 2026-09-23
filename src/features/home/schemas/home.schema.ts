@@ -1,6 +1,15 @@
 import { z } from 'zod'
 import { ProjectCardSchema } from '@/features/projects/schemas/project-card.schema'
 
+/**
+ * PortableText blocks are open-ended objects. We validate the minimum required
+ * fields (_key, _type) and accept any additional properties via catchall so the
+ * inferred type includes [key: string]: unknown — compatible with @portabletext/react.
+ */
+const PortableTextBlockSchema = z
+  .object({ _key: z.string().min(1), _type: z.string().min(1) })
+  .catchall(z.unknown())
+
 export const ClientLogoSchema = z.object({
   url: z.string().url(),
   alt: z.string().default(''),
@@ -30,7 +39,12 @@ export const HeroServiceLinkSchema = z.object({
 export const HomePageSchema = z.object({
   heroImages: z.array(HeroImageSchema).nullable().default([]),
   heroServiceLinks: z.array(HeroServiceLinkSchema).nullable().default([]),
-  aboutExcerpt: z.string().nullable().optional(),
+  // PortableText (with the `highlight` mark) — the union keeps legacy plain-text
+  // content valid until it is migrated in Sanity Studio.
+  aboutExcerpt: z
+    .union([z.string(), z.array(PortableTextBlockSchema)])
+    .nullable()
+    .optional(),
   featuredProjects: z.array(ProjectCardSchema).nullable().default([]),
   clients: z.array(ClientLogoSchema).nullable().default([]),
   clientSatisfaction: ClientSatisfactionSchema.nullable().optional(),

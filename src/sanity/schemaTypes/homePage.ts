@@ -1,5 +1,16 @@
 import { defineType, defineField, defineArrayMember } from 'sanity'
 
+// Default block decorators plus the custom "highlight" mark rendered in the
+// corporate green (#B4B346) on the front end.
+const ABOUT_EXCERPT_DECORATORS = [
+  { title: 'Strong', value: 'strong' },
+  { title: 'Emphasis', value: 'em' },
+  { title: 'Underline', value: 'underline' },
+  { title: 'Strike', value: 'strike-through' },
+  { title: 'Code', value: 'code' },
+  { title: 'Green text', value: 'highlight' },
+]
+
 export const homePageType = defineType({
   name: 'homePage',
   title: 'Home Page',
@@ -65,10 +76,24 @@ export const homePageType = defineType({
     defineField({
       name: 'aboutExcerpt',
       title: 'About Excerpt',
+      description:
+        'Localized paragraph. Use the "Green text" decorator to render a phrase in the corporate green (#B4B346).',
       type: 'object',
       fields: [
-        defineField({ name: 'en', title: 'English', type: 'text', rows: 4, validation: (r) => r.required() }),
-        defineField({ name: 'es', title: 'Spanish', type: 'text', rows: 4, validation: (r) => r.required() }),
+        defineField({
+          name: 'en',
+          title: 'English',
+          type: 'array',
+          of: [defineArrayMember({ type: 'block', marks: { decorators: ABOUT_EXCERPT_DECORATORS } })],
+          validation: (r) => r.required(),
+        }),
+        defineField({
+          name: 'es',
+          title: 'Spanish',
+          type: 'array',
+          of: [defineArrayMember({ type: 'block', marks: { decorators: ABOUT_EXCERPT_DECORATORS } })],
+          validation: (r) => r.required(),
+        }),
       ],
       validation: (r) => r.required(),
     }),

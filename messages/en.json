@@ -9,6 +9,7 @@
     "cta": "Let's Talk"
   },
   "HomePage": {
+    "heroSubtitleExtra": "Sustainable",
     "heroViewProjects": "See our projects",
     "heroContact": "Contact us",
     "heroPrev": "Previous image",
@@ -63,7 +64,15 @@
     "ctaHeadline": "Ready to start your project?",
     "ctaSub": "Let’s design something extraordinary together.",
     "ctaButton": "Get in touch",
-    "learnMore": "Learn more"
+    "learnMore": "Learn more",
+    "introPoints": {
+      "designBuildLabel": "Design + Build",
+      "designBuildText": "One single team, from design to site.",
+      "sustainabilityLabel": "Sustainability",
+      "sustainabilityText": "Reuse before building.",
+      "trustLabel": "Trusted network",
+      "trustText": "Over 15 years alongside our suppliers."
+    }
   },
   "ServiceDetailPage": {
     "breadcrumbHome": "Home",

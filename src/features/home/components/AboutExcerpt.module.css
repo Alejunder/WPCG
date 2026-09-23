@@ -93,6 +93,11 @@
   border-left: 2px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
 }
 
+/* Corporate-green highlight for phrases (PortableText `highlight` mark) */
+.highlight {
+  color: var(--color-primary); /* #B4B346 */
+}
+
 .cta {
   display: inline-flex;
   align-items: center;

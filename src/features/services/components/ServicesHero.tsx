@@ -8,10 +8,16 @@ import type { Locale } from '@/config/i18n'
 import type { ServiceImage } from '@/features/services/types'
 import styles from './ServicesHero.module.css'
 
+export interface ServiceIntroPoint {
+  label: string
+  text: string
+}
+
 interface ServicesHeroProps {
   locale: Locale
   heroImage?: ServiceImage | null
   intro?: string | null
+  introPoints?: ServiceIntroPoint[]
 }
 
 const CONTENT: Record<Locale, { home: string; services: string }> = {
@@ -29,7 +35,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' as const } },
 }
 
-export default function ServicesHero({ locale, heroImage, intro }: ServicesHeroProps) {
+export default function ServicesHero({ locale, heroImage, intro, introPoints }: ServicesHeroProps) {
   const shouldReduce = useReducedMotion()
   const c = CONTENT[locale]
 
@@ -94,6 +100,26 @@ export default function ServicesHero({ locale, heroImage, intro }: ServicesHeroP
             </motion.p>
           )}
         </motion.div>
+
+        {introPoints && introPoints.length > 0 && (
+          <motion.ul
+            variants={safeContainerVariants}
+            initial="hidden"
+            animate="visible"
+            className={styles.introPoints}
+          >
+            {introPoints.map((point) => (
+              <motion.li
+                key={point.label}
+                variants={safeItemVariants}
+                className={styles.introPoint}
+              >
+                <span className={styles.introPointLabel}>{point.label}</span>
+                <span className={styles.introPointText}>{point.text}</span>
+              </motion.li>
+            ))}
+          </motion.ul>
+        )}
       </div>
     </section>
   )

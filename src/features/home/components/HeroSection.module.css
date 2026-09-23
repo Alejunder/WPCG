@@ -43,7 +43,7 @@
 /* Centred in the hero */
 .brandLockupWrapper {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 0;
   right: 0;
   transform: translateY(-50%);
@@ -53,19 +53,52 @@
 }
 
 .brandLockup {
+  /* Single source of truth for the lockup scale — logo, appended subtitle
+     line and eco badge all derive their size from this value. */
+  --logo-w: clamp(9rem, 26vw, 18rem);
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   max-width: min(30rem, 100%);
+  gap: 0.1rem;
 }
 
 .brandLogo {
   display: block;
-  width: clamp(14rem, 38vw, 30rem);
+  width: var(--logo-w);
   max-width: 100%;
   height: auto;
   filter: brightness(0) invert(1) drop-shadow(0 2px 40px rgba(0 0 0 / 0.55));
+}
+
+/* Continuation of the subtitle baked into the logo image.
+   font-size factor ≈ cap-height of the image subtitle (26px) ÷ image width (899px),
+   divided by Montserrat's ~0.7 cap-height ratio. Tune if the logo asset changes. */
+.brandSubtitleExtra {
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: calc(var(--logo-w) * 0.045);
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--color-white);
+  text-shadow: 0 2px 24px rgba(0 0 0 / 0.55);
+}
+
+/* Eco badge — hangs below the centred title + subtitle without affecting centring */
+.ecoLogo {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.5rem;
+  width: calc(var(--logo-w) * 0.42);
+  height: auto;
+  filter: drop-shadow(0 2px 16px rgba(0 0 0 / 0.5));
 }
 
 /* Bottom CTA stack — services + buttons */
@@ -79,7 +112,7 @@
   max-width: 100%;
   min-width: 0;
   gap: 1.25rem;
-  margin-bottom: 7.5rem;
+  margin-bottom: 4rem;
   padding-inline: 0;
   text-align: center;
 }
@@ -99,7 +132,7 @@
 
 .serviceLink {
   font-family: var(--font-primary);
-  font-size: clamp(1.125rem, 1.75vw, 2.5rem);
+  font-size: clamp(0.75rem, 1.05vw, 1.375rem);
   font-weight: 200;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -118,7 +151,7 @@
 
 .serviceSep {
   font-family: var(--font-primary);
-  font-size: clamp(1.125rem, 1.75vw, 2.5rem);
+  font-size: clamp(0.75rem, 1.05vw, 1.375rem);
   font-weight: 200;
   color: var(--color-white);
   opacity: 0.4;
@@ -178,12 +211,12 @@
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
-  padding: var(--space-sm) var(--space-lg);
+  padding: 0.625rem 1.5rem;
   background-color: var(--color-primary);
   color: var(--color-bg);
   font-family: var(--font-primary);
   font-weight: 700;
-  font-size: 0.8125rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
@@ -207,13 +240,13 @@
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
-  padding: var(--space-sm) var(--space-lg);
+  padding: 0.625rem 1.5rem;
   border: 1px solid color-mix(in srgb, var(--color-primary) 50%, transparent);
   background-color: transparent;
   color: color-mix(in srgb, var(--color-primary) 85%, transparent);
   font-family: var(--font-primary);
   font-weight: 500;
-  font-size: 0.8125rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
@@ -350,13 +383,13 @@
     top: 50%;
   }
 
-  .brandLogo {
-    width: clamp(11rem, 52vw, 22rem);
+  .brandLockup {
+    --logo-w: clamp(9rem, 46vw, 16rem);
   }
 
   .serviceLink,
   .serviceSep {
-    font-size: clamp(0.9375rem, 2.8vw, 1.5rem);
+    font-size: clamp(0.6875rem, 1.6vw, 0.9375rem);
     letter-spacing: 0.05em;
   }
 }
@@ -371,8 +404,8 @@
     padding-inline: var(--padding-x);
   }
 
-  .brandLogo {
-    width: clamp(9.5rem, 58vw, 16rem);
+  .brandLockup {
+    --logo-w: clamp(8rem, 52vw, 13rem);
   }
 
   .serviceLinksRow {
@@ -381,19 +414,19 @@
 
   .serviceLink,
   .serviceSep {
-    font-size: clamp(0.6875rem, 2.6vw, 1rem);
+    font-size: clamp(0.5rem, 1.55vw, 0.6875rem);
     letter-spacing: 0.05em;
   }
 
   .heroCtaContainer {
     gap: var(--space-sm);
-    margin-bottom: 5rem;
+    margin-bottom: 3.25rem;
   }
 
   .ctaPrimary,
   .ctaSecondary {
-    font-size: 0.75rem;
-    padding: 0.75rem 1.25rem;
+    font-size: 0.5625rem;
+    padding: 0.5rem 1rem;
   }
 
   .carouselBtn {
@@ -413,8 +446,8 @@
     top: calc(50% - 2.25rem);
   }
 
-  .brandLogo {
-    width: clamp(8rem, 52vw, 13rem);
+  .brandLockup {
+    --logo-w: clamp(7rem, 46vw, 11rem);
   }
 
   .serviceLinksRow {
@@ -428,7 +461,7 @@
 
   .serviceLink,
   .serviceSep {
-    font-size: min(2.05vw, 0.6875rem);
+    font-size: min(1.3vw, 0.46875rem);
     font-weight: 200;
     letter-spacing: 0.02em;
     line-height: 1.15;
@@ -443,7 +476,7 @@
 
   .heroCtaContainer {
     gap: 0.75rem;
-    margin-bottom: calc(72px + 3.25rem + env(safe-area-inset-bottom, 0px));
+    margin-bottom: calc(72px + 1.75rem + env(safe-area-inset-bottom, 0px));
   }
 
   .ctaGroup {
@@ -463,8 +496,8 @@
     max-width: 100%;
     flex: 0 1 auto;
     justify-content: center;
-    font-size: 0.6875rem;
-    padding: 0.5625rem 0.9rem;
+    font-size: 0.5rem;
+    padding: 0.4rem 0.75rem;
   }
 
   .carouselBtn {
@@ -487,13 +520,13 @@
 }
 
 @media (max-width: 390px) {
-  .brandLogo {
-    width: clamp(7rem, 56vw, 10.5rem);
+  .brandLockup {
+    --logo-w: clamp(6rem, 50vw, 9rem);
   }
 
   .serviceLink,
   .serviceSep {
-    font-size: min(1.95vw, 0.5625rem);
+    font-size: min(1.25vw, 0.40625rem);
     letter-spacing: 0.02em;
   }
 
@@ -503,7 +536,7 @@
 
   .ctaPrimary,
   .ctaSecondary {
-    font-size: 0.625rem;
-    padding: 0.5rem 0.75rem;
+    font-size: 0.4375rem;
+    padding: 0.35rem 0.625rem;
   }
 }

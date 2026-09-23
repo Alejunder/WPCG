@@ -1,18 +1,30 @@
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
+import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import FadeIn from '@/features/shared/motion/FadeIn'
 import AnimatedDivider from '@/features/shared/motion/AnimatedDivider'
 import type { Locale } from '@/config/i18n'
+import type { AboutExcerptContent } from '@/features/home/types'
 import SectionWrapper from '@/features/shared/components/SectionWrapper'
 import styles from './AboutExcerpt.module.css'
 
 interface AboutExcerptProps {
-  text: string
+  text: AboutExcerptContent
   locale: Locale
+}
+
+const aboutPortableComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => <p className={styles.body}>{children}</p>,
+  },
+  marks: {
+    highlight: ({ children }) => <span className={styles.highlight}>{children}</span>,
+  },
 }
 
 export default async function AboutExcerpt({ text, locale }: AboutExcerptProps) {
   const t = await getTranslations('HomePage')
+  const isPortableText = Array.isArray(text)
 
   return (
     <SectionWrapper className={styles.section} aria-label="About excerpt">
@@ -30,7 +42,11 @@ export default async function AboutExcerpt({ text, locale }: AboutExcerptProps) 
                 em: (chunks) => <em>{chunks}</em>,
               })}
             </h2>
-            <p className={styles.body}>{text}</p>
+            {isPortableText ? (
+              <PortableText value={text} components={aboutPortableComponents} />
+            ) : (
+              <p className={styles.body}>{text}</p>
+            )}
 
             <Link href={`/${locale}/about`} className={styles.cta} transitionTypes={['nav-forward']}>
               {t('aboutCta')}

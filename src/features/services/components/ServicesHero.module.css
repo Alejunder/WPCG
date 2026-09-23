@@ -57,6 +57,8 @@
   flex: 1;
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
   padding: 0 var(--gutter);
   max-width: var(--max-width);
   width: 100%;
@@ -141,13 +143,64 @@
 }
 
 /* ------------------------------------------------------------------ */
+/* Value points — bottom right of the hero image                        */
+/* ------------------------------------------------------------------ */
+
+.introPoints {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 2px solid var(--color-accent-logo);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 24rem;
+  text-align: left;
+}
+
+.introPoint {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.introPointLabel {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent-logo);
+}
+
+.introPointText {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+/* ------------------------------------------------------------------ */
 /* Responsive                                                           */
 /* ------------------------------------------------------------------ */
 
 @media (max-width: 639px) {
   .hero {
-    height: 45vh;
-    min-height: 200px;
+    height: auto;
+    min-height: 380px;
+  }
+
+  .inner {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 1.25rem;
+  }
+
+  .introPoints {
+    max-width: 100%;
+    padding-left: 1rem;
   }
 
   .title {

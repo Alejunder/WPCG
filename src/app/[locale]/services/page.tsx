@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import type { Locale } from '@/config/i18n'
 import type { ServiceCard } from '@/features/services/types'
 import { getServicesPage, getAllServices } from '@/features/services/services/services.service'
-import ServicesHero from '@/features/services/components/ServicesHero'
+import ServicesHero, { type ServiceIntroPoint } from '@/features/services/components/ServicesHero'
 import ServicesPageContent from '@/features/services/components/ServicesPageContent'
 import CtaBanner from '@/features/shared/components/CtaBanner'
 import styles from './page.module.css'
@@ -90,7 +91,16 @@ export default async function ServicesPage({ params }: PageProps) {
   const { locale } = await params
 
   // Fetch the servicesPage singleton (may be null if not yet created in CMS)
-  const page = await getServicesPage(locale)
+  const [page, t] = await Promise.all([
+    getServicesPage(locale),
+    getTranslations({ locale, namespace: 'ServicesPage' }),
+  ])
+
+  const introPoints: ServiceIntroPoint[] = [
+    { label: t('introPoints.designBuildLabel'), text: t('introPoints.designBuildText') },
+    { label: t('introPoints.sustainabilityLabel'), text: t('introPoints.sustainabilityText') },
+    { label: t('introPoints.trustLabel'), text: t('introPoints.trustText') },
+  ]
 
   // Fallback: if the singleton has no services[], fetch all services directly
   const hasPageServices = (page?.services ?? []).length > 0
@@ -118,6 +128,7 @@ export default async function ServicesPage({ params }: PageProps) {
         locale={locale}
         heroImage={page?.heroImage}
         intro={page?.intro}
+        introPoints={introPoints}
       />
 
       <ServicesPageContent

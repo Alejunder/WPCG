@@ -152,7 +152,7 @@
 
 .ecoBadge {
   display: block;
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: auto;
   object-fit: contain;
 }

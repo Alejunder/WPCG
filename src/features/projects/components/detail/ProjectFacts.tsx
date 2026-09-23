@@ -151,10 +151,10 @@ export default function ProjectFacts({ surfaceArea, duration, services, locale, 
         <div className={styles.ecoBadgeWrapper}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/eco-friendly.png"
+            src="/images/eco-logo.png"
             alt="Eco-friendly project"
-            width={80}
-            height={80}
+            width={669}
+            height={373}
             className={styles.ecoBadge}
           />
         </div>

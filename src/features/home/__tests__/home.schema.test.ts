@@ -87,4 +87,25 @@ describe('HomePageSchema', () => {
     })
     expect(result.success).toBe(false)
   })
+
+  it('accepts aboutExcerpt as PortableText blocks with the highlight mark', () => {
+    const result = HomePageSchema.safeParse({
+      aboutExcerpt: [
+        {
+          _key: 'block-1',
+          _type: 'block',
+          children: [
+            { _key: 'span-1', _type: 'span', text: 'A highlight', marks: ['highlight'] },
+          ],
+          markDefs: [],
+        },
+      ],
+    })
+    expect(result.success).toBe(true)
+  })
+
+  it('still accepts legacy plain-string aboutExcerpt', () => {
+    const result = HomePageSchema.safeParse({ aboutExcerpt: 'Legacy string content.' })
+    expect(result.success).toBe(true)
+  })
 })

@@ -152,10 +152,10 @@ export default function ProjectCard({ project, locale }: Props) {
         <div className={styles.ecoBadgeWrapper} aria-label="Eco-friendly project">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/eco-friendly.png"
+            src="/images/eco-logo.png"
             alt="Eco-friendly"
-            width={64}
-            height={64}
+            width={669}
+            height={373}
             className={styles.ecoBadge}
           />
         </div>
