@@ -144,15 +144,18 @@ export default function HeroSection({ heroImages, locale, heroServiceLinks }: He
         <div className={styles.brandLockupWrapper}>
           <div className={styles.brandLockup}>
             <Image
-              src="/images/wpcg-logo.png"
-              alt="WPCG — Arquitectura y Construcción"
-              width={480}
-              height={148}
+              src="/images/wpcg-wordmark.png"
+              alt="WPCG"
+              width={899}
+              height={230}
               priority
               sizes="(max-width: 390px) 50vw, (max-width: 639px) 46vw, (max-width: 767px) 52vw, (max-width: 1023px) 46vw, 26vw"
               className={styles.brandLogo}
             />
-            <span className={styles.brandSubtitleExtra}>{t('heroSubtitleExtra')}</span>
+            <span className={styles.brandSubtitleBlock}>
+              <span className={styles.brandSubtitleLine}>{t('heroSubtitle')}</span>
+              <span className={styles.brandSubtitleLine}>{t('heroSubtitleExtra')}</span>
+            </span>
             <Image
               src="/images/eco-logo.png"
               alt=""

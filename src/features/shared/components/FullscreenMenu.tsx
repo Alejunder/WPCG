@@ -3,7 +3,6 @@
 import { useEffect, useRef, useCallback, useState } from 'react'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import logo from '@/assets/wpcg-removebg-preview.png'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { Locale } from '@/config/i18n'
 import { ARCH_EASE } from '@/features/shared/motion/motion.config'
@@ -169,8 +168,10 @@ export default function FullscreenMenu({ id, isOpen, onClose, locale }: Fullscre
             {/* Top bar */}
             <div className={styles.header}>
               <Image
-                src={logo}
-                alt="WPCG — Arquitectura y Construcción"
+                src="/images/wpcg-wordmark.png"
+                alt="WPCG"
+                width={899}
+                height={230}
                 style={{ height: '38px', width: 'auto' }}
                 className={styles.logoImage}
               />

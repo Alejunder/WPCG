@@ -4,7 +4,7 @@
   max-width: 100%;
   min-width: 0;
   height: 100vh;
-  height: 100dvh;
+  height: 100svh;
   min-height: 620px;
   overflow: hidden;
   display: flex;
@@ -74,13 +74,21 @@
   filter: brightness(0) invert(1) drop-shadow(0 2px 40px rgba(0 0 0 / 0.55));
 }
 
-/* Continuation of the subtitle baked into the logo image.
-   font-size factor ≈ cap-height of the image subtitle (26px) ÷ image width (899px),
-   divided by Montserrat's ~0.7 cap-height ratio. Tune if the logo asset changes. */
-.brandSubtitleExtra {
+/* Localized subtitle — replaces the subtitle baked into the old logo image.
+   font-size factor ≈ cap-height of the original baked subtitle (26px) ÷ image
+   width (899px), divided by Montserrat's ~0.7 cap-height ratio. */
+.brandSubtitleBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+  font-size: calc(var(--logo-w) * 0.045);
+}
+
+.brandSubtitleLine {
   font-family: var(--font-primary);
   font-weight: 500;
-  font-size: calc(var(--logo-w) * 0.045);
+  font-size: 1em;
   line-height: 1;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -389,7 +397,7 @@
 
   .serviceLink,
   .serviceSep {
-    font-size: clamp(0.6875rem, 1.6vw, 0.9375rem);
+    font-size: clamp(0.75rem, 2vw, 1.0625rem);
     letter-spacing: 0.05em;
   }
 }
@@ -409,30 +417,35 @@
   }
 
   .serviceLinksRow {
-    gap: 0.2rem 0.4rem;
+    flex-wrap: nowrap;
+    gap: 0.15rem 0.4rem;
+    margin-bottom: 0.25rem;
   }
 
   .serviceLink,
   .serviceSep {
-    font-size: clamp(0.5rem, 1.55vw, 0.6875rem);
-    letter-spacing: 0.05em;
+    font-size: clamp(0.82rem, 3vw, 1rem);
   }
 
   .heroCtaContainer {
     gap: var(--space-sm);
-    margin-bottom: 3.25rem;
+    margin-bottom: 1.5rem;
   }
 
   .ctaPrimary,
   .ctaSecondary {
-    font-size: 0.5625rem;
-    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    padding: 0.625rem 1.5rem;
   }
 
   .carouselBtn {
     width: 2.5rem;
     height: 2.5rem;
     font-size: 1rem;
+  }
+
+  .dots {
+    bottom: 0.75rem;
   }
 }
 
@@ -452,7 +465,7 @@
 
   .serviceLinksRow {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     gap: 0.15rem 0.25rem;
@@ -461,7 +474,7 @@
 
   .serviceLink,
   .serviceSep {
-    font-size: min(1.3vw, 0.46875rem);
+    font-size: clamp(0.75rem, 3vw, 0.9375rem);
     font-weight: 200;
     letter-spacing: 0.02em;
     line-height: 1.15;
@@ -471,17 +484,17 @@
   }
 
   .serviceSep {
-    padding-inline: clamp(0.15rem, 1vw, 0.4rem);
+    padding-inline: clamp(0.2rem, 1vw, 0.5rem);
   }
 
   .heroCtaContainer {
-    gap: 0.75rem;
-    margin-bottom: calc(72px + 1.75rem + env(safe-area-inset-bottom, 0px));
+    gap: 0.65rem;
+    margin-bottom: calc(72px + 1rem + env(safe-area-inset-bottom, 0px));
   }
 
   .ctaGroup {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -496,8 +509,8 @@
     max-width: 100%;
     flex: 0 1 auto;
     justify-content: center;
-    font-size: 0.5rem;
-    padding: 0.4rem 0.75rem;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
   }
 
   .carouselBtn {
@@ -507,11 +520,21 @@
   }
 
   .dots {
-    bottom: calc(72px + 0.85rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(72px + 0.3rem + env(safe-area-inset-bottom, 0px));
   }
 
+  /* Keep the scroll cue visible on mobile, tucked above the CTA stack and the
+     fixed bottom navbar so it never clashes with the buttons or the navbar. */
   .scrollHint {
-    display: none;
+    display: flex;
+    bottom: calc(72px + 5.5rem + env(safe-area-inset-bottom, 0px));
+    right: var(--gutter);
+    pointer-events: none;
+  }
+
+  .scrollLabel {
+    font-size: 0.5rem;
+    letter-spacing: 0.18em;
   }
 
   .scrollLine {
@@ -526,17 +549,17 @@
 
   .serviceLink,
   .serviceSep {
-    font-size: min(1.25vw, 0.40625rem);
+    font-size: clamp(0.75rem, 3.2vw, 0.875rem);
     letter-spacing: 0.02em;
   }
 
   .serviceSep {
-    padding-inline: 0.15rem;
+    padding-inline: 0.2rem;
   }
 
   .ctaPrimary,
   .ctaSecondary {
-    font-size: 0.4375rem;
-    padding: 0.35rem 0.625rem;
+    font-size: 0.8125rem;
+    padding: 0.4375rem 0.875rem;
   }
 }

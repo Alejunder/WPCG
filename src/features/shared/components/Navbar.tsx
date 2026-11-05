@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import type { Locale } from '@/config/i18n'
-import logo from '@/assets/wpcg-removebg-preview.png'
 import FullscreenMenu from './FullscreenMenu'
 import styles from './Navbar.module.css'
 
@@ -32,6 +32,7 @@ function buildLinks(locale: Locale): NavItem[] {
 
 export default function Navbar({ locale }: NavbarProps) {
   const pathname = usePathname()
+  const t        = useTranslations('Navbar')
   const links    = buildLinks(locale)
   const [isOpen, setIsOpen]     = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -75,13 +76,18 @@ export default function Navbar({ locale }: NavbarProps) {
         <div className={styles.inner}>
           {/* Logo */}
           <Link href={`/${locale}`} className={styles.logo} aria-label="WPCG — Home">
-            <Image
-              src={logo}
-              alt=""
-              style={{ height: '38px', width: 'auto' }}
-              className={styles.logoImage}
-              priority
-            />
+            <span className={styles.logoLockup}>
+              <Image
+                src="/images/wpcg-wordmark.png"
+                alt=""
+                width={899}
+                height={230}
+                style={{ height: '34px', width: 'auto' }}
+                className={styles.logoImage}
+                priority
+              />
+              <span className={styles.logoSubtitle}>{t('subtitle')}</span>
+            </span>
           </Link>
 
           {/* Desktop navigation — center */}

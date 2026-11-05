@@ -1,14 +1,16 @@
 {
   "Navbar": {
     "home": "Home",
-    "projects": "Projects and works",
+    "projects": "Projects",
     "about": "About",
     "services": "Services",
     "team": "Team",
     "contact": "Contact",
-    "cta": "Let's Talk"
+    "cta": "Let's Talk",
+    "subtitle": "Architecture and construction"
   },
   "HomePage": {
+    "heroSubtitle": "Architecture and construction",
     "heroSubtitleExtra": "Sustainable",
     "heroViewProjects": "See our projects",
     "heroContact": "Contact us",

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -80,12 +81,17 @@ export default function SketchModal({ sketches, initialIndex, locale, onClose }:
     return () => document.removeEventListener('keydown', handleKey)
   }, [onClose, goNext, goPrev])
 
-  // Scroll lock — restore original value on unmount
+  // Scroll lock — hard-lock the page behind the dialog. The modal is portaled
+  // to <body>, so the backdrop always covers the viewport and no page content
+  // (e.g. the CTA banner) can scroll over it.
   useEffect(() => {
-    const prev = document.body.style.overflow
+    const prevOverflow = document.body.style.overflow
+    const prevOverscroll = document.body.style.overscrollBehavior
     document.body.style.overflow = 'hidden'
+    document.body.style.overscrollBehavior = 'none'
     return () => {
-      document.body.style.overflow = prev
+      document.body.style.overflow = prevOverflow
+      document.body.style.overscrollBehavior = prevOverscroll
     }
   }, [])
 
@@ -108,7 +114,9 @@ export default function SketchModal({ sketches, initialIndex, locale, onClose }:
       l ? `Página ${cur} de ${tot}` : `Page ${cur} of ${tot}`,
   }
 
-  return (
+  if (typeof window === 'undefined') return null
+
+  return createPortal(
     /* Backdrop ─────────────────────────────────────────────── */
     <motion.div
       className={styles.backdrop}
@@ -230,6 +238,7 @@ export default function SketchModal({ sketches, initialIndex, locale, onClose }:
           </div>
         </div>
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body,
   )
 }

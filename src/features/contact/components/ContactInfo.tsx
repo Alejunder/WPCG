@@ -6,7 +6,6 @@ import Image from 'next/image'
 import AnimatedDivider from '@/features/shared/motion/AnimatedDivider'
 import type { ContactInfoData } from '../types'
 import styles from './ContactInfo.module.css'
-import logo from '@/assets/wpcg-removebg-preview.png'
 
 interface ContactInfoProps {
   info: ContactInfoData | null
@@ -29,7 +28,7 @@ export default function ContactInfo({ info }: ContactInfoProps) {
       aria-label={t('ariaLabel')}
     >
       <div className={styles.brand}>
-        <Image src={logo} alt="WPCG Logo" className={styles.logo} style={{ height: '85px', width: 'auto' }} loading="eager" priority />
+        <Image src="/images/wpcg-wordmark.png" alt="WPCG Logo" width={899} height={230} className={styles.logo} style={{ height: '85px', width: 'auto' }} loading="eager" priority />
       </div>
 
       {info?.address && (

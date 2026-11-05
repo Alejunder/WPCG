@@ -1,14 +1,16 @@
 {
   "Navbar": {
     "home": "Inicio",
-    "projects": "Proyectos y obras",
+    "projects": "Proyectos",
     "about": "Nosotros",
     "services": "Servicios",
     "team": "Equipo",
     "contact": "Contacto",
-    "cta": "Hablemos"
+    "cta": "Hablemos",
+    "subtitle": "Arquitectura y construcción"
   },
   "HomePage": {
+    "heroSubtitle": "Arquitectura y construcción",
     "heroSubtitleExtra": "Sostenible",
     "heroViewProjects": "Ver proyectos",
     "heroContact": "Contacto",
