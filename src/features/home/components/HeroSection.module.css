@@ -474,7 +474,7 @@
 
   .serviceLink,
   .serviceSep {
-    font-size: clamp(0.75rem, 3vw, 0.9375rem);
+    font-size: clamp(0.65rem, 2.9vw, 0.8375rem);
     font-weight: 200;
     letter-spacing: 0.02em;
     line-height: 1.15;
