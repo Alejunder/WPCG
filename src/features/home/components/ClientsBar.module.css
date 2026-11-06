@@ -79,14 +79,15 @@
   background: linear-gradient(to left, var(--color-bg), transparent);
 }
 
-/* Scrolling track — duplicated 4× and animated to -25% (= 1 set). */
+/* Scrolling track — duplicated 4× and animated to -25% (= 1 set).
+   Spacing uses margin-right (not gap) so each item is exactly 300px
+   (220px logo + 5rem margin); this makes -25% land precisely on a set
+   boundary and keeps the loop seamless (gap would leave a 20px jump). */
 .track {
   display: flex;
   align-items: center;
-  gap: 5rem;
   width: max-content;
   padding-block: 0.75rem;
-  will-change: transform;
 }
 
 /*
@@ -112,6 +113,7 @@
   width: 220px;
   height: 88px;
   flex-shrink: 0;
+  margin-right: 5rem;
 }
 
 .logo {
