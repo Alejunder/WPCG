@@ -417,11 +417,11 @@
   }
 
   .brandLockup {
-    --logo-w: clamp(9rem, 54vw, 14rem);
+    --logo-w: clamp(10rem, 56vw, 15rem);
   }
 
   .brandSubtitleBlock {
-    font-size: calc(var(--logo-w) * 0.06);
+    font-size: calc(var(--logo-w) * 0.08);
   }
 
   .serviceLinksRow {
@@ -468,7 +468,7 @@
   }
 
   .brandLockup {
-    --logo-w: clamp(8rem, 48vw, 12rem);
+    --logo-w: clamp(9rem, 52vw, 13.5rem);
   }
 
   .serviceLinksRow {
@@ -497,7 +497,7 @@
 
   .heroCtaContainer {
     gap: 0.65rem;
-    margin-bottom: calc(72px + 2.5rem + env(safe-area-inset-bottom, 0px));
+    margin-bottom: calc(72px + 1rem + env(safe-area-inset-bottom, 0px));
   }
 
   .ctaGroup {
@@ -518,7 +518,7 @@
     flex: 0 1 auto;
     justify-content: center;
     font-size: 0.875rem;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.25rem;
   }
 
   .carouselBtn {
@@ -535,7 +535,7 @@
      fixed bottom navbar so it never clashes with the buttons or the navbar. */
   .scrollHint {
     display: flex;
-    bottom: calc(72px + 7rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(72px + 6rem + env(safe-area-inset-bottom, 0px));
     right: var(--gutter);
     pointer-events: none;
   }
@@ -552,7 +552,7 @@
 
 @media (max-width: 390px) {
   .brandLockup {
-    --logo-w: clamp(7rem, 50vw, 10rem);
+    --logo-w: clamp(8rem, 52vw, 11.5rem);
   }
 
   .serviceLink,
@@ -568,6 +568,6 @@
   .ctaPrimary,
   .ctaSecondary {
     font-size: 0.8125rem;
-    padding: 0.4375rem 0.875rem;
+    padding: 0.625rem 1.125rem;
   }
 }

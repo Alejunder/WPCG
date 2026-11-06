@@ -77,7 +77,7 @@ export const getProjectsPageQuery = /* groq */ `
     "subtitle": coalesce(subtitle[$locale], subtitle.en),
     "heroImage": heroImage {
       "url": asset->url,
-      alt
+      "alt": coalesce(alt, '')
     },
     "seoTitle": coalesce(seoTitle[$locale], seoTitle.en),
     "seoDescription": coalesce(seoDescription[$locale], seoDescription.en),

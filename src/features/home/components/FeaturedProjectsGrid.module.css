@@ -88,12 +88,13 @@
 
 /* Isolates the image snapshot for the view-transition morph.
  * position:absolute + inset:0 fills the .featuredHero container;
- * contain:paint clips the <Image fill> and creates an isolated stacking
- * context — matching the same pattern used on ProjectCard.imageWrapper. */
+ * isolation:isolate creates an isolated stacking context for a clean
+ * snapshot — `contain: paint` is deliberately avoided because WebKit/Safari
+ * rasterizes contained images at a reduced resolution (blurry on iOS). */
 .featuredHeroImageWrapper {
   position: absolute;
   inset: 0;
-  contain: paint;
+  isolation: isolate;
 }
 
 .featuredHeroImage {

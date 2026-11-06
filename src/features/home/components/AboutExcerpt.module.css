@@ -140,13 +140,17 @@
     padding-block: 6rem;
   }
 
-  .textCol {
-    padding-left: 1.25rem;
+  .inner {
+    padding-left: calc(var(--gutter) + 0.75rem);
   }
 
-  /* Remove the second left rule (border) on mobile and align the body text
-     with the heading and CTA below. Only the outer decorCol vertical rule
-     remains, keeping the text consistent with the rest of the column. */
+  .textCol {
+    padding-left: 0;
+  }
+
+  /* Remove the second left rule (border) on mobile, align the body text with
+     the heading and CTA, and tighten the gap between the decorCol line and the
+     text column. */
   .body {
     padding-left: 0;
     border-left: none;

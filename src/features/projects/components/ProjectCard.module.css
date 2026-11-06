@@ -54,10 +54,10 @@
     color-mix(in srgb, var(--color-bg) 55%, transparent) 45%,
     color-mix(in srgb, var(--color-bg) 20%, transparent) 100%
   );
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
   overflow: hidden;
-  /* opacity is driven entirely by Framer Motion variants */
+  /* opacity is driven entirely by Framer Motion variants.
+     No backdrop-filter here: it blurs the image behind the (opacity:0 on
+     mobile) overlay on iOS Safari, contributing to the blurry-image bug. */
 }
 
 /* ------------------------------------------------------------------ */

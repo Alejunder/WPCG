@@ -97,7 +97,7 @@ export default function ProjectCard({ project, locale }: Props) {
       >
         <div
           className={styles.imageWrapper}
-          style={{ contain: 'paint', viewTransitionName: `project-hero-${slug.current}` } as CSSProperties}
+          style={{ isolation: 'isolate', viewTransitionName: `project-hero-${slug.current}` } as CSSProperties}
         >
           <MotionImage
             src={imageSrc}
