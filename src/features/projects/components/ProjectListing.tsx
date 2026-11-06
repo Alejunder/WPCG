@@ -74,9 +74,11 @@ export default function ProjectListing({ projects, locale }: ProjectListingProps
         )}
       </div>
 
-      {/* Mobile: Framer Motion drag carousel — hidden on tablet/desktop via CSS */}
+      {/* Mobile: Framer Motion drag carousel — hidden on tablet/desktop via CSS.
+          Uses the full filtered list (not the load-more slice) so the counter
+          reflects the real total and users can swipe through every project. */}
       <div className={styles.carouselWrapper}>
-        <ProjectCarousel projects={data.visibleProjects} locale={locale} />
+        <ProjectCarousel projects={data.filteredProjects} locale={locale} />
       </div>
     </section>
   )

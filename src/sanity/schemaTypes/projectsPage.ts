@@ -28,6 +28,22 @@ export const projectsPageType = defineType({
     }),
 
     defineField({
+      name: 'heroImage',
+      title: 'Hero Image',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Optional full-width background image for the projects header. A dark scrim is applied automatically for text legibility.',
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt text',
+          type: 'string',
+          description: 'Descriptive text for screen readers. Leave empty for a decorative image.',
+        }),
+      ],
+    }),
+
+    defineField({
       name: 'seoTitle',
       title: 'SEO Title',
       type: 'object',

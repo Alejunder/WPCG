@@ -75,6 +75,10 @@ export const getProjectsPageQuery = /* groq */ `
   *[_type == "projectsPage"][0] {
     "title": coalesce(title[$locale], title.en),
     "subtitle": coalesce(subtitle[$locale], subtitle.en),
+    "heroImage": heroImage {
+      "url": asset->url,
+      alt
+    },
     "seoTitle": coalesce(seoTitle[$locale], seoTitle.en),
     "seoDescription": coalesce(seoDescription[$locale], seoDescription.en),
   }

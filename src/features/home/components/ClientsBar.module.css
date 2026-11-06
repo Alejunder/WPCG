@@ -77,16 +77,23 @@
   gap: 5rem;
   width: max-content;
   padding-block: 0.75rem;
+  will-change: transform;
+}
+
+/*
+ * Keyframes are declared OUTSIDE the media query on purpose: iOS Safari has a
+ * long-standing bug where @keyframes nested inside @media are not registered,
+ * so the marquee silently never animates. translate3d() also forces GPU
+ * compositing, which WebKit handles far more reliably than translateX().
+ */
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-25%, 0, 0); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .track {
     animation: marquee 40s linear infinite;
-  }
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-25%); }
   }
 }
 

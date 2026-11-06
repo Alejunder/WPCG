@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import styles from './ProjectsPageHero.module.css'
 
@@ -8,6 +9,7 @@ interface Props {
   locale: 'en' | 'es'
   title?: string | null
   subtitle?: string | null
+  image?: { url: string; alt: string } | null
 }
 
 const CONTENT: Record<'en' | 'es', { title: string; home: string; projects: string }> = {
@@ -15,7 +17,7 @@ const CONTENT: Record<'en' | 'es', { title: string; home: string; projects: stri
   es: { title: 'Nuestros Proyectos', home: 'Inicio', projects: 'Proyectos y obras' },
 }
 
-export default function ProjectsPageHero({ locale, title, subtitle }: Props) {
+export default function ProjectsPageHero({ locale, title, subtitle, image }: Props) {
   const shouldReduce = useReducedMotion()
   const c = CONTENT[locale]
   const resolvedTitle = title ?? c.title
@@ -32,6 +34,19 @@ export default function ProjectsPageHero({ locale, title, subtitle }: Props) {
 
   return (
     <section className={styles.hero} aria-label={c.title}>
+      {image?.url && (
+        <div className={styles.imageLayer} aria-hidden="true">
+          <Image
+            src={image.url}
+            alt={image.alt}
+            fill
+            priority
+            sizes="100vw"
+            className={styles.image}
+          />
+        </div>
+      )}
+      {image?.url && <div className={styles.heroOverlay} aria-hidden="true" />}
       <div className={styles.noise} aria-hidden="true" />
       <div className={styles.inner}>
         <motion.div

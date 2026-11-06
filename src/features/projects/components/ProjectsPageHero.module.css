@@ -20,6 +20,30 @@
   z-index: 0;
 }
 
+/* Optional full-width background image */
+.imageLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* Dark scrim over the hero image for text legibility */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--color-bg) 90%, transparent) 0%,
+    color-mix(in srgb, var(--color-bg) 60%, transparent) 55%,
+    color-mix(in srgb, var(--color-bg) 30%, transparent) 100%
+  );
+}
+
 .inner {
   position: relative;
   z-index: 1;

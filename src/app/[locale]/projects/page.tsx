@@ -91,6 +91,7 @@ export default async function ProjectsPage({ params }: PageProps) {
         locale={locale}
         title={page?.title ?? null}
         subtitle={page?.subtitle ?? null}
+        image={page?.heroImage ?? null}
       />
       <div className={styles.listingContainer}>
         <ProjectListing projects={projects} locale={locale} />

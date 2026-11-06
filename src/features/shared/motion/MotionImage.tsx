@@ -28,8 +28,13 @@ interface MotionImageProps extends NextImageProps {
 /**
  * A `next/image` wrapper with a built-in reveal animation.
  *
- * On mount the image fades in from opacity 0 and scales from 0.96 → 1,
- * creating a premium "materialise" effect. Optionally adds a subtle hover zoom.
+ * On mount the image fades in from opacity 0, creating a premium "materialise"
+ * effect. Optionally adds a subtle hover zoom.
+ *
+ * NOTE: The reveal is opacity-only on purpose. Animating `scale` on the
+ * wrapper div that contains a `next/image` fill image causes iOS Safari to
+ * rasterize the image into a compositing layer at the reduced (scaled)
+ * resolution, leaving the image permanently blurry on that platform.
  *
  * The animation is applied to a wrapper `div` (not the `Image` element itself)
  * to avoid ref-forwarding conflicts with `next/image` in React 19.
@@ -58,8 +63,8 @@ export default function MotionImage({
     <motion.div
       className={wrapperClassName}
       style={{ position: 'relative', overflow: 'hidden', ...style }}
-      initial={noAnimation ? false : { opacity: 0, scale: 0.98 }}
-      whileInView={noAnimation ? undefined : { opacity: 1, scale: 1 }}
+      initial={noAnimation ? false : { opacity: 0 }}
+      whileInView={noAnimation ? undefined : { opacity: 1 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{
         duration: shouldReduce ? 0 : 0.9,

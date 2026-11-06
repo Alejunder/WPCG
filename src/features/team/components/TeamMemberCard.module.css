@@ -113,3 +113,13 @@
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }
+
+/* ------------------------------------------------------------------ */
+/* Mobile — justify the bio preview instead of centering               */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 639px) {
+  .bio {
+    text-align: justify;
+  }
+}

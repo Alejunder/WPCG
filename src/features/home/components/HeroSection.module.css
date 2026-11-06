@@ -290,9 +290,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
-  color: color-mix(in srgb, var(--color-primary) 65%, transparent);
+  /* Frosted dark chip keeps the gold arrow legible over light hero images
+     while staying on-palette (dark surface + gold accent). */
+  background: color-mix(in srgb, var(--color-bg) 55%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+  color: var(--color-primary);
   font-size: 1.125rem;
   cursor: pointer;
   padding: 0;
@@ -413,7 +417,11 @@
   }
 
   .brandLockup {
-    --logo-w: clamp(8rem, 52vw, 13rem);
+    --logo-w: clamp(9rem, 54vw, 14rem);
+  }
+
+  .brandSubtitleBlock {
+    font-size: calc(var(--logo-w) * 0.06);
   }
 
   .serviceLinksRow {
@@ -460,7 +468,7 @@
   }
 
   .brandLockup {
-    --logo-w: clamp(7rem, 46vw, 11rem);
+    --logo-w: clamp(8rem, 48vw, 12rem);
   }
 
   .serviceLinksRow {
@@ -489,7 +497,7 @@
 
   .heroCtaContainer {
     gap: 0.65rem;
-    margin-bottom: calc(72px + 1rem + env(safe-area-inset-bottom, 0px));
+    margin-bottom: calc(72px + 2.5rem + env(safe-area-inset-bottom, 0px));
   }
 
   .ctaGroup {
@@ -527,7 +535,7 @@
      fixed bottom navbar so it never clashes with the buttons or the navbar. */
   .scrollHint {
     display: flex;
-    bottom: calc(72px + 5.5rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(72px + 7rem + env(safe-area-inset-bottom, 0px));
     right: var(--gutter);
     pointer-events: none;
   }
@@ -544,7 +552,7 @@
 
 @media (max-width: 390px) {
   .brandLockup {
-    --logo-w: clamp(6rem, 50vw, 9rem);
+    --logo-w: clamp(7rem, 50vw, 10rem);
   }
 
   .serviceLink,

@@ -144,8 +144,12 @@
     padding-left: 1.25rem;
   }
 
+  /* Remove the second left rule (border) on mobile and align the body text
+     with the heading and CTA below. Only the outer decorCol vertical rule
+     remains, keeping the text consistent with the rest of the column. */
   .body {
-    padding-left: 1rem;
+    padding-left: 0;
+    border-left: none;
   }
 }
 

@@ -16,6 +16,9 @@ interface FilterState {
 }
 
 interface FilterData {
+  /** Every project matching the active filter (uncapped). */
+  filteredProjects: ProjectCard[]
+  /** Slice of filteredProjects capped by the load-more pagination. */
   visibleProjects: ProjectCard[]
 }
 
@@ -74,6 +77,7 @@ export function useProjectFilter(projects: ProjectCard[]): UseProjectFilterResul
       total: filteredProjects.length,
     },
     data: {
+      filteredProjects,
       visibleProjects,
     },
     actions: {
