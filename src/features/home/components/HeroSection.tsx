@@ -154,6 +154,7 @@ export default function HeroSection({ heroImages, locale, heroServiceLinks }: He
             />
             <span className={styles.brandSubtitleBlock}>
               <span className={styles.brandSubtitleLine}>{t('heroSubtitle')}</span>
+              <span className={styles.brandSubtitleLine}>{t('heroSubtitleConjunction')}</span>
               <span className={styles.brandSubtitleLine}>{t('heroSubtitleExtra')}</span>
             </span>
             <Image

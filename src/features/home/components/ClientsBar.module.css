@@ -50,30 +50,39 @@
   color: color-mix(in srgb, var(--color-text-muted) 60%, transparent);
 }
 
-/* Overflow mask with edge fade — logos fade out left, fade in right */
+/* Overflow container. The edge fade is drawn with gradient overlays (::before/
+   ::after) instead of `mask-image`: `-webkit-mask-image` breaks child transform
+   animations on iOS Safari, so the marquee never moves. */
 .mask {
+  position: relative;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 18%,
-    black 82%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 18%,
-    black 82%,
-    transparent 100%
-  );
 }
 
-/* Scrolling track — centred when not animating */
+.mask::before,
+.mask::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 18%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mask::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-bg), transparent);
+}
+
+.mask::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-bg), transparent);
+}
+
+/* Scrolling track — duplicated 4× and animated to -25% (= 1 set). */
 .track {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 5rem;
   width: max-content;
   padding-block: 0.75rem;

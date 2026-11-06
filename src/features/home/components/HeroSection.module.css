@@ -421,7 +421,7 @@
   }
 
   .brandSubtitleBlock {
-    font-size: calc(var(--logo-w) * 0.08);
+    font-size: calc(var(--logo-w) * 0.075);
   }
 
   .serviceLinksRow {

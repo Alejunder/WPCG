@@ -10,8 +10,9 @@
     "subtitle": "Architecture and construction"
   },
   "HomePage": {
-    "heroSubtitle": "Architecture and construction",
-    "heroSubtitleExtra": "Sustainable",
+    "heroSubtitle": "Architecture",
+    "heroSubtitleConjunction": "and",
+    "heroSubtitleExtra": "Construction sustainable",
     "heroViewProjects": "See our projects",
     "heroContact": "Contact us",
     "heroPrev": "Previous image",
